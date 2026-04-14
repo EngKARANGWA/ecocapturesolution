@@ -3,7 +3,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const siteUrl = 'https://www.ecocapturesolutions.com';
+const siteUrl = 'https://ecocapturesolution.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
