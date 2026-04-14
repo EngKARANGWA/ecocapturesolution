@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Prevent blue outline flash on mobile nav links */
+a, button { -webkit-tap-highlight-color: transparent; }
