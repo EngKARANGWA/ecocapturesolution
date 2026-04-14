@@ -55,9 +55,19 @@ const partnerTypes: PartnerType[] = [
   },
 ];
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ecocapturesolution.vercel.app' },
+    { '@type': 'ListItem', position: 2, name: 'Partner With Us', item: 'https://ecocapturesolution.vercel.app/partner' },
+  ],
+};
+
 export default function Partner() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader title="Partner With Us" subtitle="Join us in building Africa's climate-smart future. Together we scale faster." />
 
       {/* Partner types */}

@@ -57,9 +57,43 @@ const infoBlocks: InfoBlock[] = [
   },
 ];
 
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'EcoCapture Solutions Ltd',
+  image: 'https://ecocapturesolution.vercel.app/assets/logos/logo-ecocapture.png',
+  url: 'https://ecocapturesolution.vercel.app',
+  telephone: '+250-781-392-398',
+  email: 'ecocapturesolutions@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Norrseken Kigali',
+    addressLocality: 'Kigali',
+    addressRegion: 'Kigali Province',
+    addressCountry: 'RW',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -1.9441, longitude: 30.0619 },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '09:00', closes: '17:00' },
+  ],
+  sameAs: ['https://www.linkedin.com/company/ecocapture-solutions-ltd/'],
+  description: 'EcoCapture Solutions Ltd is a climate tech company in Kigali, Rwanda, specialising in CO₂ capture, greenhouse enrichment, and biochar fertilizer production for African farmers and industries.',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ecocapturesolution.vercel.app' },
+    { '@type': 'ListItem', position: 2, name: 'Contact Us', item: 'https://ecocapturesolution.vercel.app/contact' },
+  ],
+};
+
 export default function Contact() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader title="Contact Us" subtitle="Whether you're a farmer, investor, partner, or climate enthusiast - we'd love to hear from you." />
 
       <section className="py-24 px-4">

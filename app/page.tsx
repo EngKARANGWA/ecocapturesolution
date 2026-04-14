@@ -84,8 +84,8 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'EcoCapture Solutions Ltd',
-  url: 'https://www.ecocapturesolutions.com',
-  logo: 'https://www.ecocapturesolutions.com/assets/logos/logo-ecocapture.png',
+  url: 'https://ecocapturesolution.vercel.app',
+  logo: 'https://ecocapturesolution.vercel.app/assets/logos/logo-ecocapture.png',
   description:
     "EcoCapture Solutions Ltd turns CO₂ into opportunity for Africa's farmers and industries through affordable carbon capture technology, greenhouse CO₂ enrichment, and biochar fertilizers — built in Rwanda.",
   foundingDate: '2023',

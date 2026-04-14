@@ -88,9 +88,19 @@ const audiences = [
   },
 ];
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ecocapturesolution.vercel.app' },
+    { '@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://ecocapturesolution.vercel.app/solutions' },
+  ],
+};
+
 export default function Solutions() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader
         title="Our Solutions"
         subtitle="We capture CO₂ and turn it into value - for farmers, industries, and the climate."

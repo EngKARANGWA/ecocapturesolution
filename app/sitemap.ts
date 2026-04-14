@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const siteUrl = 'https://www.ecocapturesolutions.com';
+const siteUrl = 'https://ecocapturesolution.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

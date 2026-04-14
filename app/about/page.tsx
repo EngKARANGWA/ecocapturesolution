@@ -56,9 +56,19 @@ function TeamCard({ img, name, role, sub }: { img: string; name: string; role: s
   );
 }
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ecocapturesolution.vercel.app' },
+    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://ecocapturesolution.vercel.app/about' },
+  ],
+};
+
 export default function About() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader title="About Us" subtitle="Building Africa's climate-smart future, one CO₂ molecule at a time." />
 
       {/* Story */}

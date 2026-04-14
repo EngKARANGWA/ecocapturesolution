@@ -81,9 +81,19 @@ const highlights: Highlight[] = [
   },
 ];
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ecocapturesolution.vercel.app' },
+    { '@type': 'ListItem', position: 2, name: 'Impact', item: 'https://ecocapturesolution.vercel.app/impact' },
+  ],
+};
+
 export default function Impact() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader title="Our Impact" subtitle="Real numbers, real lives changed - measuring our progress toward a carbon-neutral Africa." />
 
       {/* Stats band */}

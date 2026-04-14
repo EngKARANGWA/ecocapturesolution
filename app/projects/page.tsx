@@ -40,9 +40,31 @@ const photos = [
   { src: '/assets/projects/circular economy.jpg',  alt: 'Circular economy model in action' },
 ];
 
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ResearchProject',
+  name: 'EcoCapture Karongi Pilot — Rwanda',
+  description: "Africa's first integrated carbon-to-agriculture loop: CO₂ capture, greenhouse enrichment, and biochar production in Karongi District, Rwanda.",
+  url: 'https://ecocapturesolution.vercel.app/projects',
+  image: 'https://ecocapturesolution.vercel.app/assets/projects/greenhouse.jpg',
+  location: { '@type': 'Place', name: 'Karongi District', address: { '@type': 'PostalAddress', addressLocality: 'Karongi', addressRegion: 'Western Province', addressCountry: 'RW' } },
+  founder: { '@type': 'Organization', name: 'EcoCapture Solutions Ltd' },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ecocapturesolution.vercel.app' },
+    { '@type': 'ListItem', position: 2, name: 'Projects & Pilots', item: 'https://ecocapturesolution.vercel.app/projects' },
+  ],
+};
+
 export default function Projects() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader
         title="Projects & Pilots"
         subtitle="Real work, real results - on the ground in Rwanda."

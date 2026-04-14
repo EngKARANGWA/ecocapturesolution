@@ -60,9 +60,33 @@ const steps = [
   },
 ];
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How EcoCapture CO₂ Capture Technology Works',
+  description: 'EcoCapture captures CO₂ from industrial sources, delivers it to greenhouses to boost crop growth, then converts plant waste into biochar fertilizer — permanently locking carbon in the soil.',
+  image: 'https://ecocapturesolution.vercel.app/assets/projects/co2-capture.jpg',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'CO₂ Capture', text: 'Compact, modular machines capture CO₂ directly from industrial emission points such as factories, kilns, and processing plants.' },
+    { '@type': 'HowToStep', position: 2, name: 'Greenhouse Integration', text: 'Captured CO₂ is piped into greenhouses where plants absorb it, growing up to 30% faster with better crop quality and shorter harvest cycles.' },
+    { '@type': 'HowToStep', position: 3, name: 'Biochar Production', text: 'Plant waste from the greenhouses is converted into biochar — a carbon-rich soil amendment that improves fertility and permanently stores carbon.' },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ecocapturesolution.vercel.app' },
+    { '@type': 'ListItem', position: 2, name: 'Technology', item: 'https://ecocapturesolution.vercel.app/technology' },
+  ],
+};
+
 export default function Technology() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader
         title="How It Works"
         subtitle="Simple technology. Real impact. No complexity - just CO₂ captured and turned into food and fertile soil."
