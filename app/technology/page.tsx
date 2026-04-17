@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -156,17 +157,17 @@ export default function Technology() {
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-gray-700">
             {['Capture CO₂', 'Enrich Greenhouse', 'Grow Crops', 'Convert Biomass', 'Produce Biochar', 'Improve Soil'].map((step, i, arr) => (
-              <>
-                <span key={step} className="bg-eco-light text-eco-dark px-4 py-2 rounded-full border border-eco-primary/10">
+              <Fragment key={step}>
+                <span className="bg-eco-light text-eco-dark px-4 py-2 rounded-full border border-eco-primary/10">
                   {step}
                 </span>
-                {i < arr.length - 1 && <ArrowRight key={`arrow-${i}`} className="w-4 h-4 text-eco-primary/40" />}
-              </>
+                {i < arr.length - 1 && <ArrowRight className="w-4 h-4 text-eco-primary/40" />}
+              </Fragment>
             ))}
           </div>
           <p className="text-gray-500 mt-8 max-w-xl mx-auto leading-relaxed">
             This circular model means every tonne of CO₂ we capture compounds into more food, more fertile soil,
-            and more carbon removed — permanently.
+            and more carbon removed - permanently.
           </p>
         </div>
       </section>

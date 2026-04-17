@@ -122,20 +122,16 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             {/* Badge */}
-            <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-green-100 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
-              <Leaf className="w-4 h-4" />
-              Climate Tech for Africa
-            </span>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6">
-              Turning CO₂ Emissions into{' '}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.12] tracking-tight mb-6">
+              Turning CO₂ Emissions into<br />
               <span className="text-green-300">Agricultural Growth</span>
             </h1>
 
             <p className="text-green-200 text-xl leading-relaxed mb-10 max-w-lg">
-              Affordable carbon capture for Africa&apos;s future — built in Africa, for the world.
+              Affordable carbon capture for Africa&apos;s future - built in Africa, for the world.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -183,7 +179,7 @@ export default function Home() {
               <h3 className="text-xl font-bold text-gray-900 mb-3">Climate Change Is Accelerating</h3>
               <p className="text-gray-500 leading-relaxed">
                 CO₂ emissions from industry and agriculture are rising fast. Africa is one of the most
-                vulnerable continents — yet it contributes least to the problem. The planet cannot wait.
+                vulnerable continents - yet it contributes least to the problem. The planet cannot wait.
               </p>
             </div>
             <div className="bg-white rounded-2xl p-8 border border-orange-100 shadow-card">

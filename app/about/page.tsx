@@ -41,6 +41,7 @@ const advisors = [
 const partners = [
   { href: 'https://www.tonyelumelufoundation.org/', img: '/assets/partners/partner-tef.png',    alt: 'Tony Elumelu Foundation' },
   { href: 'https://unipod.rw/',                    img: '/assets/partners/partner-unipod.png', alt: 'Unipod' },
+  { href: 'https://fastercapital.com/',            img: '/assets/partners/fastercapital.png',  alt: 'FasterCapital' },
 ];
 
 function TeamCard({ img, name, role, sub }: { img: string; name: string; role: string; sub?: string }) {

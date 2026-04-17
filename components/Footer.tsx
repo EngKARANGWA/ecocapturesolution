@@ -51,7 +51,7 @@ export default function Footer() {
             </Link>
             <p className="text-green-200 text-sm leading-relaxed max-w-sm mb-6">
               Turning CO₂ into opportunity for Africa&apos;s future. Affordable carbon capture
-              for agriculture, industry, and climate action — built in Africa, for Africa.
+              for agriculture, industry, and climate action - built in Africa, for Africa.
             </p>
             <a
               href="https://www.linkedin.com/company/ecocapture-solutions-ltd/"

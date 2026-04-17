@@ -158,7 +158,7 @@ export default function Impact() {
                 <TrendingUp className="w-6 h-6 text-blue-600" />
               </div>
               <h3 className="font-bold text-gray-900 text-lg mb-1">Return on Investment</h3>
-              <p className="text-3xl font-black text-eco-primary mb-2">2–3×</p>
+              <p className="text-3xl font-black text-eco-primary mb-2">2-3×</p>
               <p className="text-gray-500 text-sm leading-relaxed">
                 estimated ROI for greenhouse operators deploying CO₂ enrichment, driven by higher yields and shorter harvest cycles.
               </p>

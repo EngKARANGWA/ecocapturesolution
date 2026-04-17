@@ -75,7 +75,6 @@ export default function Projects() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
           <div>
             <div className="flex items-center gap-2 text-eco-primary text-sm font-bold uppercase tracking-widest mb-4">
-              <span className="w-6 h-px bg-eco-primary inline-block" />
               Flagship Pilot
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 leading-snug">
@@ -177,7 +176,7 @@ export default function Projects() {
           <div className="space-y-5">
             {[
               'Local maintenance and operator training is critical to long-term sustainability.',
-              'Farmers adopt biochar rapidly once they see improved yields — no persuasion needed.',
+              'Farmers adopt biochar rapidly once they see improved yields - no persuasion needed.',
               'The CO₂-to-greenhouse pipeline works best within 200m of the capture unit.',
               'Biochar produced from local biomass performs comparably to commercial fertilizers at a fraction of the cost.',
             ].map((point) => (
