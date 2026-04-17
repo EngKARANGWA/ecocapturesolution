@@ -108,14 +108,10 @@ export default function Careers() {
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-green-100 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
-              <Briefcase className="w-4 h-4" />
-              We&apos;re Hiring
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6">
-              Build Africa&apos;s{' '}
-              <span className="text-green-300">Climate-Smart</span>{' '}
+          <div className="max-w-7xl">
+            <h1 className="text-8xl md:text-3xl lg:text-6xl font-bold text-white leading-[1.06] tracking-tight mb-6">
+              Building Africa&apos;s{' '}
+              <span className="text-green-300">Climate Smart</span> {' '} <br />
               Future With Us
             </h1>
             <p className="text-green-200 text-lg leading-relaxed mb-10 max-w-lg">
