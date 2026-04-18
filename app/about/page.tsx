@@ -72,11 +72,21 @@ export default function About() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader title="About Us" subtitle="Building Africa's climate-smart future, one CO₂ molecule at a time." />
 
+      {/* Core message */}
+      <section className="py-16 px-4 bg-eco-light border-b border-eco-primary/10">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
+            A Rwandan climate-tech startup turning{' '}
+            <span className="text-eco-primary">CO₂ into opportunity</span>{' '}
+            for African farmers and industries.
+          </p>
+        </div>
+      </section>
+
       {/* Story */}
       <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-10 bg-eco-primary rounded-full" />
             <span className="text-eco-primary font-semibold uppercase tracking-widest text-sm">Our Story</span>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
