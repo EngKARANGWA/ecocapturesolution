@@ -71,7 +71,7 @@ export default function Partner() {
       <PageHeader title="Partner With Us" subtitle="Join us in building Africa's climate-smart future. Together we scale faster." />
 
       {/* Partner types */}
-      <section className="py-24 px-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Who We Work With</span>
@@ -82,7 +82,7 @@ export default function Partner() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {partnerTypes.map((p) => (
-              <div key={p.label} className="bg-eco-lighter rounded-2xl p-7 border border-eco-primary/10 text-center hover:-translate-y-1 transition-transform duration-300">
+              <div key={p.label} className="bg-eco-lighter rounded-2xl p-5 sm:p-7 border border-eco-primary/10 text-center hover:-translate-y-1 transition-transform duration-300">
                 <p.Icon className="w-10 h-10 text-eco-primary mx-auto mb-4" />
                 <h3 className="font-bold text-eco-dark text-base mb-2">{p.label}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
@@ -93,8 +93,8 @@ export default function Partner() {
       </section>
 
       {/* Form + contact */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14">
+      <section className="py-10 sm:py-14 md:py-20 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
           <PartnerForm />
         </div>
       </section>

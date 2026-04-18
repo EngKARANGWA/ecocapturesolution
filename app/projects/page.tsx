@@ -71,8 +71,8 @@ export default function Projects() {
       />
 
       {/* Karongi pilot intro */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+      <section className="py-12 sm:py-16 md:py-24 px-4">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center">
           <div>
             <div className="flex items-center gap-2 text-eco-primary text-sm font-bold uppercase tracking-widest mb-4">
               Flagship Pilot
@@ -101,7 +101,7 @@ export default function Projects() {
               </div>
             </div>
           </div>
-          <div className="relative h-80 md:h-[26rem] rounded-3xl overflow-hidden shadow-card-hover">
+          <div className="relative h-60 sm:h-72 md:h-80 lg:h-[26rem] rounded-3xl overflow-hidden shadow-card-hover">
             <Image
               src="/assets/projects/greenhouse.jpg"
               alt="Karongi pilot greenhouse"
@@ -119,7 +119,7 @@ export default function Projects() {
       </section>
 
       {/* Key outcomes */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-10 sm:py-14 md:py-20 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Key Outcomes</span>
@@ -140,7 +140,7 @@ export default function Projects() {
       </section>
 
       {/* Photo gallery */}
-      <section className="py-24 px-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">On the Ground</span>
@@ -167,7 +167,7 @@ export default function Projects() {
       </section>
 
       {/* Learnings */}
-      <section className="py-20 px-4 bg-eco-lighter">
+      <section className="py-10 sm:py-14 md:py-20 px-4 bg-eco-lighter">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-1 h-10 bg-eco-primary rounded-full" />

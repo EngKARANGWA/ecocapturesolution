@@ -9,12 +9,12 @@ export default function PageHeader({ title, subtitle }: Props) {
     <div className="relative bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium text-white">
 
       {/* Content */}
-      <div className="relative z-10 pt-16 pb-24 px-6 max-w-4xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+      <div className="relative z-10 pt-16 pb-24 px-4 sm:px-6 max-w-4xl mx-auto text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-4 text-green-100/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-green-100/80 text-sm sm:text-base md:text-lg max-w-xl sm:max-w-2xl mx-auto leading-relaxed">
             {subtitle}
           </p>
         )}

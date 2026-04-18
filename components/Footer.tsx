@@ -39,7 +39,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
 
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -114,7 +114,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-green-300 text-sm">&copy; 2025 EcoCapture Solutions Ltd. All rights reserved.</p>
-          <p className="text-green-500 text-xs">Proudly building climate tech in Africa for Africa.</p>
+          <p className="text-green-500 text-xs sm:text-sm">Proudly building climate tech in Africa for Africa.</p>
         </div>
       </div>
     </footer>

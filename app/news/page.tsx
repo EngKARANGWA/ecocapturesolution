@@ -62,7 +62,7 @@ const articles = [
 const tagColors: Record<string, string> = {
   Funding:     'bg-blue-100 text-blue-700',
   Milestone:   'bg-eco-light text-eco-dark',
-  Partnership: 'bg-purple-100 text-purple-700',
+  Partnership: 'bg-eco-light text-eco-dark',
   Event:       'bg-amber-100 text-amber-700',
   Award:       'bg-orange-100 text-orange-700',
 };
@@ -87,11 +87,11 @@ export default function News() {
         subtitle="Latest milestones, partnerships, and stories from EcoCapture."
       />
 
-      <section className="py-24 px-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4">
         <div className="max-w-4xl mx-auto">
 
           {/* Featured article */}
-          <div className="bg-gradient-to-br from-eco-lighter to-eco-light border border-eco-primary/20 rounded-2xl p-8 mb-12 shadow-card relative overflow-hidden">
+          <div className="bg-gradient-to-br from-eco-lighter to-eco-light border border-eco-primary/20 rounded-2xl p-5 sm:p-8 mb-8 sm:mb-12 shadow-card relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-eco-primary rounded-l-2xl" />
             <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
               <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[featured.tag]}`}>
@@ -101,7 +101,7 @@ export default function News() {
                 {featured.date}
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-tight">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-tight">
               {featured.title}
             </h2>
             <p className="text-gray-600 leading-relaxed">

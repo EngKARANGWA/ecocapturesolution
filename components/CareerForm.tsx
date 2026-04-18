@@ -52,7 +52,7 @@ export default function CareerForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-2xl border border-gray-100 shadow-card p-8 space-y-5"
+        className="bg-white rounded-2xl border border-gray-100 shadow-card p-5 sm:p-8 space-y-5"
       >
         <div className="grid sm:grid-cols-2 gap-5">
           <div>

@@ -121,16 +121,16 @@ export default function Home() {
         <div className="absolute inset-0 bg-hero bg-cover bg-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
           <div className="max-w-3xl">
             {/* Badge */}
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.12] tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.12] tracking-tight mb-6">
               Turning CO₂ Emissions into<br />
               <span className="text-green-300">Agricultural Growth</span>
             </h1>
 
-            <p className="text-green-200 text-xl leading-relaxed mb-10 max-w-lg">
+            <p className="text-green-200 text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
               Affordable carbon capture for Africa&apos;s future - built in Africa, for the world.
             </p>
 
@@ -155,7 +155,7 @@ export default function Home() {
 
       {/* ── STATS BAND ── */}
       <section className="bg-eco-primary py-16 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
           <AnimatedCounter target={120}   suffix="+"  label="Tonnes CO₂ Captured"  variant="light" />
           <AnimatedCounter target={45000} suffix="+"  label="Plants Grown"          variant="light" />
           <AnimatedCounter target={18}    suffix="t"  label="Biochar Produced"      variant="light" />
@@ -317,7 +317,7 @@ export default function Home() {
 
           <div className="flex flex-wrap gap-6 justify-center">
             {team.map((m) => (
-              <div key={m.name} className="group text-center w-40">
+              <div key={m.name} className="group text-center w-36 sm:w-40">
                 <div className="relative w-24 h-24 mx-auto mb-4">
                   <Image src={m.img} alt={m.name} fill className="object-cover object-top rounded-full border-4 border-white shadow-md group-hover:border-eco-light transition-colors duration-300" />
                 </div>

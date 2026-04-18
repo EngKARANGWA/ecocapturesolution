@@ -96,9 +96,9 @@ export default function Contact() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader title="Contact Us" subtitle="Whether you're a farmer, investor, partner, or climate enthusiast - we'd love to hear from you." />
 
-      <section className="py-24 px-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-14">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
 
             {/* Left — info */}
             <div>

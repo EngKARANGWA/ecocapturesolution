@@ -41,9 +41,9 @@ export default function SuccessModal({
         </div>
 
         {/* Body */}
-        <div className="flex flex-col items-center text-center px-8 py-10">
+        <div className="flex flex-col items-center text-center px-5 sm:px-8 py-8 sm:py-10">
           {/* Checkmark circle */}
-          <div className="w-24 h-24 rounded-full border-[6px] border-eco-primary flex items-center justify-center mb-6">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-[6px] border-eco-primary flex items-center justify-center mb-6">
             <svg
               className="w-12 h-12 text-eco-primary"
               fill="none"
@@ -57,7 +57,7 @@ export default function SuccessModal({
             </svg>
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{title}</h2>
           <p className="text-gray-500 text-sm leading-relaxed">
             {message}{' '}
             {replyNote && (

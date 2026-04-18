@@ -42,7 +42,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0 no-underline group">
             <Image src="/assets/logos/logo-ecocapture.png" alt="EcoCapture" width={36} height={36} className="rounded-lg" />
-            <span className="font-bold text-eco-dark text-[1.05rem] tracking-tight hidden sm:block group-hover:text-eco-primary transition-colors">
+            <span className="font-bold text-eco-dark text-base tracking-tight hidden sm:block group-hover:text-eco-primary transition-colors">
               EcoCapture
             </span>
           </Link>
@@ -67,7 +67,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/partner"
-              className={`hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold transition-all no-underline shadow-sm ${
+              className={`hidden lg:inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold transition-all no-underline shadow-sm ${
                 pathname === '/partner'
                   ? 'bg-eco-dark text-white'
                   : 'bg-eco-primary text-white hover:bg-eco-dark hover:shadow-md'

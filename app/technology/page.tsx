@@ -107,14 +107,14 @@ export default function Technology() {
 
       {/* Step-by-step */}
       <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto space-y-28">
+        <div className="max-w-6xl mx-auto space-y-16 sm:space-y-20 md:space-y-28">
           {steps.map((s) => (
             <div
               key={s.number}
-              className={`grid lg:grid-cols-2 gap-12 items-center ${s.imgLeft ? 'lg:grid-flow-col-dense' : ''}`}
+              className={`grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center ${s.imgLeft ? 'lg:grid-flow-col-dense' : ''}`}
             >
               {/* Image */}
-              <div className={`relative h-72 md:h-96 rounded-3xl overflow-hidden shadow-card-hover ${s.imgLeft ? 'lg:col-start-2' : ''}`}>
+              <div className={`relative h-56 sm:h-64 md:h-80 lg:h-96 rounded-3xl overflow-hidden shadow-card-hover ${s.imgLeft ? 'lg:col-start-2' : ''}`}>
                 <Image src={s.img} alt={s.alt} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-eco-dark/40 to-transparent" />
                 <span className="absolute bottom-4 left-4 text-7xl font-black text-white/10 leading-none select-none">
@@ -149,7 +149,7 @@ export default function Technology() {
       </section>
 
       {/* Circular economy summary */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-10 sm:py-14 md:py-20 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Full Circle</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-5">

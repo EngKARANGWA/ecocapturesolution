@@ -114,7 +114,7 @@ export default function PartnerForm() {
 
       {/* QR + contact — kept here so the layout is preserved */}
       <div className="flex flex-col gap-8">
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-8 text-center">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-5 sm:p-8 text-center">
           <h3 className="font-bold text-gray-900 mb-1">Connect Instantly on WhatsApp</h3>
           <p className="text-gray-500 text-sm mb-6">Scan the QR code to message us directly.</p>
           <Image
@@ -126,7 +126,7 @@ export default function PartnerForm() {
           />
         </div>
 
-        <div className="bg-eco-lighter rounded-2xl border border-eco-primary/10 p-7 space-y-3">
+        <div className="bg-eco-lighter rounded-2xl border border-eco-primary/10 p-5 sm:p-7 space-y-3">
           <h3 className="font-bold text-eco-dark text-base mb-4">Partnerships Team Contact</h3>
           <div className="flex items-start gap-3 text-sm text-gray-600">
             <MapPin className="w-4 h-4 text-eco-primary shrink-0 mt-0.5" />

@@ -107,9 +107,9 @@ export default function Careers() {
         <div className="absolute inset-0 bg-hero bg-cover bg-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
           <div className="max-w-7xl">
-            <h1 className="text-8xl md:text-3xl lg:text-6xl font-bold text-white leading-[1.06] tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.06] tracking-tight mb-6">
               Building Africa&apos;s{' '}
               <span className="text-green-300">Climate Smart</span> {' '} <br />
               Future With Us
@@ -135,7 +135,7 @@ export default function Careers() {
 
       {/* ── STATS BAND ── */}
       <section className="bg-eco-primary py-12 px-4">
-        <div className="max-w-4xl mx-auto grid grid-cols-3 gap-8 text-center">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-center">
           {[
             { value: '3',      label: 'Open Positions' },
             { value: 'Kigali', label: 'Based in Rwanda' },
@@ -150,7 +150,7 @@ export default function Careers() {
       </section>
 
       {/* ── WHY ECOCAPTURE ── */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-24 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Why Join Us</span>
@@ -172,7 +172,7 @@ export default function Careers() {
       </section>
 
       {/* ── OPEN POSITIONS ── */}
-      <section id="openings" className="py-24 px-4">
+      <section id="openings" className="py-12 sm:py-16 md:py-24 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Now Hiring</span>
@@ -230,7 +230,7 @@ export default function Careers() {
       </section>
 
       {/* ── APPLY FORM ── */}
-      <section id="apply" className="py-24 px-4 bg-gray-50">
+      <section id="apply" className="py-12 sm:py-16 md:py-24 px-4 bg-gray-50">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Get Started</span>
@@ -243,7 +243,7 @@ export default function Careers() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative py-24 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
+      <section className="relative py-12 sm:py-16 md:py-24 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
         <div className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none" aria-hidden>
           <svg viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
             <path d="M0,32 C240,64 480,8 720,24 C960,40 1200,68 1440,28 L1440,72 L0,72 Z" fill="#2e7d32" />

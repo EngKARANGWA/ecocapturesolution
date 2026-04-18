@@ -45,10 +45,10 @@ export default function AnimatedCounter({ target, label, suffix = '', variant = 
 
   return (
     <div ref={ref} className="text-center">
-      <p className={`text-5xl font-bold tracking-tight ${isLight ? 'text-white' : 'text-eco-primary'}`}>
+      <p className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight ${isLight ? 'text-white' : 'text-eco-primary'}`}>
         {count.toLocaleString()}{suffix}
       </p>
-      <p className={`mt-2 text-sm font-medium uppercase tracking-wider ${isLight ? 'text-green-200' : 'text-gray-500'}`}>
+      <p className={`mt-2 text-xs sm:text-sm font-medium uppercase tracking-wider ${isLight ? 'text-green-200' : 'text-gray-500'}`}>
         {label}
       </p>
     </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Sprout, Factory, LineChart, CheckCircle } from 'lucide-react';
+import { Sprout, Factory, CheckCircle } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
@@ -63,12 +63,10 @@ const audiences = [
     alt: 'Industrial CO2 capture',
     cta: 'Explore Partnership',
     ctaHref: '/partner',
-    color: 'bg-blue-50 border-blue-100',
-    tagColor: 'bg-blue-600 text-white',
+    color: 'bg-eco-light border-eco-primary/10',
+    tagColor: 'bg-eco-primary text-white',
   },
   {
-    icon: LineChart,
-    tag: 'For Carbon Credit Buyers',
     title: 'Invest in Verified Carbon Removal.',
     headline: 'Real, permanent carbon removal you can measure and report.',
     body: 'Our biochar permanently sequesters carbon in agricultural soil - this is not a temporary offset, it is durable carbon removal. For corporates, investors, and organisations looking to meet net-zero targets with high-integrity credits, EcoCapture offers traceable, measurable, and Africa-based carbon removal.',
@@ -83,8 +81,8 @@ const audiences = [
     alt: 'Carbon credits and circular economy',
     cta: 'Get In Touch',
     ctaHref: '/contact',
-    color: 'bg-purple-50 border-purple-100',
-    tagColor: 'bg-purple-600 text-white',
+    color: 'bg-eco-light border-eco-primary/10',
+    tagColor: 'bg-eco-primary text-white',
   },
 ];
 
@@ -116,25 +114,29 @@ export default function Solutions() {
       </section>
 
       {/* Audience sections */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto space-y-20">
+      <section className="py-12 sm:py-16 md:py-24 px-4">
+        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16 lg:space-y-20">
           {audiences.map((a, i) => (
-            <div key={a.tag} className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+            <div key={a.title} className={`grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center ${i % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
               {/* Image */}
-              <div className={`relative h-72 md:h-[22rem] rounded-3xl overflow-hidden shadow-card-hover ${i % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+              <div className={`relative h-56 sm:h-64 md:h-[22rem] rounded-3xl overflow-hidden shadow-card-hover ${i % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                 <Image src={a.img} alt={a.alt} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <span className={`absolute top-4 left-4 text-xs font-bold px-3 py-1.5 rounded-full ${a.tagColor}`}>
-                  {a.tag}
-                </span>
+                {a.tag && (
+                  <span className={`absolute top-4 left-4 text-xs font-bold px-3 py-1.5 rounded-full ${a.tagColor}`}>
+                    {a.tag}
+                  </span>
+                )}
               </div>
 
               {/* Text */}
               <div className={i % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl mb-5 border ${a.color}`}>
-                  <a.icon className="w-5 h-5 text-eco-primary" />
-                  <span className="text-eco-dark text-sm font-bold">{a.tag}</span>
-                </div>
+                {(a.icon || a.tag) && (
+                  <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl mb-5 border ${a.color}`}>
+                    {a.icon && <a.icon className="w-5 h-5 text-eco-primary" />}
+                    {a.tag && <span className="text-eco-dark text-sm font-bold">{a.tag}</span>}
+                  </div>
+                )}
                 <h2 className="text-3xl font-bold text-gray-900 mb-1">{a.title}</h2>
                 <p className="text-eco-primary font-semibold mb-4">{a.headline}</p>
                 <p className="text-gray-500 leading-relaxed mb-6">{a.body}</p>

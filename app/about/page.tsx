@@ -47,7 +47,7 @@ const partners = [
 function TeamCard({ img, name, role, sub }: { img: string; name: string; role: string; sub?: string }) {
   return (
     <div className="group text-center">
-      <div className="relative w-28 h-28 mx-auto mb-4">
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-4">
         <Image src={img} alt={name} fill className="object-cover object-top rounded-full border-4 border-white shadow-md group-hover:border-eco-light transition-colors duration-300" />
       </div>
       <p className="font-semibold text-gray-900">{name}</p>
@@ -73,7 +73,7 @@ export default function About() {
       <PageHeader title="About Us" subtitle="Building Africa's climate-smart future, one CO₂ molecule at a time." />
 
       {/* Core message */}
-      <section className="py-16 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="py-10 sm:py-14 md:py-16 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
             A Rwandan climate-tech startup turning{' '}
@@ -84,7 +84,7 @@ export default function About() {
       </section>
 
       {/* Story */}
-      <section className="py-20 px-4">
+      <section className="py-12 sm:py-16 md:py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-eco-primary font-semibold uppercase tracking-widest text-sm">Our Story</span>
@@ -116,19 +116,19 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Meet Our Team</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
-          <div className="flex flex-wrap gap-10 justify-center">
+          <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center">
             {team.map((m) => <TeamCard key={m.name} {...m} />)}
           </div>
           <div className="mt-16">
             <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-10">Advisors</p>
-            <div className="flex flex-wrap gap-10 justify-center">
+            <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center">
               {advisors.map((a) => <TeamCard key={a.name} {...a} />)}
             </div>
           </div>
@@ -136,11 +136,11 @@ export default function About() {
       </section>
 
       {/* Partners */}
-      <section className="py-20 px-4">
+      <section className="py-12 sm:py-16 md:py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-12">Our Partners</h2>
-          <div className="flex flex-wrap gap-10 justify-center items-center">
+          <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center items-center">
             {partners.map((p) => (
               <a key={p.alt} href={p.href} target="_blank" rel="noopener noreferrer" className="group" aria-label={p.alt}>
                 <Image src={p.img} alt={p.alt} width={140} height={80} className="h-16 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
