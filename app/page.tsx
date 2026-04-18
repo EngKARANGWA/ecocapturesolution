@@ -125,7 +125,7 @@ export default function Home() {
           <div className="max-w-3xl">
             {/* Badge */}
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.12] tracking-tight mb-6">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.2] tracking-tight mb-6">
               Turning CO₂ Emissions into<br />
               <span className="text-green-300">Agricultural Growth</span>
             </h1>
@@ -154,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* ── STATS BAND ── */}
-      <section className="bg-eco-primary py-16 px-4">
+      <section className="bg-eco-primary py-8 sm:py-12 md:py-16 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
           <AnimatedCounter target={120}   suffix="+"  label="Tonnes CO₂ Captured"  variant="light" />
           <AnimatedCounter target={45000} suffix="+"  label="Plants Grown"          variant="light" />
@@ -164,9 +164,9 @@ export default function Home() {
       </section>
 
       {/* ── THE PROBLEM ── */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-10 sm:py-16 md:py-24 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <span className="text-red-500 text-sm font-semibold uppercase tracking-widest">The Problem</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">A Crisis With Two Faces</h2>
             <div className="w-12 h-1 bg-red-400 mx-auto mt-5 rounded-full" />
@@ -193,19 +193,21 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mt-10 bg-eco-light border border-eco-primary/20 rounded-2xl p-7 text-center">
-            <Lightbulb className="w-8 h-8 text-eco-primary mx-auto mb-3" />
-            <p className="text-eco-dark font-semibold text-lg">
+          <div className="mt-10 bg-white rounded-2xl p-8 border border-eco-primary/20 shadow-card">
+            <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-5">
+              <Lightbulb className="w-6 h-6 text-orange-500" />
+            </div>
+            <p className="text-eco-dark font-semibold text-lg leading-snug">
               What if the CO₂ causing climate change could also solve the farming crisis?
             </p>
-          </div>
+</div>
         </div>
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="py-24 px-4">
+      <section className="py-10 sm:py-16 md:py-24 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Solution</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">How It Works</h2>
             <p className="text-gray-500 mt-3 max-w-xl mx-auto">Four simple steps that turn a climate problem into an agricultural solution.</p>
@@ -269,9 +271,9 @@ export default function Home() {
       </section>
 
       {/* ── INITIATIVES ── */}
-      <section className="py-24 px-4">
+      <section className="py-10 sm:py-16 md:py-24 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">What We Do</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Our Initiatives</h2>
             <p className="text-gray-500 mt-3 max-w-xl mx-auto">Four interconnected solutions building a circular carbon economy.</p>
@@ -307,9 +309,9 @@ export default function Home() {
       </section>
 
       {/* ── TEAM ── */}
-      <section className="py-24 px-4 bg-gray-50">
+      <section className="py-10 sm:py-16 md:py-24 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Meet Our Team</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
@@ -336,10 +338,10 @@ export default function Home() {
       </section>
 
       {/* ── PARTNERS ── */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-8 sm:py-14 md:py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-12">Our Partners</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8 sm:mb-12">Our Partners</h2>
           <div className="flex flex-wrap gap-8 justify-center items-center">
             {partners.map((p) => (
               <a key={p.alt} href={p.href} target="_blank" rel="noopener noreferrer" className="group block" aria-label={p.alt}>
@@ -351,7 +353,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-24 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
+      <section className="py-10 sm:py-16 md:py-24 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-white/10 border border-white/20 text-green-100 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
             Made in Africa. Built for the World.
