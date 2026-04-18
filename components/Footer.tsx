@@ -39,10 +39,10 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
 
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-5 no-underline group">
               <Image src="/assets/logos/logo-ecocapture.png" alt="EcoCapture" width={42} height={42} className="rounded-xl" />
               <span className="font-bold text-xl text-white group-hover:text-green-200 transition-colors">
