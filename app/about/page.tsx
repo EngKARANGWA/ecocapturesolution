@@ -73,7 +73,7 @@ export default function About() {
       <PageHeader title="About Us" subtitle="Building Africa's climate-smart future, one CO₂ molecule at a time." />
 
       {/* Core message */}
-      <section className="py-10 sm:py-14 md:py-16 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="pt-10 sm:pt-14 md:pt-16 pb-4 sm:pb-6 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
             A Rwandan climate-tech startup turning{' '}
@@ -84,7 +84,7 @@ export default function About() {
       </section>
 
       {/* Story */}
-      <section className="py-12 sm:py-16 md:py-20 px-4">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-eco-primary font-semibold uppercase tracking-widest text-sm">Our Story</span>
@@ -116,7 +116,7 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
@@ -136,7 +136,7 @@ export default function About() {
       </section>
 
       {/* Partners */}
-      <section className="py-12 sm:py-16 md:py-20 px-4">
+      <section className="pt-4 sm:pt-6 pb-12 sm:pb-16 md:pb-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-12">Our Partners</h2>

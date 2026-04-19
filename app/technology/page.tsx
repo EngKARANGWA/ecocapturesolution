@@ -94,7 +94,7 @@ export default function Technology() {
       />
 
       {/* Core message */}
-      <section className="py-16 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="pt-16 pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
             We capture CO₂ and turn it into{' '}
@@ -106,7 +106,7 @@ export default function Technology() {
       </section>
 
       {/* Step-by-step */}
-      <section className="py-24 px-4">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
         <div className="max-w-6xl mx-auto space-y-16 sm:space-y-20 md:space-y-28">
           {steps.map((s) => (
             <div
@@ -149,7 +149,7 @@ export default function Technology() {
       </section>
 
       {/* Circular economy summary */}
-      <section className="py-10 sm:py-14 md:py-20 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-20 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Full Circle</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-5">
@@ -173,7 +173,7 @@ export default function Technology() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 px-4 bg-eco-dark">
+      <section className="relative py-8 sm:py-10 md:py-14 px-4 bg-eco-dark">
         {/* Wave — gray-50 section curves into the dark CTA */}
         <div aria-hidden className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none">
           <svg

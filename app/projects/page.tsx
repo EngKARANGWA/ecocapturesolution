@@ -71,7 +71,7 @@ export default function Projects() {
       />
 
       {/* Karongi pilot intro */}
-      <section className="py-12 sm:py-16 md:py-24 px-4">
+      <section className="pt-12 sm:pt-16 md:pt-24 pb-4 sm:pb-6 px-4">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center">
           <div>
             <div className="flex items-center gap-2 text-eco-primary text-sm font-bold uppercase tracking-widest mb-4">
@@ -119,7 +119,7 @@ export default function Projects() {
       </section>
 
       {/* Key outcomes */}
-      <section className="py-10 sm:py-14 md:py-20 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Key Outcomes</span>
@@ -140,7 +140,7 @@ export default function Projects() {
       </section>
 
       {/* Photo gallery */}
-      <section className="py-12 sm:py-16 md:py-24 px-4">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">On the Ground</span>
@@ -167,7 +167,7 @@ export default function Projects() {
       </section>
 
       {/* Learnings */}
-      <section className="py-10 sm:py-14 md:py-20 px-4 bg-eco-lighter">
+      <section className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-20 px-4 bg-eco-lighter">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-1 h-10 bg-eco-primary rounded-full" />
@@ -192,7 +192,7 @@ export default function Projects() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 px-4 bg-eco-dark text-white text-center">
+      <section className="relative py-8 sm:py-10 md:py-14 px-4 bg-eco-dark text-white text-center">
         {/* Wave — lighter section curves into the dark CTA */}
         <div aria-hidden className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none">
           <svg

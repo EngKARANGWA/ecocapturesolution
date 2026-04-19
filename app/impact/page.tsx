@@ -97,7 +97,7 @@ export default function Impact() {
       <PageHeader title="Our Impact" subtitle="Real numbers, real lives changed - measuring our progress toward a carbon-neutral Africa." />
 
       {/* Stats band */}
-      <section className="bg-eco-primary py-10 sm:py-12 md:py-16 px-4">
+      <section className="bg-eco-primary pt-10 sm:pt-12 md:pt-16 pb-4 sm:pb-6 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
           <AnimatedCounter target={120}   suffix="+"  label="Tonnes CO₂ Captured"  variant="light" />
           <AnimatedCounter target={45000} suffix="+"  label="Plants Grown"          variant="light" />
@@ -107,7 +107,7 @@ export default function Impact() {
       </section>
 
       {/* Highlight cards */}
-      <section className="py-12 sm:py-16 md:py-24 px-4">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Breaking It Down</span>
@@ -132,7 +132,7 @@ export default function Impact() {
       </section>
 
       {/* Cost efficiency + ROI */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Business Case</span>
@@ -187,7 +187,7 @@ export default function Impact() {
       </section>
 
       {/* Story */}
-      <section className="py-10 sm:py-14 md:py-20 px-4 bg-eco-lighter">
+      <section className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-20 px-4 bg-eco-lighter">
         <div className="max-w-3xl mx-auto text-center">
           <Globe className="w-16 h-16 text-eco-primary mx-auto mb-6" />
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-5">Building a Climate-Smart Africa</h2>

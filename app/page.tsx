@@ -164,7 +164,7 @@ export default function Home() {
       </section>
 
       {/* ── THE PROBLEM ── */}
-      <section className="py-10 sm:py-16 md:py-24 px-4 bg-gray-50">
+      <section className="pt-6 sm:pt-10 pb-10 sm:pb-16 md:pb-24 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-red-500 text-sm font-semibold uppercase tracking-widest">The Problem</span>
@@ -205,7 +205,7 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="pt-10 sm:pt-16 md:pt-24 pb-4 sm:pb-6 px-4">
+      <section className="pt-6 sm:pt-10 pb-4 sm:pb-6 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Solution</span>
@@ -221,9 +221,9 @@ export default function Home() {
                 icon: Settings2,
                 title: 'Capture CO₂',
                 desc: 'Our compact machines capture CO₂ directly from industrial sources at low cost.',
-                color: 'bg-blue-50 border-blue-100',
-                iconColor: 'text-blue-500',
-                numColor: 'text-blue-200',
+                color: 'bg-eco-light border-eco-primary/10',
+                iconColor: 'text-eco-primary',
+                numColor: 'text-eco-primary/20',
               },
               {
                 step: '02',
@@ -271,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* ── INITIATIVES ── */}
-      <section className="pb-4 sm:pb-6 pt-0 px-4">
+      <section className="pb-0 pt-0 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">What We Do</span>
@@ -309,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* ── TEAM ── */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
+      <section className="pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
@@ -338,7 +338,7 @@ export default function Home() {
       </section>
 
       {/* ── PARTNERS ── */}
-      <section className="pt-4 sm:pt-6 pb-8 sm:pb-14 md:pb-20 px-4 bg-white">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8 sm:mb-12">Our Partners</h2>
@@ -353,7 +353,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-10 sm:py-16 md:py-24 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
+      <section className="py-8 sm:py-10 md:py-14 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-white/10 border border-white/20 text-green-100 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
             Made in Africa. Built for the World.

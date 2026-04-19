@@ -134,7 +134,7 @@ export default function Careers() {
       </section>
 
       {/* ── STATS BAND ── */}
-      <section className="bg-eco-primary py-12 px-4">
+      <section className="bg-eco-primary pt-12 pb-4 sm:pb-6 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-center">
           {[
             { value: '3',      label: 'Open Positions' },
@@ -150,7 +150,7 @@ export default function Careers() {
       </section>
 
       {/* ── WHY ECOCAPTURE ── */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Why Join Us</span>
@@ -172,7 +172,7 @@ export default function Careers() {
       </section>
 
       {/* ── OPEN POSITIONS ── */}
-      <section id="openings" className="py-12 sm:py-16 md:py-24 px-4">
+      <section id="openings" className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Now Hiring</span>
@@ -230,7 +230,7 @@ export default function Careers() {
       </section>
 
       {/* ── APPLY FORM ── */}
-      <section id="apply" className="py-12 sm:py-16 md:py-24 px-4 bg-gray-50">
+      <section id="apply" className="pt-4 sm:pt-6 pb-12 sm:pb-16 md:pb-24 px-4 bg-gray-50">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Get Started</span>
@@ -243,7 +243,7 @@ export default function Careers() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative py-12 sm:py-16 md:py-24 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
+      <section className="relative py-8 sm:py-10 md:py-14 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
         <div className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none" aria-hidden>
           <svg viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
             <path d="M0,32 C240,64 480,8 720,24 C960,40 1200,68 1440,28 L1440,72 L0,72 Z" fill="#2e7d32" />

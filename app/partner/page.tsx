@@ -71,7 +71,7 @@ export default function Partner() {
       <PageHeader title="Partner With Us" subtitle="Join us in building Africa's climate-smart future. Together we scale faster." />
 
       {/* Partner types */}
-      <section className="py-12 sm:py-16 md:py-24 px-4">
+      <section className="pt-12 sm:pt-16 md:pt-24 pb-4 sm:pb-6 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Who We Work With</span>
@@ -93,7 +93,7 @@ export default function Partner() {
       </section>
 
       {/* Form + contact */}
-      <section className="py-10 sm:py-14 md:py-20 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
           <PartnerForm />
         </div>
