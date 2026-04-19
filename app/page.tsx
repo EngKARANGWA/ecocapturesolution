@@ -193,7 +193,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mt-10 bg-white rounded-2xl p-8 border border-eco-primary/20 shadow-card">
+          <div className="mt-6 sm:mt-10 bg-white rounded-2xl p-8 border border-eco-primary/20 shadow-card">
             <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-5">
               <Lightbulb className="w-6 h-6 text-orange-500" />
             </div>
@@ -205,7 +205,7 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="py-10 sm:py-16 md:py-24 px-4">
+      <section className="pt-10 sm:pt-16 md:pt-24 pb-4 sm:pb-6 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Solution</span>
@@ -262,7 +262,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-6 sm:mt-10">
             <Link href="/technology" className="inline-flex items-center gap-2 text-eco-primary font-semibold hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5">
               Explore the technology in detail →
             </Link>
@@ -271,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* ── INITIATIVES ── */}
-      <section className="py-10 sm:py-16 md:py-24 px-4">
+      <section className="pb-4 sm:pb-6 pt-0 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">What We Do</span>
@@ -300,7 +300,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-6 sm:mt-10">
             <Link href="/solutions" className="inline-flex items-center gap-2 text-eco-primary font-semibold hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5">
               See all solutions →
             </Link>
@@ -309,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* ── TEAM ── */}
-      <section className="py-10 sm:py-16 md:py-24 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
@@ -329,7 +329,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-6 sm:mt-10">
             <Link href="/about" className="inline-flex items-center gap-2 text-eco-primary font-semibold hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5">
               Meet the full team →
             </Link>
@@ -338,7 +338,7 @@ export default function Home() {
       </section>
 
       {/* ── PARTNERS ── */}
-      <section className="py-8 sm:py-14 md:py-20 px-4 bg-white">
+      <section className="pt-4 sm:pt-6 pb-8 sm:pb-14 md:pb-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8 sm:mb-12">Our Partners</h2>
