@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest frontend --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\")",
+      "Bash(grep -A 5 \"dark\\\\\\\\\\\\\\\\:bg-slate-50 \" \"c:/Users/USER/Downloads/cleanAirSystem/frontend/.next/dev/static/chunks/Downloads_cleanAirSystem_frontend_app_globals_css_0w3-wzy._.single.css\")",
+      "Bash(npx next *)",
+      "Bash(taskkill /PID 33016 /F)",
+      "Bash(cmd.exe /c \"taskkill /PID 33016 /F\")",
+      "Bash(powershell -Command \"Stop-Process -Id 33016 -Force\")",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
