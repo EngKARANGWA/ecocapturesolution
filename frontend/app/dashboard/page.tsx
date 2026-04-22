@@ -1,9 +1,10 @@
-import { Wind, Gauge, Leaf, Activity } from "lucide-react";
 import MetricCard from "./components/MetricCard";
 import COChart from "./components/COChart";
 import AlertsList from "./components/AlertsList";
 import ReadingsTable from "./components/ReadingsTable";
 import DarkModeToggle from "../components/DarkModeToggle";
+import DeviceCard from "./devices/components/DeviceCard";
+import { devices } from "./devices/data";
 
 export default function DashboardPage() {
   return (
@@ -26,43 +27,11 @@ export default function DashboardPage() {
       </div>
 
       {/* Metric Cards */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
-        <MetricCard
-          title="CO Input Level"
-          value="440"
-          unit="ppm"
-          trend="up"
-          trendLabel="+5% from last hour"
-          icon={<Gauge className="w-5 h-5" />}
-          accent="red"
-        />
-        <MetricCard
-          title="After Purification"
-          value="218"
-          unit="ppm"
-          trend="down"
-          trendLabel="50.5% reduction"
-          icon={<Leaf className="w-5 h-5" />}
-          accent="green"
-        />
-        <MetricCard
-          title="Purification Rate"
-          value="50.5"
-          unit="%"
-          trend="neutral"
-          trendLabel="Within target range"
-          icon={<Wind className="w-5 h-5" />}
-          accent="blue"
-        />
-        <MetricCard
-          title="Sensor Uptime"
-          value="99.2"
-          unit="%"
-          trend="neutral"
-          trendLabel="Last 30 days"
-          icon={<Activity className="w-5 h-5" />}
-          accent="purple"
-        />
+      <div className="grid grid-cols-4 gap-4">
+        <MetricCard title="CO Input Level"    value="440"  unit="ppm" accent="red"    />
+        <MetricCard title="After Purification" value="218"  unit="ppm" accent="green"  />
+        <MetricCard title="Purification Rate"  value="50.5" unit="%"   accent="blue"   />
+        <MetricCard title="Sensor Uptime"      value="99.2" unit="%"   accent="purple" />
       </div>
 
       {/* Chart */}
@@ -75,6 +44,19 @@ export default function DashboardPage() {
         </div>
         <div className="xl:col-span-2">
           <ReadingsTable />
+        </div>
+      </div>
+
+      {/* Registered Devices */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Registered Devices</h2>
+          <a href="/dashboard/devices" className="text-sm text-blue-500 hover:underline">View all</a>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {devices.map((device) => (
+            <DeviceCard key={device.id} device={device} />
+          ))}
         </div>
       </div>
     </div>

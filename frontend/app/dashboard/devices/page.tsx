@@ -1,4 +1,4 @@
-import { Plus, Cpu } from "lucide-react";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { devices } from "./data";
 import DeviceCard from "./components/DeviceCard";

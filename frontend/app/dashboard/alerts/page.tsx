@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { XCircle, AlertTriangle, Info, CheckCircle } from "lucide-react";
 import { alerts } from "./data";
 import AlertCard from "./components/AlertCard";
 import AlertRules from "./components/AlertRules";
@@ -42,21 +41,16 @@ export default function AlertsPage() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {[
-          { label: "Critical",     value: summary.critical,     icon: XCircle,       color: "text-red-500",    bg: "bg-red-50 dark:bg-red-500/10"      },
-          { label: "Warnings",     value: summary.warning,      icon: AlertTriangle, color: "text-yellow-500", bg: "bg-yellow-50 dark:bg-yellow-500/10" },
-          { label: "Acknowledged", value: summary.acknowledged, icon: Info,          color: "text-blue-500",   bg: "bg-blue-50 dark:bg-blue-500/10"    },
-          { label: "Resolved",     value: summary.resolved,     icon: CheckCircle,   color: "text-green-500",  bg: "bg-green-50 dark:bg-green-500/10"  },
-        ].map(({ label, value, icon: Icon, color, bg }) => (
-          <div key={label} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex items-center gap-4">
-            <div className={`p-3 rounded-xl shrink-0 ${bg}`}>
-              <Icon className={`w-5 h-5 ${color}`} />
-            </div>
-            <div>
-              <p className={`text-3xl font-extrabold ${color}`}>{value}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{label}</p>
-            </div>
+          { label: "Critical",     value: summary.critical,     color: "text-red-500"    },
+          { label: "Warnings",     value: summary.warning,      color: "text-yellow-500" },
+          { label: "Acknowledged", value: summary.acknowledged, color: "text-blue-500"   },
+          { label: "Resolved",     value: summary.resolved,     color: "text-green-500"  },
+        ].map(({ label, value, color }) => (
+          <div key={label} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm text-center">
+            <p className={`text-3xl font-extrabold ${color}`}>{value}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{label}</p>
           </div>
         ))}
       </div>

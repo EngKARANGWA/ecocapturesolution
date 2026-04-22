@@ -1,4 +1,3 @@
-import { TrendingDown, Activity, AlertTriangle, BarChart2 } from "lucide-react";
 import HistoryChart from "./components/HistoryChart";
 import HistoryTable from "./components/HistoryTable";
 import DarkModeToggle from "../../components/DarkModeToggle";
@@ -24,39 +23,18 @@ export default function HistoryPage() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="p-2 rounded-lg bg-red-50 dark:bg-red-500/10"><BarChart2 className="w-4 h-4 text-red-500" /></div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Avg CO Input</p>
+      <div className="grid grid-cols-4 gap-4">
+        {[
+          { label: "Avg CO Input",     value: `${avgInput} ppm`,    color: "text-red-500"   },
+          { label: "Avg After Purif.", value: `${avgOutput} ppm`,   color: "text-green-500" },
+          { label: "Avg Reduction",    value: `${avgReduction}%`,   color: "text-blue-500"  },
+          { label: "Critical Events",  value: String(criticalCount), color: "text-red-500"  },
+        ].map(({ label, value, color }) => (
+          <div key={label} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm text-center">
+            <p className={`text-3xl font-extrabold ${color}`}>{value}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{label}</p>
           </div>
-          <p className="text-3xl font-extrabold text-red-500">{avgInput}</p>
-          <p className="text-xs text-slate-400 mt-1">ppm · last 20 readings</p>
-        </div>
-        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="p-2 rounded-lg bg-green-50 dark:bg-green-500/10"><TrendingDown className="w-4 h-4 text-green-500" /></div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Avg After Purif.</p>
-          </div>
-          <p className="text-3xl font-extrabold text-green-500">{avgOutput}</p>
-          <p className="text-xs text-slate-400 mt-1">ppm · last 20 readings</p>
-        </div>
-        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-500/10"><Activity className="w-4 h-4 text-blue-500" /></div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Avg Reduction</p>
-          </div>
-          <p className="text-3xl font-extrabold text-blue-500">{avgReduction}%</p>
-          <p className="text-xs text-slate-400 mt-1">purification efficiency</p>
-        </div>
-        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="p-2 rounded-lg bg-red-50 dark:bg-red-500/10"><AlertTriangle className="w-4 h-4 text-red-500" /></div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Critical Events</p>
-          </div>
-          <p className="text-3xl font-extrabold text-red-500">{criticalCount}</p>
-          <p className="text-xs text-slate-400 mt-1">threshold breaches</p>
-        </div>
+        ))}
       </div>
 
       {/* Chart */}

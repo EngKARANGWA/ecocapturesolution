@@ -15,7 +15,7 @@ const typeConfig: Record<VehicleType, { label: string; icon: typeof Car; color: 
 };
 
 export default function DeviceCard({ device }: { device: Device }) {
-  const { label: statusLabel, icon: StatusIcon, color: statusColor, bg: statusBg, dot } = statusConfig[device.status];
+  const { label: statusLabel, color: statusColor, bg: statusBg, dot } = statusConfig[device.status];
   const { label: typeLabel, icon: TypeIcon, color: typeColor, bg: typeBg } = typeConfig[device.type];
 
   return (
