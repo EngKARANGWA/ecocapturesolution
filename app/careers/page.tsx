@@ -56,7 +56,7 @@ const perks = [
   {
     Icon: Leaf,
     title: "Africa's Climate Movement",
-    desc: "Be at the forefront of Africa's fastest-growing climate tech sector — built here, for the world.",
+    desc: "Be at the forefront of Africa's fastest-growing climate tech sector - built here, for the world.",
     color: 'bg-amber-50 border-amber-100',
     iconColor: 'text-amber-600',
     numColor: 'text-amber-200',

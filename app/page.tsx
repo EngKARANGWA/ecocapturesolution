@@ -238,7 +238,7 @@ export default function Home() {
                 step: '03',
                 icon: Leaf,
                 title: 'Improve Plant Growth',
-                desc: 'Plants grow up to 30% faster and produce higher-quality crops — more food, less waste.',
+                desc: 'Plants grow up to 30% faster and produce higher-quality crops, more food, less waste.',
                 color: 'bg-green-50 border-green-100',
                 iconColor: 'text-green-600',
                 numColor: 'text-green-200',
@@ -275,7 +275,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">What We Do</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Our Initiatives</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-green-600 mt-2">OUR INITIATIVES</h2>
+            {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Our Initiatives</h2> */}
             <p className="text-gray-500 mt-3 max-w-xl mx-auto">Four interconnected solutions building a circular carbon economy.</p>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
