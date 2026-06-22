@@ -7,6 +7,8 @@ import {
   Building2, Link2, Image as ImageIcon, Layers, ToggleLeft as StatusIcon, ChevronDown,
 } from 'lucide-react';
 
+import { getAuthHeaders } from '@/lib/auth';
+
 const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
 interface Partner {
@@ -86,7 +88,7 @@ function PartnerFormModal({
     const fd = new FormData();
     fd.append('file', file);
     try {
-      const res = await fetch(`${API}/api/upload`, { method: 'POST', credentials: 'include', body: fd });
+      const res = await fetch(`${API}/api/upload`, { method: 'POST', headers: getAuthHeaders(), body: fd });
       const data = await res.json();
       if (res.ok) onChange({ logo: `${API}${data.url}` });
       else setUploadErr(data.error ?? 'Upload failed');
@@ -280,7 +282,7 @@ export default function PartnersManagement() {
   }
 
   async function load() {
-    const res = await fetch(`${API}/api/partners`, { credentials: 'include' });
+    const res = await fetch(`${API}/api/partners`, { headers: getAuthHeaders() });
     setPartners(await res.json());
     setLoading(false);
   }
@@ -303,10 +305,10 @@ export default function PartnersManagement() {
     setSaving(true);
     try {
       if (modal === 'add') {
-        await fetch(`${API}/api/partners`, { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+        await fetch(`${API}/api/partners`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders() }, body: JSON.stringify(form) });
         showToast('Partner added successfully');
       } else if (editing) {
-        await fetch(`${API}/api/partners/${editing.id}`, { method: 'PUT', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+        await fetch(`${API}/api/partners/${editing.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json', ...getAuthHeaders() }, body: JSON.stringify(form) });
         showToast('Partner updated successfully');
       }
       await load();
@@ -320,7 +322,7 @@ export default function PartnersManagement() {
 
   async function handleDelete() {
     if (!deleteId) return;
-    await fetch(`${API}/api/partners/${deleteId}`, { method: 'DELETE', credentials: 'include' });
+    await fetch(`${API}/api/partners/${deleteId}`, { method: 'DELETE', headers: getAuthHeaders() });
     showToast('Partner removed');
     setDeleteId(null);
     load();

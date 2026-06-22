@@ -3,6 +3,8 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { Plus, Pencil, Trash2, ToggleLeft, ToggleRight, Briefcase, MapPin, Tag, Mail, X, Check, AlertCircle } from 'lucide-react';
 
+import { getAuthHeaders } from '@/lib/auth';
+
 const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
 interface Opening {
@@ -63,7 +65,7 @@ export default function CareersManagement() {
   }
 
   async function load() {
-    const res = await fetch(`${API}/api/openings`, { credentials: 'include' });
+    const res = await fetch(`${API}/api/openings`, { headers: getAuthHeaders() });
     setOpenings(await res.json());
     setLoading(false);
   }
@@ -89,10 +91,10 @@ export default function CareersManagement() {
     const payload = { ...form, tags: tagsInput.split(',').map((t) => t.trim()).filter(Boolean) };
     try {
       if (modal === 'add') {
-        await fetch(`${API}/api/openings`, { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        await fetch(`${API}/api/openings`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...getAuthHeaders() }, body: JSON.stringify(payload) });
         showToast('Opening added successfully');
       } else if (editing) {
-        await fetch(`${API}/api/openings/${editing.id}`, { method: 'PUT', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        await fetch(`${API}/api/openings/${editing.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json', ...getAuthHeaders() }, body: JSON.stringify(payload) });
         showToast('Opening updated successfully');
       }
       await load();
@@ -107,8 +109,7 @@ export default function CareersManagement() {
   async function toggleStatus(o: Opening) {
     await fetch(`${API}/api/openings/${o.id}`, {
       method: 'PUT',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
       body: JSON.stringify({ status: o.status === 'open' ? 'closed' : 'open' }),
     });
     showToast(`Position ${o.status === 'open' ? 'closed' : 'reopened'}`);
@@ -117,7 +118,7 @@ export default function CareersManagement() {
 
   async function handleDelete() {
     if (!deleteId) return;
-    await fetch(`${API}/api/openings/${deleteId}`, { method: 'DELETE', credentials: 'include' });
+    await fetch(`${API}/api/openings/${deleteId}`, { method: 'DELETE', headers: getAuthHeaders() });
     showToast('Opening deleted');
     setDeleteId(null);
     load();

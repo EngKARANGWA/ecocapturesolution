@@ -5,7 +5,11 @@ const JWT_SECRET = process.env.JWT_SECRET ?? 'eco-jwt-secret-change-in-productio
 const COOKIE = 'eco_session';
 
 export function requireAuth(req: Request, res: Response, next: NextFunction): void {
-  const token = req.cookies?.[COOKIE];
+  const authHeader = req.headers.authorization;
+  const token =
+    (authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null) ??
+    req.cookies?.[COOKIE];
+
   if (!token) {
     res.status(401).json({ error: 'Unauthorized' });
     return;

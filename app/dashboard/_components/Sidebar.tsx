@@ -13,8 +13,6 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
-
 const navItems = [
   { href: '/dashboard',          label: 'Overview',      icon: LayoutDashboard },
   { href: '/dashboard/careers',  label: 'Applications',  icon: Briefcase },
@@ -27,7 +25,7 @@ export default function Sidebar() {
   const router = useRouter();
 
   async function handleLogout() {
-    await fetch(`${API}/api/auth/logout`, { method: 'POST', credentials: 'include' });
+    await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/login');
     router.refresh();
   }

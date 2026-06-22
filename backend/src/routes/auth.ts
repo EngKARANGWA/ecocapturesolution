@@ -16,14 +16,7 @@ router.post('/login', (req, res) => {
     return;
   }
   const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '7d' });
-  res.cookie(COOKIE, token, {
-    httpOnly: true,
-    secure: isProd,
-    sameSite: isProd ? 'none' : 'lax',
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    path: '/',
-  });
-  res.json({ ok: true });
+  res.json({ ok: true, token });
 });
 
 router.post('/logout', (_req, res) => {

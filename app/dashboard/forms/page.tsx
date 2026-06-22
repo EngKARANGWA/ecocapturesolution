@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { Plus, Trash2, ChevronUp, ChevronDown, Save, Check, AlertCircle, GripVertical, X, ChevronDown as SelectIcon } from 'lucide-react';
 
+import { getAuthHeaders } from '@/lib/auth';
+
 const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
 type FieldType = 'text' | 'email' | 'tel' | 'url' | 'textarea' | 'select';
@@ -51,8 +53,8 @@ export default function FormsBuilder() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API}/api/forms/careers`,  { credentials: 'include' }).then((r) => r.json()),
-      fetch(`${API}/api/forms/partners`, { credentials: 'include' }).then((r) => r.json()),
+      fetch(`${API}/api/forms/careers`,  { headers: getAuthHeaders() }).then((r) => r.json()),
+      fetch(`${API}/api/forms/partners`, { headers: getAuthHeaders() }).then((r) => r.json()),
     ])
       .then(([careers, partners]) => setSchemas({ careers, partners }))
       .catch(() => setError('Failed to load forms'))
@@ -108,8 +110,8 @@ export default function FormsBuilder() {
     setSaving(true); setError('');
     try {
       const res = await fetch(`${API}/api/forms/${tab}`, {
-        method: 'PUT', credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
         body: JSON.stringify(schema),
       });
       if (!res.ok) throw new Error();

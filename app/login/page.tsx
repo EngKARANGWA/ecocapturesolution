@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { Leaf, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { Suspense } from 'react';
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
 function LoginForm() {
   const router = useRouter();
@@ -25,10 +24,9 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API}/api/auth/login`, {
+      const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
