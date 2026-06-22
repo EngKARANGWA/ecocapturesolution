@@ -1,14 +1,12 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, FormEvent } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Leaf, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { Suspense } from 'react';
 
-
 function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const from = searchParams.get('from') ?? '/dashboard';
 
@@ -17,6 +15,11 @@ function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const hasSession = document.cookie.split(';').some((c) => c.trim().startsWith('eco_session='));
+    if (hasSession) window.location.replace(from);
+  }, [from]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
