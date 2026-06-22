@@ -32,7 +32,7 @@ router.get('/:key', async (req, res) => {
 // Protected — only admin can update
 router.put('/:key', requireAuth, async (req, res) => {
   const { key } = req.params;
-  if (!['careers', 'partners'].includes(key)) {
+  if (!['careers', 'partners'].includes(key as string)) {
     res.status(400).json({ error: 'Invalid form key' }); return;
   }
   await pool.query(
