@@ -1,26 +1,8 @@
 import { Router } from 'express';
 import { pool } from '../db';
 import { requireAuth } from '../middleware/auth';
-import fs from 'fs';
-import path from 'path';
 
 const router = Router();
-
-// Called from index.ts AFTER migration completes
-export async function seedFormSchemas() {
-  const { rows } = await pool.query('SELECT COUNT(*) FROM form_schemas');
-  if (Number(rows[0].count) > 0) return;
-  const seedFile = path.join(__dirname, '../../data/form-schemas.json');
-  if (!fs.existsSync(seedFile)) return;
-  const schemas = JSON.parse(fs.readFileSync(seedFile, 'utf-8')) as Record<string, unknown>;
-  for (const [key, schema] of Object.entries(schemas)) {
-    await pool.query(
-      'INSERT INTO form_schemas (key, schema) VALUES ($1, $2) ON CONFLICT (key) DO NOTHING',
-      [key, JSON.stringify(schema)]
-    );
-  }
-  console.log('Form schemas seeded');
-}
 
 // Public — anyone can read a form schema
 router.get('/:key', async (req, res) => {

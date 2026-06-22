@@ -9,8 +9,9 @@ import openingsRoutes from './routes/openings';
 import partnersRoutes from './routes/partners';
 import applicationsRoutes from './routes/applications';
 import inquiriesRoutes from './routes/inquiries';
-import formsRoutes, { seedFormSchemas } from './routes/forms';
+import formsRoutes from './routes/forms';
 import uploadRoutes from './routes/upload';
+import { seedInitialData } from './seed';
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3001);
@@ -40,6 +41,6 @@ app.use('/api/forms', formsRoutes);
 app.use('/api/upload', uploadRoutes);
 
 migrate()
-  .then(() => seedFormSchemas())
+  .then(() => seedInitialData())
   .then(() => app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`)))
   .catch((err) => { console.error('Startup failed:', err); process.exit(1); });
