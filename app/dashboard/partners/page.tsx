@@ -270,6 +270,7 @@ function PartnerLogo({ src, name }: { src: string; name: string }) {
 export default function PartnersManagement() {
   const [partners, setPartners]   = useState<Partner[]>([]);
   const [loading, setLoading]     = useState(true);
+  const [fetchError, setFetchError] = useState('');
   const [modal, setModal]         = useState<'add' | 'edit' | null>(null);
   const [editing, setEditing]     = useState<Partner | null>(null);
   const [form, setForm]           = useState(EMPTY);
@@ -282,11 +283,19 @@ export default function PartnersManagement() {
   }
 
   async function load() {
+    setLoading(true);
+    setFetchError('');
     try {
       const res = await fetch(`${API}/api/partners`, { headers: getAuthHeaders() });
       const data = await res.json();
-      setPartners(Array.isArray(data) ? data : []);
+      if (Array.isArray(data)) {
+        setPartners(data);
+      } else {
+        setFetchError(data?.error ?? 'Unexpected response from server');
+        setPartners([]);
+      }
     } catch {
+      setFetchError(`Cannot reach backend: ${API} — the server may be starting up. Click Retry.`);
       setPartners([]);
     } finally {
       setLoading(false);
@@ -372,6 +381,11 @@ export default function PartnersManagement() {
       {/* Partners grid */}
       {loading ? (
         <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-12 text-center text-gray-400 text-sm">Loading…</div>
+      ) : fetchError ? (
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-12 text-center space-y-3">
+          <p className="text-red-500 text-sm">{fetchError}</p>
+          <button type="button" onClick={load} className="px-4 py-2 bg-eco-primary text-white text-sm rounded-xl hover:bg-eco-dark transition-colors">Retry</button>
+        </div>
       ) : partners.length === 0 ? (
         <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-12 text-center text-gray-400 text-sm">No partners yet. Add one above.</div>
       ) : (

@@ -52,6 +52,7 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
 export default function CareersManagement() {
   const [openings, setOpenings] = useState<Opening[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState('');
   const [modal, setModal] = useState<'add' | 'edit' | null>(null);
   const [editing, setEditing] = useState<Opening | null>(null);
   const [form, setForm] = useState(EMPTY);
@@ -65,11 +66,19 @@ export default function CareersManagement() {
   }
 
   async function load() {
+    setLoading(true);
+    setFetchError('');
     try {
       const res = await fetch(`${API}/api/openings`, { headers: getAuthHeaders() });
       const data = await res.json();
-      setOpenings(Array.isArray(data) ? data : []);
-    } catch {
+      if (Array.isArray(data)) {
+        setOpenings(data);
+      } else {
+        setFetchError(data?.error ?? 'Unexpected response from server');
+        setOpenings([]);
+      }
+    } catch (err) {
+      setFetchError(`Cannot reach backend: ${API} — the server may be starting up. Click Retry.`);
       setOpenings([]);
     } finally {
       setLoading(false);
@@ -172,6 +181,11 @@ export default function CareersManagement() {
 
         {loading ? (
           <div className="p-12 text-center text-gray-400 text-sm">Loading…</div>
+        ) : fetchError ? (
+          <div className="p-12 text-center space-y-3">
+            <p className="text-red-500 text-sm">{fetchError}</p>
+            <button type="button" onClick={load} className="px-4 py-2 bg-eco-primary text-white text-sm rounded-xl hover:bg-eco-dark transition-colors">Retry</button>
+          </div>
         ) : openings.length === 0 ? (
           <div className="p-12 text-center text-gray-400 text-sm">No openings yet. Add one above.</div>
         ) : (
