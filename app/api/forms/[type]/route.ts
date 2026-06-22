@@ -1,44 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-
-const BACKEND = process.env.NEXT_PUBLIC_API_URL ?? 'https://ecocapturesolution.onrender.com';
-
-async function getToken() {
-  const cookieStore = await cookies();
-  return cookieStore.get('eco_session')?.value ?? null;
-}
+import pool from '@/lib/db';
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;
-  const token = await getToken();
-  const headers: Record<string, string> = {};
-  if (token) headers['Authorization'] = `Bearer ${token}`;
-
   try {
-    const res = await fetch(`${BACKEND}/api/forms/${type}`, { cache: 'no-store', headers });
-    const data = await res.json();
-    return NextResponse.json(data);
-  } catch {
+    const { rows } = await pool.query(
+      'SELECT schema FROM form_schemas WHERE type = $1',
+      [type]
+    );
+    if (rows.length === 0) return NextResponse.json({ title: '', description: '', fields: [] });
+    return NextResponse.json(rows[0].schema);
+  } catch (err) {
+    console.error(`GET /api/forms/${type}:`, err);
     return NextResponse.json({ title: '', description: '', fields: [] });
   }
 }
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;
-  const token = await getToken();
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-  if (token) headers['Authorization'] = `Bearer ${token}`;
-
   const body = await req.json();
   try {
-    const res = await fetch(`${BACKEND}/api/forms/${type}`, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify(body),
-    });
-    const data = await res.json();
-    return NextResponse.json(data, { status: res.status });
-  } catch {
-    return NextResponse.json({ error: 'Backend unreachable' }, { status: 502 });
+    await pool.query(
+      `INSERT INTO form_schemas (type, schema)
+       VALUES ($1, $2)
+       ON CONFLICT (type) DO UPDATE SET schema = $2`,
+      [type, JSON.stringify(body)]
+    );
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error(`PUT /api/forms/${type}:`, err);
+    return NextResponse.json({ error: 'Save failed' }, { status: 500 });
   }
 }
