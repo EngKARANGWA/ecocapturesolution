@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SignJWT } from 'jose';
 
-const BACKEND = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
+const BACKEND = process.env.NEXT_PUBLIC_API_URL ?? 'https://ecocapturesolution.onrender.com';
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET ?? 'eco-jwt-secret-change-in-production'
 );

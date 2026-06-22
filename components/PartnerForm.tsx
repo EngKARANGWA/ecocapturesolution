@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { MapPin, Phone, Mail, CheckCircle, ChevronDown } from 'lucide-react';
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
+const API = process.env.NEXT_PUBLIC_API_URL ?? 'https://ecocapturesolution.onrender.com';
 
 type FieldType = 'text' | 'email' | 'tel' | 'url' | 'textarea' | 'select';
 
