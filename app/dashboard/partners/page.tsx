@@ -9,7 +9,7 @@ import {
 
 import { getAuthHeaders } from '@/lib/auth';
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
+const API = process.env.NEXT_PUBLIC_API_URL ?? 'https://ecocapturesolution.onrender.com';
 
 interface Partner {
   id: string;
@@ -282,9 +282,15 @@ export default function PartnersManagement() {
   }
 
   async function load() {
-    const res = await fetch(`${API}/api/partners`, { headers: getAuthHeaders() });
-    setPartners(await res.json());
-    setLoading(false);
+    try {
+      const res = await fetch(`${API}/api/partners`, { headers: getAuthHeaders() });
+      const data = await res.json();
+      setPartners(Array.isArray(data) ? data : []);
+    } catch {
+      setPartners([]);
+    } finally {
+      setLoading(false);
+    }
   }
   useEffect(() => { load(); }, []);
 

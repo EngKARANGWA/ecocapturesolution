@@ -5,7 +5,7 @@ import { Plus, Pencil, Trash2, ToggleLeft, ToggleRight, Briefcase, MapPin, Tag, 
 
 import { getAuthHeaders } from '@/lib/auth';
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
+const API = process.env.NEXT_PUBLIC_API_URL ?? 'https://ecocapturesolution.onrender.com';
 
 interface Opening {
   id: string;
@@ -65,9 +65,15 @@ export default function CareersManagement() {
   }
 
   async function load() {
-    const res = await fetch(`${API}/api/openings`, { headers: getAuthHeaders() });
-    setOpenings(await res.json());
-    setLoading(false);
+    try {
+      const res = await fetch(`${API}/api/openings`, { headers: getAuthHeaders() });
+      const data = await res.json();
+      setOpenings(Array.isArray(data) ? data : []);
+    } catch {
+      setOpenings([]);
+    } finally {
+      setLoading(false);
+    }
   }
   useEffect(() => { load(); }, []);
 
