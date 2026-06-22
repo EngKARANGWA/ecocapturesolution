@@ -286,7 +286,7 @@ export default function PartnersManagement() {
     setLoading(true);
     setFetchError('');
     try {
-      const res = await fetch(`${API}/api/partners`, { headers: getAuthHeaders() });
+      const res = await fetch('/api/partners');
       const data = await res.json();
       if (Array.isArray(data)) {
         setPartners(data);
@@ -295,7 +295,7 @@ export default function PartnersManagement() {
         setPartners([]);
       }
     } catch {
-      setFetchError(`Cannot reach backend: ${API} — the server may be starting up. Click Retry.`);
+      setFetchError('Cannot reach server. Click Retry.');
       setPartners([]);
     } finally {
       setLoading(false);

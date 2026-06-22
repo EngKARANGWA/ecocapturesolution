@@ -69,7 +69,7 @@ export default function CareersManagement() {
     setLoading(true);
     setFetchError('');
     try {
-      const res = await fetch(`${API}/api/openings`, { headers: getAuthHeaders() });
+      const res = await fetch('/api/openings');
       const data = await res.json();
       if (Array.isArray(data)) {
         setOpenings(data);
@@ -77,8 +77,8 @@ export default function CareersManagement() {
         setFetchError(data?.error ?? 'Unexpected response from server');
         setOpenings([]);
       }
-    } catch (err) {
-      setFetchError(`Cannot reach backend: ${API} — the server may be starting up. Click Retry.`);
+    } catch {
+      setFetchError('Cannot reach server. Click Retry.');
       setOpenings([]);
     } finally {
       setLoading(false);
