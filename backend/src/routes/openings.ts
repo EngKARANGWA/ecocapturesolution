@@ -4,7 +4,7 @@ import { requireAuth } from '../middleware/auth';
 
 const router = Router();
 
-router.get('/', requireAuth, async (_req, res) => {
+router.get('/', async (_req, res) => {
   const { rows } = await pool.query('SELECT * FROM openings ORDER BY created_at DESC');
   res.json(rows.map(r => ({ id: r.id, title: r.title, type: r.type, location: r.location, desc: r.description, tags: r.tags, status: r.status, createdAt: r.created_at })));
 });
