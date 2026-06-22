@@ -31,8 +31,7 @@ function LoginForm() {
       });
 
       if (res.ok) {
-        router.push(from);
-        router.refresh();
+        window.location.replace(from);
       } else {
         const data = await res.json();
         setError(data.error ?? 'Login failed');
