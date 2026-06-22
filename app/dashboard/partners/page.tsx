@@ -88,9 +88,9 @@ function PartnerFormModal({
     const fd = new FormData();
     fd.append('file', file);
     try {
-      const res = await fetch(`${API}/api/upload`, { method: 'POST', headers: getAuthHeaders(), body: fd });
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
       const data = await res.json();
-      if (res.ok) onChange({ logo: `${API}${data.url}` });
+      if (res.ok) onChange({ logo: data.url });
       else setUploadErr(data.error ?? 'Upload failed');
     } catch {
       setUploadErr('Upload failed. Try again.');
