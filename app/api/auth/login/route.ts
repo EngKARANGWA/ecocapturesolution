@@ -22,15 +22,5 @@ export async function POST(req: NextRequest) {
   }
 
   const { token } = data as { token: string };
-  const isProd = process.env.NODE_ENV === 'production';
-
-  const response = NextResponse.json({ ok: true });
-  response.cookies.set('eco_session', token, {
-    httpOnly: false,
-    secure: isProd,
-    sameSite: 'lax',
-    maxAge: 7 * 24 * 60 * 60,
-    path: '/',
-  });
-  return response;
+  return NextResponse.json({ ok: true, token });
 }

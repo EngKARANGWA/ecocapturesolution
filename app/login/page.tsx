@@ -17,8 +17,17 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const hasSession = document.cookie.split(';').some((c) => c.trim().startsWith('eco_session='));
-    if (hasSession) window.location.replace(from);
+    // Redirect if token exists and is not expired
+    const match = document.cookie.match(/(?:^|;\s*)eco_session=([^;]+)/);
+    const token = match?.[1];
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        if (payload.exp && payload.exp * 1000 > Date.now()) {
+          window.location.replace(from);
+        }
+      } catch { /* invalid token, stay on login */ }
+    }
   }, [from]);
 
   async function handleSubmit(e: FormEvent) {
@@ -33,10 +42,14 @@ function LoginForm() {
         body: JSON.stringify({ email, password }),
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (res.ok && data.token) {
+        // Set cookie directly in browser so proxy.ts sees it immediately
+        const maxAge = 7 * 24 * 60 * 60;
+        document.cookie = `eco_session=${data.token}; path=/; max-age=${maxAge}; SameSite=Lax`;
         window.location.replace(from);
       } else {
-        const data = await res.json();
         setError(data.error ?? 'Login failed');
       }
     } catch {
