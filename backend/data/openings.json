@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "title": "Agricultural Field Officer",
+    "type": "Full-time",
+    "location": "Kigali, Rwanda",
+    "desc": "Work directly with farmers to implement sustainable practices and distribute biochar fertilizers across farming communities.",
+    "tags": ["Agriculture", "Field Work", "Community"],
+    "status": "open",
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "2",
+    "title": "Sustainability Project Manager",
+    "type": "Full-time",
+    "location": "Kigali, Rwanda",
+    "desc": "Lead climate-smart agriculture and CO₂ capture projects from planning through field implementation and impact reporting.",
+    "tags": ["Project Management", "Climate", "Leadership"],
+    "status": "open",
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "3",
+    "title": "Sales & Partnerships Coordinator",
+    "type": "Full-time",
+    "location": "Kigali, Rwanda",
+    "desc": "Drive market expansion, build relationships with greenhouse operators and agri-businesses, and grow farmer engagement.",
+    "tags": ["Sales", "Partnerships", "Business Development"],
+    "status": "open",
+    "createdAt": "2025-01-01"
+  }
+]

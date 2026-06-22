@@ -193,19 +193,9 @@ export default function Projects() {
 
       {/* CTA */}
       <section className="relative py-8 sm:py-10 md:py-14 px-4 bg-eco-dark text-white text-center">
-        {/* Wave — lighter section curves into the dark CTA */}
         <div aria-hidden className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none">
-          <svg
-            viewBox="0 0 1440 72"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full block"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,32 C240,64 480,8 720,24 C960,40 1200,68 1440,28 L1440,72 L0,72 Z"
-              fill="#1b5e20"
-            />
+          <svg viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
+            <path d="M0,32 C240,64 480,8 720,24 C960,40 1200,68 1440,28 L1440,72 L0,72 Z" fill="#1b5e20" />
           </svg>
         </div>
         <div className="max-w-2xl mx-auto">

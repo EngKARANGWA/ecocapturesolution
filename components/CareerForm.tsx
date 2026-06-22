@@ -1,126 +1,163 @@
 'use client';
 
-import { useState } from 'react';
-import SuccessModal from '@/components/SuccessModal';
+import { useState, useEffect } from 'react';
+import { CheckCircle, ChevronDown } from 'lucide-react';
 
-const positions = [
-  'Agricultural Field Officer',
-  'Sustainability Project Manager',
-  'Sales & Partnerships Coordinator',
-];
+const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
+
+type FieldType = 'text' | 'email' | 'tel' | 'url' | 'textarea' | 'select';
+
+interface FormField {
+  id: string;
+  label: string;
+  type: FieldType;
+  placeholder: string;
+  required: boolean;
+  options: string[];
+}
+
+interface FormSchema {
+  title: string;
+  description: string;
+  fields: FormField[];
+}
+
+const inputCls = 'w-full px-4 py-3 border-b-2 border-gray-200 focus:border-eco-primary bg-gray-50 rounded-t-lg text-sm focus:outline-none focus:bg-white transition-all';
 
 export default function CareerForm() {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [showModal, setShowModal] = useState(false);
+  const [schema, setSchema]   = useState<FormSchema | null>(null);
+  const [values, setValues]   = useState<Record<string, string>>({});
+  const [status, setStatus]   = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errMsg, setErrMsg]   = useState('');
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    fetch(`${API}/api/forms/careers`)
+      .then((r) => r.json())
+      .then(setSchema)
+      .catch(() => setErrMsg('Could not load form. Please refresh.'));
+  }, []);
+
+  function set(id: string, val: string) {
+    setValues((v) => ({ ...v, [id]: val }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus('submitting');
+    if (!schema) return;
+    setStatus('submitting'); setErrMsg('');
 
-    const form = e.currentTarget;
-    const data = new FormData(form);
+    // Build payload using field labels as keys
+    const payload: Record<string, string> = {};
+    for (const field of schema.fields) {
+      payload[field.label] = values[field.id] ?? '';
+    }
 
     try {
-      const res = await fetch('https://formspree.io/f/xeozdbad', {
+      const res = await fetch(`${API}/api/applications`, {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
-
-      if (res.ok) {
-        form.reset();
-        setStatus('success');
-        setShowModal(true);
-      } else {
-        setStatus('error');
-      }
+      if (res.ok) { setStatus('success'); setValues({}); }
+      else { const d = await res.json().catch(() => ({})); setErrMsg(d.error ?? 'Submission failed.'); setStatus('error'); }
     } catch {
-      setStatus('error');
+      setErrMsg('Network error. Please try again.'); setStatus('error');
     }
   }
 
-  return (
-    <>
-      {showModal && (
-        <SuccessModal
-          onClose={() => { setShowModal(false); setStatus('idle'); }}
-          title="Application Sent!"
-          message="Your application has been received."
-          replyNote="5 business days"
-        />
-      )}
+  if (!schema && !errMsg) {
+    return (
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-12 text-center text-gray-400 text-sm">
+        Loading form…
+      </div>
+    );
+  }
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white rounded-2xl border border-gray-100 shadow-card p-5 sm:p-8 space-y-5"
-      >
-        <div className="grid sm:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Your Name</label>
-            <input
-              type="text"
-              name="name"
-              required
-              placeholder="Jane Uwimana"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-eco-primary focus:border-transparent transition"
-            />
+  if (errMsg && !schema) {
+    return (
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-8 text-center text-red-500 text-sm">
+        {errMsg}
+      </div>
+    );
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
+        <div className="h-2 bg-eco-primary" />
+        <div className="p-10 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-eco-light rounded-full mb-5">
+            <CheckCircle className="w-8 h-8 text-eco-primary" />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="jane@example.com"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-eco-primary focus:border-transparent transition"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Position Applying For</label>
-          <select
-            name="position"
-            required
-            aria-label="Position applying for"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-eco-primary focus:border-transparent transition"
-          >
-            <option value="">Select a position…</option>
-            {positions.map((p) => (
-              <option key={p} value={p}>{p}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Tell Us About Yourself</label>
-          <textarea
-            name="message"
-            required
-            rows={5}
-            placeholder="Your background, motivation, and relevant experience…"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm resize-y focus:outline-none focus:ring-2 focus:ring-eco-primary focus:border-transparent transition"
-          />
-        </div>
-
-        {status === 'error' && (
-          <p className="text-red-500 text-sm">
-            Something went wrong. Please try again or email us at{' '}
-            <a href="mailto:careers@ecocapturesolutions.com" className="underline">
-              careers@ecocapturesolutions.com
-            </a>
-            .
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Application Received!</h3>
+          <p className="text-gray-500 text-sm mb-6 max-w-sm mx-auto">
+            Thank you for applying. We&apos;ll review your application and get back to you within 5 business days.
           </p>
-        )}
+          <button type="button" onClick={() => setStatus('idle')}
+            className="text-eco-primary font-semibold text-sm hover:text-eco-dark transition-colors underline underline-offset-2">
+            Submit another application
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-        <button
-          type="submit"
-          disabled={status === 'submitting'}
-          className="w-full bg-eco-primary text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-eco-dark transition-colors shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          {status === 'submitting' ? 'Sending…' : 'Send Application'}
-        </button>
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
+      <div className="h-2 bg-eco-primary" />
+      <div className="px-6 py-6 border-b border-gray-100">
+        <h2 className="text-xl font-bold text-gray-900">{schema!.title}</h2>
+        <p className="text-gray-500 text-sm mt-1">{schema!.description}</p>
+        <p className="text-xs text-gray-400 mt-3">Fields marked <span className="text-red-500">*</span> are required.</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="divide-y divide-gray-50">
+        {schema!.fields.map((field, i) => (
+          <div key={field.id} className="px-6 py-5 hover:bg-gray-50/50 transition-colors">
+            <label className="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-eco-light text-eco-primary text-xs font-bold shrink-0">
+                {i + 1}
+              </span>
+              {field.label}
+              {field.required && <span className="text-red-500">*</span>}
+            </label>
+
+            {(field.type === 'text' || field.type === 'email' || field.type === 'tel' || field.type === 'url') && (
+              <input type={field.type} required={field.required} placeholder={field.placeholder}
+                value={values[field.id] ?? ''} onChange={(e) => set(field.id, e.target.value)}
+                className={inputCls} />
+            )}
+
+            {field.type === 'textarea' && (
+              <textarea required={field.required} placeholder={field.placeholder} rows={4}
+                value={values[field.id] ?? ''} onChange={(e) => set(field.id, e.target.value)}
+                className={inputCls + ' resize-y'} />
+            )}
+
+            {field.type === 'select' && (
+              <div className="relative">
+                <select required={field.required} title={field.label} aria-label={field.label}
+                  value={values[field.id] ?? ''} onChange={(e) => set(field.id, e.target.value)}
+                  className={inputCls + ' appearance-none cursor-pointer'}>
+                  <option value="">Choose an option</option>
+                  {field.options.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+            )}
+          </div>
+        ))}
+
+        <div className="px-6 py-6">
+          {status === 'error' && (
+            <p className="text-red-500 text-sm mb-4 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{errMsg}</p>
+          )}
+          <button type="submit" disabled={status === 'submitting'}
+            className="bg-eco-primary text-white px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-eco-dark transition-colors shadow-sm hover:shadow-md disabled:opacity-60">
+            {status === 'submitting' ? 'Submitting…' : 'Submit Application'}
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }

@@ -123,8 +123,6 @@ export default function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
           <div className="max-w-3xl">
-            {/* Badge */}
-
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.2] tracking-tight mb-6">
               Turning CO₂ Emissions into<br />
               <span className="text-green-300">Agricultural Growth</span>
@@ -200,7 +198,7 @@ export default function Home() {
             <p className="text-eco-dark font-semibold text-lg leading-snug">
               What if the CO₂ causing climate change could also solve the farming crisis?
             </p>
-</div>
+          </div>
         </div>
       </section>
 
@@ -276,7 +274,6 @@ export default function Home() {
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">What We Do</span>
             <h2 className="text-3xl md:text-4xl font-bold text-green-600 mt-2">OUR INITIATIVES</h2>
-            {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Our Initiatives</h2> */}
             <p className="text-gray-500 mt-3 max-w-xl mx-auto">Four interconnected solutions building a circular carbon economy.</p>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>

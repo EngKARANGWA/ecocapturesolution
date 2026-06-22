@@ -1,0 +1,32 @@
+{
+  "careers": {
+    "title": "Job Application Form",
+    "description": "EcoCapture Solutions Ltd · Kigali, Rwanda",
+    "fields": [
+      { "id": "f1", "label": "Full Name",                          "type": "text",     "placeholder": "Jane Uwimana",                                                   "required": true,  "options": [] },
+      { "id": "f2", "label": "Email Address",                      "type": "email",    "placeholder": "jane@example.com",                                               "required": true,  "options": [] },
+      { "id": "f3", "label": "Phone Number",                       "type": "tel",      "placeholder": "+250 7XX XXX XXX",                                               "required": false, "options": [] },
+      { "id": "f4", "label": "Position Applying For",              "type": "select",   "placeholder": "",                                                               "required": true,  "options": ["Agricultural Field Officer", "Sustainability Project Manager", "Sales & Partnerships Coordinator"] },
+      { "id": "f5", "label": "Years of Experience",                "type": "select",   "placeholder": "",                                                               "required": false, "options": ["Less than 1 year", "1 – 2 years", "3 – 5 years", "6 – 10 years", "10+ years"] },
+      { "id": "f6", "label": "LinkedIn / Portfolio URL",           "type": "url",      "placeholder": "https://linkedin.com/in/you",                                    "required": false, "options": [] },
+      { "id": "f7", "label": "Why do you want to join EcoCapture?","type": "textarea", "placeholder": "What draws you to our mission and this specific role…",          "required": true,  "options": [] },
+      { "id": "f8", "label": "Relevant Experience & Skills",       "type": "textarea", "placeholder": "Describe your most relevant work, projects, or achievements…",   "required": false, "options": [] },
+      { "id": "f9", "label": "How did you hear about us?",         "type": "select",   "placeholder": "",                                                               "required": false, "options": ["LinkedIn", "Company website", "Friend or colleague", "Job board", "Social media", "Other"] }
+    ]
+  },
+  "partners": {
+    "title": "Partnership Inquiry Form",
+    "description": "EcoCapture Solutions Ltd · Kigali, Rwanda",
+    "fields": [
+      { "id": "p1", "label": "Your Full Name",                     "type": "text",     "placeholder": "Jane Uwimana",                                                   "required": true,  "options": [] },
+      { "id": "p2", "label": "Email Address",                      "type": "email",    "placeholder": "jane@organisation.com",                                          "required": true,  "options": [] },
+      { "id": "p3", "label": "Phone Number",                       "type": "tel",      "placeholder": "+250 7XX XXX XXX",                                               "required": false, "options": [] },
+      { "id": "p4", "label": "Organisation Name",                  "type": "text",     "placeholder": "Your organisation",                                              "required": true,  "options": [] },
+      { "id": "p5", "label": "Organisation Type",                  "type": "select",   "placeholder": "",                                                               "required": true,  "options": ["NGO & Donor", "Investor", "Greenhouse Operator", "Industry", "Research Institution", "Technology Partner", "Government / Public Sector", "Other"] },
+      { "id": "p6", "label": "Country / Location",                 "type": "text",     "placeholder": "Rwanda",                                                         "required": false, "options": [] },
+      { "id": "p7", "label": "Organisation Website",               "type": "url",      "placeholder": "https://yourorg.com",                                            "required": false, "options": [] },
+      { "id": "p8", "label": "How Would You Like to Partner?",     "type": "textarea", "placeholder": "Describe your interest and how you envision working together…",  "required": true,  "options": [] },
+      { "id": "p9", "label": "What Resources Can You Bring?",      "type": "textarea", "placeholder": "Funding, expertise, networks, equipment…",                       "required": false, "options": [] }
+    ]
+  }
+}
