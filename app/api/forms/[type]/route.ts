@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { cookies } from 'next/headers';
+import sql from '@/lib/db';
+
+async function getToken() {
+  const cookieStore = await cookies();
+  return cookieStore.get('eco_session')?.value ?? null;
+}
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;
   try {
-    const { rows } = await pool.query(
-      'SELECT schema FROM form_schemas WHERE type = $1',
-      [type]
-    );
+    const rows = await sql`SELECT schema FROM form_schemas WHERE key = ${type}`;
     if (rows.length === 0) return NextResponse.json({ title: '', description: '', fields: [] });
     return NextResponse.json(rows[0].schema);
   } catch (err) {
@@ -18,14 +21,16 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ typ
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;
+  const token = await getToken();
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
   const body = await req.json();
   try {
-    await pool.query(
-      `INSERT INTO form_schemas (type, schema)
-       VALUES ($1, $2)
-       ON CONFLICT (type) DO UPDATE SET schema = $2`,
-      [type, JSON.stringify(body)]
-    );
+    await sql`
+      INSERT INTO form_schemas (key, schema)
+      VALUES (${type}, ${JSON.stringify(body)}::jsonb)
+      ON CONFLICT (key) DO UPDATE SET schema = ${JSON.stringify(body)}::jsonb
+    `;
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error(`PUT /api/forms/${type}:`, err);
