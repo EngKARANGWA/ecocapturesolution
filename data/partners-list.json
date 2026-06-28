@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "Tony Elumelu Foundation",
+    "logo": "/assets/partners/partner-tef.png",
+    "website": "https://www.tonyelumelufoundation.org/",
+    "type": "NGO & Donor",
+    "status": "active",
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "2",
+    "name": "Unipod",
+    "logo": "/assets/partners/partner-unipod.png",
+    "website": "https://unipod.rw/",
+    "type": "Greenhouse Operator",
+    "status": "active",
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "3",
+    "name": "FasterCapital",
+    "logo": "/assets/partners/fastercapital.png",
+    "website": "https://fastercapital.com/",
+    "type": "Investor",
+    "status": "active",
+    "createdAt": "2025-01-01"
+  }
+]
