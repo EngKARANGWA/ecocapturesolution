@@ -82,6 +82,53 @@ const FORM_SCHEMAS = {
   },
 };
 
+const APPLICATIONS = [
+  {
+    id: 'app-1',
+    data: {
+      'Full Name': 'Amahoro Divine',
+      'Email Address': 'divine.amahoro@gmail.com',
+      'Phone Number': '+250 788 123 456',
+      'Position Applied For': 'Agricultural Field Officer',
+      'Cover Letter / Message': 'I have 4 years of experience working with smallholder farmers in Western Province. I am passionate about sustainable agriculture and eager to contribute to EcoCapture's biochar and CO₂ capture mission.',
+    },
+    status: 'new',
+  },
+  {
+    id: 'app-2',
+    data: {
+      'Full Name': 'Niyonsenga Patrick',
+      'Email Address': 'p.niyonsenga@outlook.com',
+      'Phone Number': '+250 722 987 654',
+      'Position Applied For': 'Sustainability Project Manager',
+      'Cover Letter / Message': 'With an MSc in Environmental Management and 3 years leading climate-smart agriculture projects at CGIAR, I am excited to drive EcoCapture's impact at scale.',
+    },
+    status: 'reviewed',
+  },
+  {
+    id: 'app-3',
+    data: {
+      'Full Name': 'Uwimana Claudette',
+      'Email Address': 'claudette.uwimana@yahoo.com',
+      'Phone Number': '+250 734 556 789',
+      'Position Applied For': 'Sales & Partnerships Coordinator',
+      'Cover Letter / Message': 'I previously managed agri-business partnerships at One Acre Fund Rwanda and built a network of 200+ greenhouse operators. I would love to bring that experience to EcoCapture.',
+    },
+    status: 'new',
+  },
+  {
+    id: 'app-4',
+    data: {
+      'Full Name': 'Habimana Eric',
+      'Email Address': 'eric.habimana@gmail.com',
+      'Phone Number': '+250 780 234 567',
+      'Position Applied For': 'Agricultural Field Officer',
+      'Cover Letter / Message': 'I am a recent graduate in Agronomy from UR and have volunteered with local cooperatives in Musanze. I am eager to grow within a purpose-driven company like EcoCapture.',
+    },
+    status: 'new',
+  },
+];
+
 export async function seedInitialData() {
   const { rows: oRows } = await pool.query('SELECT COUNT(*) FROM openings');
   if (Number(oRows[0].count) === 0) {
@@ -105,6 +152,17 @@ export async function seedInitialData() {
       );
     }
     console.log('Partners seeded');
+  }
+
+  const { rows: aRows } = await pool.query('SELECT COUNT(*) FROM applications');
+  if (Number(aRows[0].count) === 0) {
+    for (const a of APPLICATIONS) {
+      await pool.query(
+        `INSERT INTO applications (id, data, status) VALUES ($1,$2,$3) ON CONFLICT (id) DO NOTHING`,
+        [a.id, JSON.stringify(a.data), a.status]
+      );
+    }
+    console.log('Applications seeded');
   }
 
   const { rows: fRows } = await pool.query('SELECT COUNT(*) FROM form_schemas');
