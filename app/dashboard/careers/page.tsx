@@ -20,6 +20,8 @@ interface Opening {
 
 interface Application {
   id: string;
+  openingId: string | null;
+  openingTitle: string | null;
   data: Record<string, string>;
   status: 'new' | 'reviewed' | 'shortlisted' | 'rejected';
   submittedAt: string;
@@ -288,85 +290,99 @@ export default function CareersManagement() {
         </div>
       </div>
 
-      {/* Received Applications */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-          <div>
-            <h2 className="font-bold text-gray-900">Received Applications</h2>
-            <p className="text-xs text-gray-400 mt-0.5">{applications.length} submission{applications.length !== 1 ? 's' : ''}</p>
-          </div>
+      {/* Received Applications — grouped by opening */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="font-bold text-gray-900 text-lg">Received Applications</h2>
           <div className="flex gap-2 text-xs font-semibold">
             <span className="bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full">{applications.filter(a => a.status === 'new').length} new</span>
+            <span className="bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full">{applications.length} total</span>
           </div>
         </div>
 
         {appsLoading ? (
-          <div className="p-10 text-center text-gray-400 text-sm">Loading…</div>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-10 text-center text-gray-400 text-sm">Loading…</div>
         ) : applications.length === 0 ? (
-          <div className="p-10 text-center text-gray-400 text-sm">No applications received yet.</div>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-10 text-center text-gray-400 text-sm">No applications received yet.</div>
         ) : (
-          <div className="divide-y divide-gray-50">
-            {applications.map((app) => {
-              const name = app.data['Full Name'] ?? 'Unknown';
-              const email = app.data['Email Address'] ?? '';
-              const position = app.data['Position Applied For'] ?? '';
-              const isExpanded = expandedApp === app.id;
-              return (
-                <div key={app.id} className="px-6 py-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-full bg-eco-light flex items-center justify-center shrink-0">
-                      <User className="w-4 h-4 text-eco-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                        <span className="font-semibold text-gray-900 text-sm">{name}</span>
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full capitalize ${STATUS_COLORS[app.status] ?? 'bg-gray-100 text-gray-500'}`}>
-                          {app.status}
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-500">{email}</p>
-                      {position && <p className="text-xs text-eco-primary font-medium mt-0.5">{position}</p>}
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <select
-                        value={app.status}
-                        title="Update status"
-                        aria-label="Update application status"
-                        onChange={(e) => updateAppStatus(app.id, e.target.value)}
-                        className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-eco-primary cursor-pointer"
-                      >
-                        <option value="new">New</option>
-                        <option value="reviewed">Reviewed</option>
-                        <option value="shortlisted">Shortlisted</option>
-                        <option value="rejected">Rejected</option>
-                      </select>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedApp(isExpanded ? null : app.id)}
-                        className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors text-gray-400"
-                      >
-                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  {isExpanded && (
-                    <div className="mt-3 ml-12 space-y-2 bg-gray-50 rounded-xl p-4 text-sm">
-                      {Object.entries(app.data).map(([key, val]) => (
-                        <div key={key}>
-                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">{key}</p>
-                          <p className="text-gray-700 mt-0.5 whitespace-pre-wrap">{val}</p>
-                        </div>
-                      ))}
-                      <p className="text-xs text-gray-400 pt-1 border-t border-gray-200">
-                        Submitted: {new Date(app.submittedAt).toLocaleString()}
-                      </p>
-                    </div>
-                  )}
+          openings.map((opening) => {
+            const apps = applications.filter(a => a.openingId === opening.id);
+            if (apps.length === 0) return null;
+            return (
+              <div key={opening.id} className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
+                {/* Opening header */}
+                <div className="px-6 py-3 bg-eco-light/50 border-b border-eco-primary/10 flex items-center gap-3">
+                  <Briefcase className="w-4 h-4 text-eco-primary shrink-0" />
+                  <span className="font-bold text-eco-dark text-sm flex-1">{opening.title}</span>
+                  <span className="text-xs font-semibold bg-white border border-eco-primary/20 text-eco-primary px-2.5 py-0.5 rounded-full">
+                    {apps.length} applicant{apps.length !== 1 ? 's' : ''}
+                  </span>
+                  <span className="text-xs text-gray-400">{opening.type} · {opening.location}</span>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Applications for this opening */}
+                <div className="divide-y divide-gray-50">
+                  {apps.map((app) => {
+                    const name = app.data['Full Name'] ?? 'Unknown';
+                    const email = app.data['Email Address'] ?? '';
+                    const phone = app.data['Phone Number'] ?? '';
+                    const isExpanded = expandedApp === app.id;
+                    return (
+                      <div key={app.id} className="px-6 py-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-9 h-9 rounded-full bg-eco-light flex items-center justify-center shrink-0">
+                            <User className="w-4 h-4 text-eco-primary" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                              <span className="font-semibold text-gray-900 text-sm">{name}</span>
+                              <span className={`text-xs font-bold px-2 py-0.5 rounded-full capitalize ${STATUS_COLORS[app.status] ?? 'bg-gray-100 text-gray-500'}`}>
+                                {app.status}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500">{email}{phone ? ` · ${phone}` : ''}</p>
+                            <p className="text-xs text-gray-400 mt-0.5">{new Date(app.submittedAt).toLocaleDateString()}</p>
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <select
+                              value={app.status}
+                              title="Update status"
+                              aria-label="Update application status"
+                              onChange={(e) => updateAppStatus(app.id, e.target.value)}
+                              className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-eco-primary cursor-pointer"
+                            >
+                              <option value="new">New</option>
+                              <option value="reviewed">Reviewed</option>
+                              <option value="shortlisted">Shortlisted</option>
+                              <option value="rejected">Rejected</option>
+                            </select>
+                            <button
+                              type="button"
+                              onClick={() => setExpandedApp(isExpanded ? null : app.id)}
+                              className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors text-gray-400"
+                            >
+                              {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                            </button>
+                          </div>
+                        </div>
+
+                        {isExpanded && (
+                          <div className="mt-3 ml-12 space-y-3 bg-gray-50 rounded-xl p-4">
+                            {Object.entries(app.data).map(([key, val]) => (
+                              <div key={key}>
+                                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">{key}</p>
+                                <p className="text-sm text-gray-700 whitespace-pre-wrap">{val}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })
         )}
       </div>
 

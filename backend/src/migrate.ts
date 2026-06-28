@@ -25,6 +25,7 @@ export async function migrate() {
 
     CREATE TABLE IF NOT EXISTS applications (
       id           TEXT PRIMARY KEY,
+      opening_id   TEXT REFERENCES openings(id) ON DELETE SET NULL,
       data         JSONB NOT NULL,
       status       TEXT DEFAULT 'new',
       submitted_at TIMESTAMPTZ DEFAULT NOW()
@@ -42,6 +43,11 @@ export async function migrate() {
       schema     JSONB NOT NULL,
       updated_at TIMESTAMPTZ DEFAULT NOW()
     );
+  `);
+  // Safe to run on existing DBs — adds opening_id if not present
+  await pool.query(`
+    ALTER TABLE applications
+      ADD COLUMN IF NOT EXISTS opening_id TEXT REFERENCES openings(id) ON DELETE SET NULL;
   `);
   console.log('Database tables ready');
 }
