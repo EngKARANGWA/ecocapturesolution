@@ -24,14 +24,14 @@ interface FormSchema {
 
 const inputCls = 'w-full px-4 py-3 border-b-2 border-gray-200 focus:border-eco-primary bg-gray-50 rounded-t-lg text-sm focus:outline-none focus:bg-white transition-all';
 
-export default function CareerForm() {
+export default function CareerForm({ openingTitles = [] }: { openingTitles?: string[] }) {
   const [schema, setSchema]   = useState<FormSchema | null>(null);
   const [values, setValues]   = useState<Record<string, string>>({});
   const [status, setStatus]   = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errMsg, setErrMsg]   = useState('');
 
   useEffect(() => {
-    fetch(`${API}/api/forms/careers`)
+    fetch('/api/forms/careers')
       .then((r) => r.json())
       .then(setSchema)
       .catch(() => setErrMsg('Could not load form. Please refresh.'));
@@ -81,6 +81,30 @@ export default function CareerForm() {
     );
   }
 
+  // No open positions — show a friendly message instead of a broken form
+  if (openingTitles.length === 0 && schema) {
+    return (
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
+        <div className="h-2 bg-gray-200" />
+        <div className="p-10 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-5">
+            <CheckCircle className="w-8 h-8 text-gray-300" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-700 mb-2">No open positions right now</h3>
+          <p className="text-gray-400 text-sm mb-6 max-w-sm mx-auto">
+            We currently have no open roles, but you can still send us your CV and we&apos;ll keep you in mind.
+          </p>
+          <a
+            href="mailto:careers@ecocapturesolutions.com"
+            className="inline-block bg-eco-primary text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-eco-dark transition-colors no-underline"
+          >
+            Send us your CV
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   if (status === 'success') {
     return (
       <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
@@ -122,19 +146,28 @@ export default function CareerForm() {
               {field.required && <span className="text-red-500">*</span>}
             </label>
 
-            {(field.type === 'text' || field.type === 'email' || field.type === 'tel' || field.type === 'url') && (
+            {/* "Position Applied For" — live dropdown from open positions */}
+            {field.label === 'Position Applied For' && openingTitles.length > 0 ? (
+              <div className="relative">
+                <select required={field.required} title={field.label} aria-label={field.label}
+                  value={values[field.id] ?? ''} onChange={(e) => set(field.id, e.target.value)}
+                  className={inputCls + ' appearance-none cursor-pointer'}>
+                  <option value="">Select a position</option>
+                  {openingTitles.map((title) => (
+                    <option key={title} value={title}>{title}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+            ) : (field.type === 'text' || field.type === 'email' || field.type === 'tel' || field.type === 'url') ? (
               <input type={field.type} required={field.required} placeholder={field.placeholder}
                 value={values[field.id] ?? ''} onChange={(e) => set(field.id, e.target.value)}
                 className={inputCls} />
-            )}
-
-            {field.type === 'textarea' && (
+            ) : field.type === 'textarea' ? (
               <textarea required={field.required} placeholder={field.placeholder} rows={4}
                 value={values[field.id] ?? ''} onChange={(e) => set(field.id, e.target.value)}
                 className={inputCls + ' resize-y'} />
-            )}
-
-            {field.type === 'select' && (
+            ) : field.type === 'select' ? (
               <div className="relative">
                 <select required={field.required} title={field.label} aria-label={field.label}
                   value={values[field.id] ?? ''} onChange={(e) => set(field.id, e.target.value)}
@@ -144,7 +177,7 @@ export default function CareerForm() {
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
-            )}
+            ) : null}
           </div>
         ))}
 

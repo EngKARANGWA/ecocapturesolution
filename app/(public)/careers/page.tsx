@@ -247,7 +247,7 @@ export default async function Careers() {
             <p className="text-gray-500 mt-3 text-sm">Tell us about yourself and the role you&apos;re interested in.</p>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
-          <CareerForm />
+          <CareerForm openingTitles={openings.map(o => o.title)} />
         </div>
       </section>
 
