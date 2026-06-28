@@ -7,7 +7,7 @@ const secret = new TextEncoder().encode(
   process.env.JWT_SECRET ?? 'eco-jwt-secret-change-in-production'
 );
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const token = request.cookies.get(COOKIE)?.value;
   if (token) {
     try {
