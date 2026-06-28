@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Globe, Handshake, TrendingUp, Leaf, MapPin, Briefcase, ChevronDown } from 'lucide-react';
 import CareerForm from '@/components/CareerForm';
+import sql from '@/lib/db';
+
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'Careers',
@@ -64,29 +67,6 @@ const perks = [
   },
 ];
 
-const openings = [
-  {
-    title: 'Agricultural Field Officer',
-    type: 'Full-time',
-    location: 'Kigali, Rwanda',
-    desc: 'Work directly with farmers to implement sustainable practices and distribute biochar fertilizers across farming communities.',
-    tags: ['Agriculture', 'Field Work', 'Community'],
-  },
-  {
-    title: 'Sustainability Project Manager',
-    type: 'Full-time',
-    location: 'Kigali, Rwanda',
-    desc: 'Lead climate-smart agriculture and CO₂ capture projects from planning through field implementation and impact reporting.',
-    tags: ['Project Management', 'Climate', 'Leadership'],
-  },
-  {
-    title: 'Sales & Partnerships Coordinator',
-    type: 'Full-time',
-    location: 'Kigali, Rwanda',
-    desc: 'Drive market expansion, build relationships with greenhouse operators and agri-businesses, and grow farmer engagement.',
-    tags: ['Sales', 'Partnerships', 'Business Development'],
-  },
-];
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -97,7 +77,20 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function Careers() {
+export default async function Careers() {
+  let openings: { id: string; title: string; type: string; location: string; desc: string; tags: string[] }[] = [];
+  try {
+    const rows = await sql`
+      SELECT id, title, type, location, description AS desc, tags
+      FROM openings
+      WHERE status = 'open'
+      ORDER BY created_at ASC
+    `;
+    openings = rows as typeof openings;
+  } catch {
+    // DB unreachable — show empty state gracefully
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -137,9 +130,9 @@ export default function Careers() {
       <section className="bg-eco-primary pt-12 pb-4 sm:pb-6 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-center">
           {[
-            { value: '3',      label: 'Open Positions' },
-            { value: 'Kigali', label: 'Based in Rwanda' },
-            { value: '2023',   label: 'Founded' },
+            { value: openings.length.toString(), label: 'Open Positions' },
+            { value: 'Kigali',                   label: 'Based in Rwanda' },
+            { value: '2023',                     label: 'Founded' },
           ].map((s) => (
             <div key={s.label}>
               <p className="text-3xl md:text-4xl font-black text-white">{s.value}</p>
@@ -180,42 +173,58 @@ export default function Careers() {
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
 
-          <div className="space-y-6">
-            {openings.map((o) => (
-              <div
-                key={o.title}
-                className="group bg-white border border-gray-100 rounded-2xl p-8 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
+          {openings.length === 0 ? (
+            <div className="text-center py-16 bg-white border border-gray-100 rounded-2xl shadow-card">
+              <Briefcase className="w-12 h-12 text-gray-200 mx-auto mb-4" />
+              <h3 className="font-bold text-gray-700 text-lg mb-2">No open positions right now</h3>
+              <p className="text-gray-400 text-sm max-w-sm mx-auto mb-6">
+                We don&apos;t have any openings at the moment, but we&apos;re always interested in passionate people.
+              </p>
+              <a
+                href="mailto:careers@ecocapturesolutions.com"
+                className="inline-flex items-center gap-2 bg-eco-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-eco-dark transition-colors no-underline"
               >
-                <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
-                  <h3 className="font-bold text-gray-900 text-xl">{o.title}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-eco-light text-eco-dark text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
-                      <Briefcase className="w-3 h-3" /> {o.type}
-                    </span>
-                    <span className="bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
-                      <MapPin className="w-3 h-3" /> {o.location}
-                    </span>
-                  </div>
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed mb-5">{o.desc}</p>
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex flex-wrap gap-2">
-                    {o.tags.map((tag) => (
-                      <span key={tag} className="text-xs text-eco-primary bg-eco-light px-2.5 py-1 rounded-full border border-eco-primary/10">
-                        {tag}
+                Send us your CV anyway
+              </a>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {openings.map((o) => (
+                <div
+                  key={o.id}
+                  className="group bg-white border border-gray-100 rounded-2xl p-8 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
+                    <h3 className="font-bold text-gray-900 text-xl">{o.title}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="bg-eco-light text-eco-dark text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
+                        <Briefcase className="w-3 h-3" /> {o.type}
                       </span>
-                    ))}
+                      <span className="bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
+                        <MapPin className="w-3 h-3" /> {o.location}
+                      </span>
+                    </div>
                   </div>
-                  <a
-                    href="#apply"
-                    className="inline-flex items-center gap-1.5 text-eco-primary font-semibold text-sm hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5"
-                  >
-                    Apply for this role →
-                  </a>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{o.desc}</p>
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {(o.tags ?? []).map((tag) => (
+                        <span key={tag} className="text-xs text-eco-primary bg-eco-light px-2.5 py-1 rounded-full border border-eco-primary/10">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href="#apply"
+                      className="inline-flex items-center gap-1.5 text-eco-primary font-semibold text-sm hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5"
+                    >
+                      Apply for this role →
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           <div className="mt-8 bg-eco-lighter rounded-2xl p-6 text-center border border-eco-primary/10">
             <p className="text-gray-700 text-sm">
