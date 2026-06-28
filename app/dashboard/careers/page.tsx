@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, FormEvent } from 'react';
+import Link from 'next/link';
 import { Plus, Pencil, Trash2, ToggleLeft, ToggleRight, Briefcase, MapPin, Tag, Mail, X, Check, AlertCircle, User, ChevronDown, ChevronUp } from 'lucide-react';
 
 import { getAuthHeaders } from '@/lib/auth';
@@ -55,7 +56,7 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
       <div className="bg-white rounded-2xl shadow-card-hover w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <h3 className="font-bold text-gray-900">{title}</h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
+          <button type="button" onClick={onClose} title="Close" className="text-gray-400 hover:text-gray-600 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -195,6 +196,7 @@ export default function CareersManagement() {
           <p className="text-gray-500 text-sm mt-1">Post and manage job openings on the public careers page</p>
         </div>
         <button
+          type="button"
           onClick={openAdd}
           className="flex items-center gap-2 bg-eco-primary text-white px-4 py-2.5 rounded-xl font-semibold text-sm hover:bg-eco-dark transition-colors shadow-sm shrink-0"
         >
@@ -254,7 +256,12 @@ export default function CareersManagement() {
                   <div className="px-6 py-4 flex flex-col sm:flex-row sm:items-start gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <span className="font-semibold text-gray-900">{o.title}</span>
+                        <Link
+                          href={`/dashboard/careers/${o.id}`}
+                          className="font-semibold text-gray-900 hover:text-eco-primary transition-colors no-underline"
+                        >
+                          {o.title}
+                        </Link>
                         <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${o.status === 'open' ? 'bg-eco-light text-eco-dark' : 'bg-gray-100 text-gray-500'}`}>
                           {o.status === 'open' ? 'Open' : 'Closed'}
                         </span>
@@ -288,15 +295,15 @@ export default function CareersManagement() {
                         {isPanelOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                       </button>
 
-                      <button onClick={() => toggleStatus(o)} title={o.status === 'open' ? 'Close position' : 'Reopen position'}
+                      <button type="button" onClick={() => toggleStatus(o)} title={o.status === 'open' ? 'Close position' : 'Reopen position'}
                         className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600">
                         {o.status === 'open' ? <ToggleRight className="w-5 h-5 text-eco-primary" /> : <ToggleLeft className="w-5 h-5" />}
                       </button>
-                      <button onClick={() => openEdit(o)}
+                      <button type="button" onClick={() => openEdit(o)} title="Edit opening"
                         className="p-2 rounded-lg hover:bg-eco-light transition-colors text-gray-400 hover:text-eco-primary">
                         <Pencil className="w-4 h-4" />
                       </button>
-                      <button onClick={() => setDeleteId(o.id)}
+                      <button type="button" onClick={() => setDeleteId(o.id)} title="Delete opening"
                         className="p-2 rounded-lg hover:bg-red-50 transition-colors text-gray-400 hover:text-red-500">
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -418,6 +425,8 @@ export default function CareersManagement() {
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Type</label>
                 <select
                   value={form.type}
+                  title="Employment type"
+                  aria-label="Employment type"
                   onChange={(e) => setForm({ ...form, type: e.target.value })}
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-eco-primary focus:border-transparent transition"
                 >
@@ -428,6 +437,8 @@ export default function CareersManagement() {
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Status</label>
                 <select
                   value={form.status}
+                  title="Position status"
+                  aria-label="Position status"
                   onChange={(e) => setForm({ ...form, status: e.target.value as 'open' | 'closed' })}
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-eco-primary focus:border-transparent transition"
                 >
@@ -483,10 +494,10 @@ export default function CareersManagement() {
         <Modal title="Delete Opening" onClose={() => setDeleteId(null)}>
           <p className="text-gray-600 text-sm mb-6">This will permanently remove the job opening. This action cannot be undone.</p>
           <div className="flex gap-3">
-            <button onClick={() => setDeleteId(null)} className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+            <button type="button" onClick={() => setDeleteId(null)} className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors">
               Cancel
             </button>
-            <button onClick={handleDelete} className="flex-1 bg-red-500 text-white py-3 rounded-xl font-semibold text-sm hover:bg-red-600 transition-colors">
+            <button type="button" onClick={handleDelete} className="flex-1 bg-red-500 text-white py-3 rounded-xl font-semibold text-sm hover:bg-red-600 transition-colors">
               Delete
             </button>
           </div>
