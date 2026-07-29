@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Settings2, Leaf, Sprout, Recycle, ChevronDown, AlertTriangle, Lightbulb, ArrowRight, type LucideIcon } from 'lucide-react';
+import { Settings2, Leaf, Sprout, Recycle, ChevronDown, AlertTriangle, Lightbulb, ArrowRight, Factory, Droplets, BarChart3, type LucideIcon } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import { companyStoryTitle, getHomeStats, getProducts, getStoryParagraphs, homeHighlights } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: 'EcoCapture Solutions Ltd — Climate Tech for Africa',
@@ -37,32 +38,32 @@ interface Initiative {
 
 const initiatives: Initiative[] = [
   {
-    Icon: Settings2,
+    Icon: Factory,
     img: '/assets/projects/co2-capture.jpg',
-    alt: 'CO₂ Capture Technology',
-    title: 'CO₂ Capture Technology',
-    desc: 'Compact, modular machines that capture CO₂ from industrial sources at low cost.',
+    alt: 'Direct Air Capture',
+    title: 'Direct Air Capture',
+    desc: 'Capture carbon from the atmosphere or industrial streams with modular, deployable systems.',
+  },
+  {
+    Icon: Droplets,
+    img: '/assets/projects/circular economy.jpg',
+    alt: 'Biomethane upgrading',
+    title: 'Biomethane Upgrading',
+    desc: 'Clean biogas, recover CO₂, and produce high-quality biomethane for renewable energy use.',
   },
   {
     Icon: Leaf,
     img: '/assets/projects/greenhouse.jpg',
-    alt: 'Greenhouse CO₂ Enrichment',
-    title: 'Greenhouse Enrichment',
-    desc: 'Boost plant growth by up to 30% using captured CO₂, improving yields and quality.',
+    alt: 'CO₂ recovery and reuse',
+    title: 'CO₂ Recovery & Utilization',
+    desc: 'Recover CO₂ for greenhouse enrichment, agriculture, and industrial reuse.',
   },
   {
     Icon: Sprout,
     img: '/assets/projects/biochar.png',
-    alt: 'Biochar Fertilizers',
-    title: 'Biochar Fertilizers',
-    desc: 'Convert greenhouse waste biomass into advanced, carbon-rich fertilizers.',
-  },
-  {
-    Icon: Recycle,
-    img: '/assets/projects/circular economy.jpg',
-    alt: 'Circular Economy',
-    title: 'Circular Economy',
-    desc: 'Transforming agricultural waste into valuable products for a sustainable future.',
+    alt: 'Biochar production',
+    title: 'Biochar Production',
+    desc: 'Turn biomass into biochar to improve soils and lock carbon away permanently.',
   },
 ];
 
@@ -109,7 +110,13 @@ const organizationSchema = {
   knowsAbout: ['CO2 capture', 'carbon sequestration', 'biochar', 'sustainable agriculture', 'greenhouse farming', 'circular economy'],
 };
 
-export default function Home() {
+export default async function Home() {
+  const [stats, products, storyParagraphs] = await Promise.all([
+    getHomeStats(),
+    getProducts(),
+    getStoryParagraphs(),
+  ]);
+
   return (
     <>
       <script
@@ -117,19 +124,19 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-[88vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-hero bg-cover bg-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
-          <div className="max-w-3xl">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.2] tracking-tight mb-6">
-              Turning CO₂ Emissions into<br />
-              <span className="text-green-300">Agricultural Growth</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 w-full">
+          <div className="max-w-4xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
+              Building Africa&apos;s Carbon
+              <span className="block text-green-300">Recovery Platform</span>
             </h1>
 
-            <p className="text-green-200 text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-              Affordable carbon capture for Africa&apos;s future - built in Africa, for the world.
+            <p className="text-green-200 text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+              EcoCapture Solutions develops direct air capture, biomethane upgrading, CO₂ recovery, and biochar systems that work together.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -152,17 +159,22 @@ export default function Home() {
       </section>
 
       {/* ── STATS BAND ── */}
-      <section className="bg-eco-primary py-8 sm:py-12 md:py-16 px-4">
+      <section className="bg-eco-primary py-7 sm:py-10 md:py-12 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
-          <AnimatedCounter target={120}   suffix="+"  label="Tonnes CO₂ Captured"  variant="light" />
-          <AnimatedCounter target={45000} suffix="+"  label="Plants Grown"          variant="light" />
-          <AnimatedCounter target={18}    suffix="t"  label="Biochar Produced"      variant="light" />
-          <AnimatedCounter target={150}   suffix="+"  label="Farmers Supported"     variant="light" />
+          {stats.map((stat) => (
+            <AnimatedCounter
+              key={stat.id}
+              target={Number(stat.value)}
+              suffix={stat.suffix ?? ''}
+              label={stat.label}
+              variant="light"
+            />
+          ))}
         </div>
       </section>
 
       {/* ── THE PROBLEM ── */}
-      <section className="pt-6 sm:pt-10 pb-10 sm:pb-16 md:pb-24 px-4 bg-gray-50">
+      <section className="pt-6 sm:pt-8 pb-10 sm:pb-14 md:pb-16 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-red-500 text-sm font-semibold uppercase tracking-widest">The Problem</span>
@@ -202,8 +214,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── STORY ── */}
+      <section className="pt-6 sm:pt-8 pb-10 sm:pb-14 px-4 bg-white">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+          <div>
+            <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">{companyStoryTitle}</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-5">A climate technology company built around connected carbon systems</h2>
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              {storyParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+          <div className="bg-eco-light rounded-3xl p-6 sm:p-8 border border-eco-primary/10 shadow-card">
+            <h3 className="font-bold text-gray-900 text-lg mb-4">What we work on today</h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {homeHighlights.map((item) => (
+                <div key={item} className="bg-white rounded-2xl px-4 py-3 border border-eco-primary/10 text-sm font-semibold text-gray-700 shadow-sm">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── HOW IT WORKS ── */}
-      <section className="pt-6 sm:pt-10 pb-4 sm:pb-6 px-4">
+      <section className="pt-4 sm:pt-8 pb-4 sm:pb-10 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Solution</span>
@@ -268,13 +305,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── PRODUCTS ── */}
+      <section className="pt-6 sm:pt-8 pb-10 sm:pb-14 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-14">
+            <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Products</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Our product line</h2>
+            <p className="text-gray-500 mt-3 max-w-2xl mx-auto">Each product is designed to work as part of the same carbon management platform.</p>
+            <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
+          </div>
+
+          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
+            {products.map((product) => (
+              <div key={product.id} className="group bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
+                <div className="relative h-44 overflow-hidden">
+                  <Image src={product.image} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-5">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-eco-primary mb-2">{product.category}</p>
+                  <h3 className="font-bold text-gray-900 mb-2 text-lg">{product.name}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{product.summary}</p>
+                  <ul className="space-y-2 mb-5">
+                    {product.features.slice(0, 4).map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-sm text-gray-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-eco-primary shrink-0 mt-1.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/contact" className="inline-flex items-center gap-2 text-eco-primary font-semibold hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5">
+                    Learn more
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── INITIATIVES ── */}
-      <section className="pb-0 pt-0 px-4">
+      <section className="pb-0 pt-4 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">What We Do</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-green-600 mt-2">OUR INITIATIVES</h2>
-            <p className="text-gray-500 mt-3 max-w-xl mx-auto">Four interconnected solutions building a circular carbon economy.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-green-600 mt-2">Our integrated solutions</h2>
+            <p className="text-gray-500 mt-3 max-w-2xl mx-auto">Direct air capture, biomethane upgrading, CO₂ recovery, biochar, and greenhouse enrichment work together as one system.</p>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
 
@@ -307,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* ── TEAM ── */}
-      <section className="pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
+      <section className="pt-6 pb-8 sm:pb-10 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
@@ -336,7 +411,7 @@ export default function Home() {
       </section>
 
       {/* ── PARTNERS ── */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-white">
+      <section className="pt-4 sm:pt-6 pb-6 sm:pb-8 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8 sm:mb-12">Our Partners</h2>
@@ -351,7 +426,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-8 sm:py-10 md:py-14 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
+      <section className="py-8 sm:py-10 md:py-12 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-white/10 border border-white/20 text-green-100 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
             Made in Africa. Built for the World.

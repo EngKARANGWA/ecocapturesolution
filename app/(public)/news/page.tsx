@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import PageHeader from '@/components/PageHeader';
+import { getNewsItems } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: 'News & Updates',
@@ -23,48 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-const articles = [
-  {
-    title: "EcoCapture Accepted into FasterCapital's EquityPilot Program",
-    body: "EcoCapture Solutions Ltd has been accepted into the EquityPilot program of FasterCapital and is seeking a capital of $150,000 to scale up its CO₂ capture and AgriCarbon greenhouse projects. This milestone strengthens our efforts to expand sustainable carbon capture technology across East Africa and accelerate the transition toward a greener economy.",
-    date: 'October 2025',
-    tag: 'Funding',
-    featured: true,
-    link: 'https://www.fastercapital.com',
-    linkLabel: 'FasterCapital',
-  },
-  {
-    title: "EcoCapture Launches Rwanda's First Circular Economy Biochar Plant",
-    body: 'Our new facility in Kigali is turning agricultural waste into high-value biochar, supporting local farmers and reducing emissions.',
-    date: 'August 2025',
-    tag: 'Milestone',
-  },
-  {
-    title: 'EcoCapture Partners with Unipod for Greenhouse CO₂ Enrichment',
-    body: 'We are excited to announce a partnership with Unipod to deploy CO₂ enrichment technology in their greenhouses.',
-    date: 'July 2025',
-    tag: 'Partnership',
-  },
-  {
-    title: 'Climate Tech Africa Summit: EcoCapture Solutions Ltd Featured',
-    body: 'Our CEO, Kevin Iraguha, shared insights on affordable CO₂ capture at the 2025 summit in Nairobi.',
-    date: 'June 2025',
-    tag: 'Event',
-  },
-  {
-    title: 'EcoCapture is among TEF 2025 contestants',
-    body: 'We are proud to announce support from the Tony Elumelu Foundation to scale our CO₂ capture pilots in Rwanda.',
-    date: 'April 2025',
-    tag: 'Award',
-  },
-];
-
 const tagColors: Record<string, string> = {
-  Funding:     'bg-blue-100 text-blue-700',
-  Milestone:   'bg-eco-light text-eco-dark',
-  Partnership: 'bg-eco-light text-eco-dark',
-  Event:       'bg-amber-100 text-amber-700',
-  Award:       'bg-orange-100 text-orange-700',
+  'Company Update': 'bg-eco-light text-eco-dark',
+  Projects: 'bg-blue-100 text-blue-700',
+  Partnerships: 'bg-amber-100 text-amber-700',
+  Events: 'bg-orange-100 text-orange-700',
 };
 
 const breadcrumbSchema = {
@@ -76,7 +40,8 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function News() {
+export default async function News() {
+  const articles = await getNewsItems();
   const [featured, ...rest] = articles;
 
   return (
@@ -87,7 +52,7 @@ export default function News() {
         subtitle="Latest milestones, partnerships, and stories from EcoCapture."
       />
 
-      <section className="py-12 sm:py-16 md:py-24 px-4">
+      <section className="py-8 sm:py-10 md:py-12 px-4">
         <div className="max-w-4xl mx-auto">
 
           {/* Featured article */}

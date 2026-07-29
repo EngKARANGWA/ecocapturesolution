@@ -43,6 +43,107 @@ export async function migrate() {
       schema     JSONB NOT NULL,
       updated_at TIMESTAMPTZ DEFAULT NOW()
     );
+
+    CREATE TABLE IF NOT EXISTS site_stats (
+      key         TEXT PRIMARY KEY,
+      label       TEXT NOT NULL,
+      value       TEXT NOT NULL,
+      suffix      TEXT,
+      description TEXT,
+      status      TEXT DEFAULT 'active',
+      sort_order  INTEGER DEFAULT 0,
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS products (
+      id          TEXT PRIMARY KEY,
+      name        TEXT NOT NULL,
+      slug        TEXT NOT NULL UNIQUE,
+      summary     TEXT NOT NULL,
+      features    JSONB DEFAULT '[]',
+      image       TEXT,
+      category    TEXT,
+      status      TEXT DEFAULT 'active',
+      sort_order  INTEGER DEFAULT 0,
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS company_story (
+      id          TEXT PRIMARY KEY,
+      paragraph   TEXT NOT NULL,
+      status      TEXT DEFAULT 'active',
+      sort_order  INTEGER DEFAULT 0,
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS news_items (
+      id            TEXT PRIMARY KEY,
+      title         TEXT NOT NULL,
+      body          TEXT NOT NULL,
+      category      TEXT,
+      publish_date  TIMESTAMPTZ,
+      featured      BOOLEAN DEFAULT FALSE,
+      archived      BOOLEAN DEFAULT FALSE,
+      slug          TEXT UNIQUE,
+      images        JSONB DEFAULT '[]',
+      created_at    TIMESTAMPTZ DEFAULT NOW(),
+      updated_at    TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS projects (
+      id          TEXT PRIMARY KEY,
+      title       TEXT NOT NULL,
+      description TEXT NOT NULL,
+      location    TEXT,
+      status      TEXT,
+      timeline    TEXT,
+      partners    JSONB DEFAULT '[]',
+      results     JSONB DEFAULT '[]',
+      images      JSONB DEFAULT '[]',
+      created_at  TIMESTAMPTZ DEFAULT NOW(),
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS testimonials (
+      id          TEXT PRIMARY KEY,
+      name        TEXT NOT NULL,
+      role        TEXT,
+      quote       TEXT NOT NULL,
+      category    TEXT,
+      status      TEXT DEFAULT 'pending',
+      created_at  TIMESTAMPTZ DEFAULT NOW(),
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS gallery_albums (
+      id          TEXT PRIMARY KEY,
+      title       TEXT NOT NULL,
+      description TEXT,
+      cover_image TEXT,
+      created_at  TIMESTAMPTZ DEFAULT NOW(),
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS gallery_items (
+      id          TEXT PRIMARY KEY,
+      album_id    TEXT REFERENCES gallery_albums(id) ON DELETE SET NULL,
+      image       TEXT NOT NULL,
+      caption     TEXT,
+      sort_order  INTEGER DEFAULT 0,
+      created_at  TIMESTAMPTZ DEFAULT NOW(),
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    CREATE TABLE IF NOT EXISTS resources (
+      id          TEXT PRIMARY KEY,
+      title       TEXT NOT NULL,
+      description TEXT,
+      file_url    TEXT NOT NULL,
+      type        TEXT,
+      category    TEXT,
+      created_at  TIMESTAMPTZ DEFAULT NOW(),
+      updated_at  TIMESTAMPTZ DEFAULT NOW()
+    );
   `);
   // Safe to run on existing DBs — adds opening_id if not present
   await pool.query(`

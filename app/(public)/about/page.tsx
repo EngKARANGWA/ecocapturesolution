@@ -36,6 +36,7 @@ const team = [
 const advisors = [
   { img: '/assets/team/team-bernard.jpg', name: 'Dr Bernard Munyazikwiye', role: 'Technical Advisor' },
   { img: '/assets/team/team-vincent.png', name: 'Mr. Niyigaba Vincent',    role: 'Renewable Energy Advisor' },
+  { img: '/assets/team/team-chalse.jpeg', name: 'Charles De Bruyne', role: 'Strategic Advisor', sub: 'Climate technology, carbon removal, and climate innovation' },
 ];
 
 const partners = [
@@ -70,15 +71,13 @@ export default function About() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <PageHeader title="About Us" subtitle="Building Africa's climate-smart future, one CO₂ molecule at a time." />
+      <PageHeader title="About Us" subtitle="Building connected carbon technologies for agriculture, energy, and climate resilience." />
 
       {/* Core message */}
-      <section className="pt-10 sm:pt-14 md:pt-16 pb-4 sm:pb-6 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-6 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
-            A Rwandan climate-tech startup turning{' '}
-            <span className="text-eco-primary">CO₂ into opportunity</span>{' '}
-            for African farmers and industries.
+            A Rwandan climate-tech company turning <span className="text-eco-primary">carbon into opportunity</span> for African farmers and industries.
           </p>
         </div>
       </section>
@@ -90,10 +89,7 @@ export default function About() {
             <span className="text-eco-primary font-semibold uppercase tracking-widest text-sm">Our Story</span>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
-            EcoCapture Solutions Ltd was founded with one mission: transform CO₂ from a climate
-            threat into a growth engine for farmers and industries across Africa. Our locally built
-            technology captures CO₂ efficiently, powers greenhouse farming, and supports sustainable
-            fertilizer production - all at a fraction of global costs.
+            EcoCapture Solutions Ltd began with greenhouse CO₂ enrichment and has expanded into an integrated carbon technology platform. We now develop direct air capture, biomethane upgrading and purification, CO₂ recovery and utilization, and biochar production systems that are designed to work together.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-6 mt-12">
@@ -101,14 +97,14 @@ export default function About() {
               <Target className="w-8 h-8 text-eco-primary mb-3" />
               <h3 className="font-bold text-eco-dark text-xl mb-2">Our Vision</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                A carbon-neutral Africa where farmers thrive with climate-smart technology.
+                An Africa where carbon technologies strengthen food systems, energy systems, and long-term climate resilience.
               </p>
             </div>
             <div className="bg-eco-light rounded-2xl p-7 border border-eco-primary/10">
               <Rocket className="w-8 h-8 text-eco-primary mb-3" />
               <h3 className="font-bold text-eco-dark text-xl mb-2">Our Mission</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Provide affordable CO₂ capture solutions that create value for agriculture, industry, and the planet.
+                Deliver affordable, practical climate technologies that recover, purify, capture, and reuse carbon.
               </p>
             </div>
           </div>
@@ -116,7 +112,7 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
@@ -136,7 +132,7 @@ export default function About() {
       </section>
 
       {/* Partners */}
-      <section className="pt-4 sm:pt-6 pb-12 sm:pb-16 md:pb-20 px-4">
+      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 md:pb-12 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-12">Our Partners</h2>

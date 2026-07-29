@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Calendar, TrendingUp, Leaf, Sprout, Wind } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
+import { getProjects } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: 'Projects & Pilots',
@@ -31,15 +32,6 @@ const outcomes = [
   { icon: TrendingUp, value: '30%',  unit: 'increase', label: 'Crop Yield Boost', color: 'text-green-600',  bg: 'bg-green-50 border-green-100' },
 ];
 
-const photos = [
-  { src: '/assets/projects/co2-capture.jpg',      alt: 'CO₂ capture machine at the Karongi pilot site' },
-  { src: '/assets/projects/greenhouse.jpg',        alt: 'Greenhouse with CO₂ enrichment running' },
-  { src: '/assets/projects/biochar.png',           alt: 'Biochar produced from greenhouse biomass' },
-  { src: '/assets/projects/farmer supported.png',  alt: 'Farmers supported with biochar fertilizers' },
-  { src: '/assets/projects/biochar fertilizer.png', alt: 'Biochar fertilizer ready for distribution' },
-  { src: '/assets/projects/circular economy.jpg',  alt: 'Circular economy model in action' },
-];
-
 const projectSchema = {
   '@context': 'https://schema.org',
   '@type': 'ResearchProject',
@@ -60,7 +52,10 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function Projects() {
+export default async function Projects() {
+  const projects = await getProjects();
+  const activeProject = projects[0];
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }} />
@@ -71,39 +66,36 @@ export default function Projects() {
       />
 
       {/* Karongi pilot intro */}
-      <section className="pt-12 sm:pt-16 md:pt-24 pb-4 sm:pb-6 px-4">
+      <section className="pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-6 px-4">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center">
           <div>
             <div className="flex items-center gap-2 text-eco-primary text-sm font-bold uppercase tracking-widest mb-4">
               Flagship Pilot
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 leading-snug">
-              The Karongi Pilot
+              {activeProject?.title ?? 'The Karongi Pilot'}
             </h2>
             <p className="text-gray-500 leading-relaxed mb-6">
-              Our first full pilot was launched in the Karongi district of Rwanda - a region where
-              smallholder farmers face both climate stress and low productivity. We deployed our
-              CO₂ capture unit alongside a greenhouse enrichment system and a biochar production facility,
-              creating Africa's first integrated carbon-to-agriculture loop.
+              {activeProject?.description ?? 'Our first full pilot was launched in the Karongi district of Rwanda - a region where smallholder farmers face both climate stress and low productivity.'}
             </p>
             <div className="space-y-3 text-sm text-gray-600">
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-eco-primary shrink-0" />
-                <span>Karongi District, Western Province, Rwanda</span>
+                <span>{activeProject?.location ?? 'Karongi District, Western Province, Rwanda'}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Calendar className="w-4 h-4 text-eco-primary shrink-0" />
-                <span>Launched 2023 - ongoing</span>
+                <span>{activeProject?.timeline ?? 'Launched 2023 - ongoing'}</span>
               </div>
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-4 h-4 text-eco-primary shrink-0" />
-                <span>150+ farmers directly benefiting from biochar fertilizers</span>
+                <span>{activeProject?.results?.[0] ?? '150+ farmers directly benefiting from biochar fertilizers'}</span>
               </div>
             </div>
           </div>
           <div className="relative h-60 sm:h-72 md:h-80 lg:h-[26rem] rounded-3xl overflow-hidden shadow-card-hover">
             <Image
-              src="/assets/projects/greenhouse.jpg"
+              src={activeProject?.images?.[0] ?? '/assets/projects/greenhouse.jpg'}
               alt="Karongi pilot greenhouse"
               fill
               className="object-cover"
@@ -144,22 +136,47 @@ export default function Projects() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">On the Ground</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">Pilot in Pictures</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">Project snapshots</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {photos.map((p) => (
-              <div key={p.src} className="relative h-52 md:h-64 rounded-2xl overflow-hidden shadow-card group">
-                <Image
-                  src={p.src}
-                  alt={p.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+            {(activeProject?.images ?? ['/assets/projects/greenhouse.jpg', '/assets/projects/biochar.png']).map((src) => (
+              <div key={src} className="relative h-52 md:h-64 rounded-2xl overflow-hidden shadow-card group">
+                <Image src={src} alt={activeProject?.title ?? 'EcoCapture project'} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 leading-tight">
-                  {p.alt}
-                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">All Projects</span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">Prepared for multiple deployments</h2>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-6">
+            {projects.map((project) => (
+              <div key={project.id} className="bg-gray-50 rounded-3xl p-6 border border-gray-100 shadow-card">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-eco-light text-eco-dark">{project.status}</span>
+                </div>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {(project.partners ?? []).map((partner) => (
+                    <span key={partner} className="text-xs bg-white border border-gray-200 text-gray-600 px-2.5 py-1 rounded-full">{partner}</span>
+                  ))}
+                </div>
+                <div className="space-y-2">
+                  {(project.results ?? []).map((result) => (
+                    <div key={result} className="text-sm text-gray-700 flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-eco-primary shrink-0 mt-1.5" />
+                      <span>{result}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

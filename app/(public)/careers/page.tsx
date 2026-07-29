@@ -100,14 +100,12 @@ export default async function Careers() {
         <div className="absolute inset-0 bg-hero bg-cover bg-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
-          <div className="max-w-7xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.06] tracking-tight mb-6">
-              Building Africa&apos;s{' '}
-              <span className="text-green-300">Climate Smart</span> {' '} <br />
-              Future With Us
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 w-full">
+          <div className="max-w-4xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
+              Building Africa&apos;s <span className="text-green-300">Climate Smart</span> Future With Us
             </h1>
-            <p className="text-green-200 text-lg leading-relaxed mb-10 max-w-lg">
+            <p className="text-green-200 text-lg leading-relaxed mb-10 max-w-2xl">
               Join a mission-driven team turning CO₂ into opportunity for farmers and industries across Africa.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -127,7 +125,7 @@ export default async function Careers() {
       </section>
 
       {/* ── STATS BAND ── */}
-      <section className="bg-eco-primary pt-12 pb-4 sm:pb-6 px-4">
+      <section className="bg-eco-primary py-7 sm:py-10 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-center">
           {[
             { value: openings.length.toString(), label: 'Open Positions' },
@@ -145,7 +143,7 @@ export default async function Careers() {
       {/* ── WHY ECOCAPTURE ── */}
       <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Why Join Us</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Why EcoCapture?</h2>
             <p className="text-gray-500 mt-3 max-w-xl mx-auto">We believe innovation and sustainability go hand in hand.</p>
@@ -167,7 +165,7 @@ export default async function Careers() {
       {/* ── OPEN POSITIONS ── */}
       <section id="openings" className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Now Hiring</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Open Positions</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
@@ -239,7 +237,7 @@ export default async function Careers() {
       </section>
 
       {/* ── APPLY FORM ── */}
-      <section id="apply" className="pt-4 sm:pt-6 pb-12 sm:pb-16 md:pb-24 px-4 bg-gray-50">
+      <section id="apply" className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-16 px-4 bg-gray-50">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Get Started</span>

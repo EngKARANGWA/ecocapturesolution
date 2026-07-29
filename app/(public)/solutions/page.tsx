@@ -7,7 +7,7 @@ import PageHeader from '@/components/PageHeader';
 export const metadata: Metadata = {
   title: 'Solutions',
   description:
-    "EcoCapture's CO₂ capture solutions for farmers, industries, and carbon credit buyers across Africa - improve yields, reduce emissions, and generate verified carbon credits.",
+    "EcoCapture's climate technology solutions for direct air capture, biomethane upgrading, CO₂ recovery, biochar, and greenhouse enrichment across Africa.",
   keywords: [
     'CO2 capture solutions Africa',
     'biochar fertilizer farmers Rwanda',
@@ -101,11 +101,11 @@ export default function Solutions() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader
         title="Our Solutions"
-        subtitle="We capture CO₂ and turn it into value - for farmers, industries, and the climate."
+        subtitle="We capture, recover, and reuse carbon through integrated technologies designed for Africa's food and energy systems."
       />
 
       {/* Core message bar */}
-      <section className="pt-10 pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="pt-8 pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-eco-dark font-semibold text-lg">
             One technology. Three solutions. Climate solution · Agriculture solution · Business opportunity.
@@ -114,8 +114,8 @@ export default function Solutions() {
       </section>
 
       {/* Audience sections */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
-        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16 lg:space-y-20">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-8 px-4">
+        <div className="max-w-6xl mx-auto space-y-10 sm:space-y-12 lg:space-y-14">
           {audiences.map((a, i) => (
             <div key={a.title} className={`grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center ${i % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
               {/* Image */}
@@ -161,7 +161,7 @@ export default function Solutions() {
       </section>
 
       {/* CTA */}
-      <section className="pt-4 sm:pt-6 pb-10 sm:pb-16 md:pb-20 px-4 bg-eco-light">
+      <section className="pt-4 sm:pt-6 pb-10 sm:pb-12 md:pb-14 px-4 bg-eco-light">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Not sure which solution fits you?</h2>
           <p className="text-gray-500 mb-8">Tell us about your situation and we will find the right approach together.</p>

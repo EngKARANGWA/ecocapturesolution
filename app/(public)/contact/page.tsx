@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { MapPin, Phone, Mail, Clock, type LucideIcon } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Globe, Linkedin, MessageCircle, type LucideIcon } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
@@ -94,18 +94,18 @@ export default function Contact() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <PageHeader title="Contact Us" subtitle="Whether you're a farmer, investor, partner, or climate enthusiast - we'd love to hear from you." />
+      <PageHeader title="Contact Us" subtitle="Reach out for partnerships, product enquiries, media requests, or project collaboration." />
 
-      <section className="py-12 sm:py-16 md:py-24 px-4">
+      <section className="py-8 sm:py-10 md:py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
+          <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 sm:gap-10 lg:gap-14">
 
             {/* Left — info */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-8">Get in Touch</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact details</h2>
               <div className="grid sm:grid-cols-2 gap-5">
                 {infoBlocks.map((b) => (
-                  <div key={b.title} className="bg-eco-lighter rounded-2xl p-5 border border-gray-100">
+                  <div key={b.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-card">
                     <b.Icon className="w-6 h-6 text-eco-primary mb-3" />
                     <h3 className="font-semibold text-gray-900 mb-2 text-sm uppercase tracking-wide">{b.title}</h3>
                     {b.lines.map((l) => (
@@ -115,25 +115,37 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* LinkedIn */}
-              <div className="mt-8 pt-8 border-t border-gray-100">
-                <h3 className="font-semibold text-gray-900 mb-4">Follow Us</h3>
-                <a
-                  href="https://www.linkedin.com/company/ecocapture-solutions-ltd/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-[#0A66C2] text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-[#004182] transition-colors no-underline"
-                >
-                  <Image src="/assets/projects/linkedin.jpg" alt="LinkedIn" width={24} height={24} className="rounded w-6 h-6 object-cover" />
-                  EcoCapture on LinkedIn
+              <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                <a href="https://www.linkedin.com/company/ecocapture-solutions-ltd/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#0A66C2] text-white px-5 py-3 rounded-xl font-medium text-sm hover:bg-[#004182] transition-colors no-underline">
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
                 </a>
+                <a href="https://wa.me/250781392398" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-green-600 text-white px-5 py-3 rounded-xl font-medium text-sm hover:bg-green-700 transition-colors no-underline">
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp
+                </a>
+              </div>
+
+              <div className="mt-8 bg-eco-light rounded-3xl border border-eco-primary/10 p-5">
+                <div className="flex items-center gap-2 mb-3 text-eco-primary font-semibold text-sm uppercase tracking-widest">
+                  <Globe className="w-4 h-4" /> Find us
+                </div>
+                <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm">
+                  <iframe
+                    title="EcoCapture location"
+                    src="https://www.google.com/maps?q=Norrseken%20Kigali%20Rwanda&output=embed"
+                    className="w-full h-full"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Right — form */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-8">Send a Message</h2>
-              <form action="https://formspree.io/f/xeozdbad" method="POST" autoComplete="off" className="space-y-5">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send a message</h2>
+              <form action="https://formspree.io/f/xeozdbad" method="POST" autoComplete="off" className="space-y-4 bg-white rounded-3xl border border-gray-100 shadow-card p-6 sm:p-8">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Your Name</label>
                   <input type="text" name="name" required placeholder="Jane Uwimana"

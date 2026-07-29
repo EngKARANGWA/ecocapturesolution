@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 const companyLinks = [
-  { href: '/',            label: 'Home' },
   { href: '/about',       label: 'About Us' },
   { href: '/technology',  label: 'Technology' },
   { href: '/solutions',   label: 'Solutions' },
@@ -69,7 +68,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <h3 className="font-semibold text-white mb-5 text-xs uppercase tracking-widest">Company</h3>
-            <ul className="space-y-3">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
               {companyLinks.map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className="text-green-200 hover:text-white text-sm transition-colors no-underline">

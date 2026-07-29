@@ -8,7 +8,7 @@ import PageHeader from '@/components/PageHeader';
 export const metadata: Metadata = {
   title: 'Technology',
   description:
-    'Discover how EcoCapture captures CO₂ and turns it into agricultural growth - simple, affordable, and built for Africa.',
+    'Discover how EcoCapture captures, purifies, recovers, and reuses carbon through direct air capture, biomethane upgrading, CO₂ recovery, and biochar systems.',
   keywords: [
     'CO2 capture machine Africa',
     'greenhouse CO2 integration Rwanda',
@@ -90,24 +90,21 @@ export default function Technology() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader
         title="How It Works"
-        subtitle="Simple technology. Real impact. No complexity - just CO₂ captured and turned into food and fertile soil."
+        subtitle="Integrated carbon systems designed for direct air capture, biomethane purification, CO₂ recovery, and biochar production."
       />
 
       {/* Core message */}
-      <section className="pt-16 pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="pt-8 sm:pt-10 pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
-            We capture CO₂ and turn it into{' '}
-            <span className="text-eco-primary">agricultural productivity</span>{' '}
-            and{' '}
-            <span className="text-eco-primary">permanent carbon removal.</span>
+            We turn carbon into <span className="text-eco-primary">clean fuel, better farming outcomes, and durable climate value.</span>
           </p>
         </div>
       </section>
 
       {/* Step-by-step */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
-        <div className="max-w-6xl mx-auto space-y-16 sm:space-y-20 md:space-y-28">
+      <section className="pt-4 sm:pt-6 pb-4 sm:pb-8 px-4">
+        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-14 md:space-y-16">
           {steps.map((s) => (
             <div
               key={s.number}

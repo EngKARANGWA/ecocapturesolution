@@ -7,7 +7,7 @@ import PageHeader from '@/components/PageHeader';
 export const metadata: Metadata = {
   title: 'Impact',
   description:
-    "EcoCapture Solutions has captured 120+ tonnes of CO₂, grown 45,000+ plants, produced 18 tonnes of biochar, and supported 150+ farmers across East Africa — real impact, measurable results.",
+    "EcoCapture Solutions tracks measurable impact across CO₂ capture, biochar production, farmers reached, and project delivery across East Africa.",
   keywords: [
     'CO2 impact Africa',
     'carbon capture results',
@@ -94,10 +94,10 @@ export default function Impact() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <PageHeader title="Our Impact" subtitle="Real numbers, real lives changed - measuring our progress toward a carbon-neutral Africa." />
+      <PageHeader title="Our Impact" subtitle="Real numbers, real lives changed - measuring progress across the full carbon platform." />
 
       {/* Stats band */}
-      <section className="bg-eco-primary pt-10 sm:pt-12 md:pt-16 pb-4 sm:pb-6 px-4">
+      <section className="bg-eco-primary py-7 sm:py-10 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
           <AnimatedCounter target={120}   suffix="+"  label="Tonnes CO₂ Captured"  variant="light" />
           <AnimatedCounter target={45000} suffix="+"  label="Plants Grown"          variant="light" />
@@ -187,15 +187,12 @@ export default function Impact() {
       </section>
 
       {/* Story */}
-      <section className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-20 px-4 bg-eco-lighter">
+      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 md:pb-12 px-4 bg-eco-lighter">
         <div className="max-w-3xl mx-auto text-center">
           <Globe className="w-16 h-16 text-eco-primary mx-auto mb-6" />
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-5">Building a Climate-Smart Africa</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-5">Building a connected carbon platform</h2>
           <p className="text-gray-600 leading-relaxed">
-            Every tonne of CO₂ we capture, every farmer we support, and every crop we help grow
-            brings us closer to a carbon-neutral Africa. Our circular model means that impact
-            compounds - captured CO₂ becomes fertilizer, which grows more crops, which generates
-            more biomass, which creates more biochar.
+            Every tonne of CO₂ we capture, every stream we recover, and every farmer we support helps build a more resilient climate economy. Our circular model connects capture, purification, reuse, and soil restoration.
           </p>
         </div>
       </section>
