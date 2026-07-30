@@ -97,7 +97,7 @@ export default function Impact() {
       <PageHeader title="Our Impact" subtitle="Real numbers, real lives changed - measuring progress across the full carbon platform." />
 
       {/* Stats band */}
-      <section className="bg-eco-primary py-7 sm:py-10 px-4">
+      <section className="bg-eco-primary py-6 sm:py-8 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
           <AnimatedCounter target={120}   suffix="+"  label="Tonnes CO₂ Captured"  variant="light" />
           <AnimatedCounter target={45000} suffix="+"  label="Plants Grown"          variant="light" />
@@ -107,9 +107,9 @@ export default function Impact() {
       </section>
 
       {/* Highlight cards */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4">
+      <section className="pt-4 sm:pt-5 pb-4 sm:pb-5 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-10">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Breaking It Down</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Impact by the Numbers</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
@@ -132,9 +132,9 @@ export default function Impact() {
       </section>
 
       {/* Cost efficiency + ROI */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-6 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-5 pb-4 sm:pb-5 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-10">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Business Case</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Cost Efficiency & Return on Investment</h2>
             <p className="text-gray-500 mt-3 max-w-xl mx-auto">Our technology is not just good for the planet - it makes economic sense.</p>
@@ -187,7 +187,7 @@ export default function Impact() {
       </section>
 
       {/* Story */}
-      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 md:pb-12 px-4 bg-eco-lighter">
+      <section className="pt-4 sm:pt-5 pb-6 sm:pb-8 md:pb-10 px-4 bg-eco-lighter">
         <div className="max-w-3xl mx-auto text-center">
           <Globe className="w-16 h-16 text-eco-primary mx-auto mb-6" />
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-5">Building a connected carbon platform</h2>

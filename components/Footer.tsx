@@ -38,10 +38,10 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
 
           {/* Brand */}
-          <div className="col-span-2">
+          <div className="sm:col-span-2 lg:col-span-5">
             <Link href="/" className="flex items-center gap-3 mb-5 no-underline group">
               <Image src="/assets/logos/logo-ecocapture.png" alt="EcoCapture" width={42} height={42} className="rounded-xl" />
               <span className="font-bold text-xl text-white group-hover:text-green-200 transition-colors">
@@ -66,9 +66,9 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div>
+          <div className="lg:col-span-4">
             <h3 className="font-semibold text-white mb-5 text-xs uppercase tracking-widest">Company</h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+            <ul className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
               {companyLinks.map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className="text-green-200 hover:text-white text-sm transition-colors no-underline">
@@ -80,11 +80,11 @@ export default function Footer() {
           </div>
 
           {/* Get Involved + Contact */}
-          <div>
+          <div className="lg:col-span-3">
             <h3 className="font-semibold text-white mb-5 text-xs uppercase tracking-widest">Get Involved</h3>
-            <ul className="space-y-3 mb-7">
-              {getInvolved.map(({ href, label }) => (
-                <li key={href}>
+            <ul className="grid grid-cols-2 gap-x-5 gap-y-3 mb-7">
+              {getInvolved.map(({ href, label }, index) => (
+                <li key={href} className={index === getInvolved.length - 1 ? 'col-span-2' : ''}>
                   <Link href={href} className="text-green-200 hover:text-white text-sm transition-colors no-underline">
                     {label}
                   </Link>
@@ -92,16 +92,16 @@ export default function Footer() {
               ))}
             </ul>
             <h3 className="font-semibold text-white mb-3 text-xs uppercase tracking-widest">Contact</h3>
-            <div className="space-y-2 text-green-200 text-sm">
-              <p className="flex items-start gap-2">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-green-200 text-[13px] sm:text-sm">
+              <p className="flex items-start gap-2 min-w-0">
                 <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
                 Kigali, Rwanda
               </p>
-              <p className="flex items-start gap-2">
+              <p className="flex items-start gap-2 min-w-0 whitespace-nowrap">
                 <Phone className="w-4 h-4 shrink-0 mt-0.5" />
                 +250 781 392 398
               </p>
-              <p className="flex items-start gap-2">
+              <p className="col-span-2 flex items-start gap-2">
                 <Mail className="w-4 h-4 shrink-0 mt-0.5" />
                 <span className="break-all">ecocapturesolutions@gmail.com</span>
               </p>

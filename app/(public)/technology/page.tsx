@@ -94,7 +94,7 @@ export default function Technology() {
       />
 
       {/* Core message */}
-      <section className="pt-8 sm:pt-10 pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="pt-6 sm:pt-8 pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
             We turn carbon into <span className="text-eco-primary">clean fuel, better farming outcomes, and durable climate value.</span>
@@ -103,8 +103,8 @@ export default function Technology() {
       </section>
 
       {/* Step-by-step */}
-      <section className="pt-4 sm:pt-6 pb-4 sm:pb-8 px-4">
-        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-14 md:space-y-16">
+      <section className="pt-4 sm:pt-5 pb-4 sm:pb-6 px-4">
+        <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10 md:space-y-12">
           {steps.map((s) => (
             <div
               key={s.number}
@@ -146,7 +146,7 @@ export default function Technology() {
       </section>
 
       {/* Circular economy summary */}
-      <section className="pt-4 sm:pt-6 pb-10 sm:pb-14 md:pb-20 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-5 pb-8 sm:pb-10 md:pb-12 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Full Circle</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-5">
@@ -170,7 +170,7 @@ export default function Technology() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-8 sm:py-10 md:py-14 px-4 bg-eco-dark">
+      <section className="relative py-6 sm:py-8 md:py-10 px-4 bg-eco-dark">
         <div aria-hidden className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none">
           <svg viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
             <path d="M0,32 C240,64 480,8 720,24 C960,40 1200,68 1440,28 L1440,72 L0,72 Z" fill="#1b5e20" />

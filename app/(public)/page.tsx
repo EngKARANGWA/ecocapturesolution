@@ -128,7 +128,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-hero bg-cover bg-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 w-full">
           <div className="max-w-4xl">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
               Building Africa&apos;s Carbon
@@ -174,9 +174,9 @@ export default async function Home() {
       </section>
 
       {/* ── THE PROBLEM ── */}
-      <section className="pt-6 sm:pt-8 pb-10 sm:pb-14 md:pb-16 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 md:pb-12 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8 sm:mb-14">
+          <div className="text-center mb-6 sm:mb-10">
             <span className="text-red-500 text-sm font-semibold uppercase tracking-widest">The Problem</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">A Crisis With Two Faces</h2>
             <div className="w-12 h-1 bg-red-400 mx-auto mt-5 rounded-full" />
@@ -215,7 +215,7 @@ export default async function Home() {
       </section>
 
       {/* ── STORY ── */}
-      <section className="pt-6 sm:pt-8 pb-10 sm:pb-14 px-4 bg-white">
+      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 px-4 bg-white">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
           <div>
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">{companyStoryTitle}</span>
@@ -306,7 +306,7 @@ export default async function Home() {
       </section>
 
       {/* ── PRODUCTS ── */}
-      <section className="pt-6 sm:pt-8 pb-10 sm:pb-14 px-4 bg-gray-50">
+      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-14">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Products</span>
@@ -411,7 +411,7 @@ export default async function Home() {
       </section>
 
       {/* ── PARTNERS ── */}
-      <section className="pt-4 sm:pt-6 pb-6 sm:pb-8 px-4 bg-white">
+      <section className="pt-4 sm:pt-5 pb-5 sm:pb-6 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8 sm:mb-12">Our Partners</h2>
@@ -426,7 +426,7 @@ export default async function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-8 sm:py-10 md:py-12 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
+      <section className="py-6 sm:py-8 md:py-10 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-white/10 border border-white/20 text-green-100 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
             Made in Africa. Built for the World.

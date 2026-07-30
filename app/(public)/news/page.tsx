@@ -52,7 +52,7 @@ export default async function News() {
         subtitle="Latest milestones, partnerships, and stories from EcoCapture."
       />
 
-      <section className="py-8 sm:py-10 md:py-12 px-4">
+      <section className="py-6 sm:py-8 md:py-10 px-4">
         <div className="max-w-4xl mx-auto">
 
           {/* Featured article */}
