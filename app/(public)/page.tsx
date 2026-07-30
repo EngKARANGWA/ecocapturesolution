@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Settings2, Leaf, Sprout, Recycle, ChevronDown, AlertTriangle, Lightbulb, ArrowRight, Factory, Droplets, BarChart3, type LucideIcon } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import MarqueeList from '@/components/MarqueeList';
 import { companyStoryTitle, getHomeStats, getProducts, getStoryParagraphs, homeHighlights } from '@/lib/site-content';
 
 export const metadata: Metadata = {
@@ -73,6 +74,12 @@ const team = [
   { img: '/assets/team/team-arthur.jpg',     name: 'Kayijuka Arthur',             role: 'Environmental Chemist' },
   { img: '/assets/team/team-chanceline.jpg', name: 'Chanceline Neza Nsengimana',  role: 'IT Specialist' },
   { img: '/assets/team/team-joseph.jpg',     name: 'Rutayisire Joseph',           role: 'Botany & Zoology Expert' },
+];
+
+const advisors = [
+  { img: '/assets/team/team-bernard.jpg', name: 'Dr Bernard Munyazikwiye', role: 'Technical Advisor' },
+  { img: '/assets/team/team-vincent.png', name: 'Mr. Niyigaba Vincent', role: 'Renewable Energy Advisor' },
+  { img: '/assets/team/team-chalse.jpeg', name: 'Charles De Bruyne', role: 'Strategic Advisor', sub: 'Climate technology, carbon removal, and climate innovation' },
 ];
 
 const partners = [
@@ -390,22 +397,42 @@ export default async function Home() {
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
 
-          <div className="flex flex-wrap gap-6 justify-center">
-            {team.map((m) => (
-              <div key={m.name} className="group text-center w-36 sm:w-40">
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <Image src={m.img} alt={m.name} fill className="object-cover object-top rounded-full border-4 border-white shadow-md group-hover:border-eco-light transition-colors duration-300" />
-                </div>
-                <p className="font-semibold text-gray-900 text-sm leading-tight">{m.name}</p>
-                <p className="text-eco-primary text-xs mt-1 font-medium">{m.role}</p>
+          <MarqueeList
+            items={team}
+            getKey={(member) => member.name}
+            duration="26s"
+            itemClassName="shrink-0 w-44 sm:w-48 lg:w-52"
+            renderItem={(member) => (
+              <div className="group text-center w-44 sm:w-48 lg:w-52">
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4">
+                    <Image src={member.img} alt={member.name} fill className="object-cover object-top rounded-full border-4 border-white shadow-md group-hover:border-eco-light transition-colors duration-300" />
+                  </div>
+                <p className="font-semibold text-gray-900 text-sm leading-tight">{member.name}</p>
+                <p className="text-eco-primary text-xs mt-1 font-medium">{member.role}</p>
               </div>
-            ))}
-          </div>
+            )}
+          />
 
           <div className="text-center mt-6 sm:mt-10">
             <Link href="/about" className="inline-flex items-center gap-2 text-eco-primary font-semibold hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5">
               Meet the full team →
             </Link>
+          </div>
+
+          <div className="mt-12 sm:mt-16">
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8 sm:mb-10">Advisors</p>
+            <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center">
+              {advisors.map((advisor) => (
+                <div key={advisor.name} className="group text-center w-44 sm:w-48 lg:w-52">
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4">
+                    <Image src={advisor.img} alt={advisor.name} fill className="object-cover object-top rounded-full border-4 border-white shadow-md group-hover:border-eco-light transition-colors duration-300" />
+                  </div>
+                  <p className="font-semibold text-gray-900 text-sm leading-tight">{advisor.name}</p>
+                  <p className="text-eco-primary text-xs mt-1 font-medium">{advisor.role}</p>
+                  {advisor.sub && <p className="text-gray-400 text-[11px] mt-1 leading-snug">{advisor.sub}</p>}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -415,10 +442,10 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8 sm:mb-12">Our Partners</h2>
-          <div className="flex flex-wrap gap-8 justify-center items-center">
-            {partners.map((p) => (
-              <a key={p.alt} href={p.href} target="_blank" rel="noopener noreferrer" className="group block" aria-label={p.alt}>
-                <Image src={p.img} alt={p.alt} width={140} height={80} className="h-16 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 items-center justify-items-center">
+            {partners.map((partner) => (
+              <a key={partner.alt} href={partner.href} target="_blank" rel="noopener noreferrer" className="group block" aria-label={partner.alt}>
+                <Image src={partner.img} alt={partner.alt} width={160} height={90} className="h-16 sm:h-20 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
               </a>
             ))}
           </div>

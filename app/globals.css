@@ -10,5 +10,27 @@ body {
   font-family: 'Times New Roman', Times, serif;
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee var(--marquee-duration, 28s) linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
 /* Prevent blue outline flash on mobile nav links */
 a, button { -webkit-tap-highlight-color: transparent; }

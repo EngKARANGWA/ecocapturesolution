@@ -66,7 +66,7 @@ export default async function Projects() {
       />
 
       {/* Karongi pilot intro */}
-      <section className="pt-6 sm:pt-8 md:pt-10 pb-4 sm:pb-5 px-4">
+      <section className="pt-4 sm:pt-5 md:pt-6 pb-3 sm:pb-4 px-4">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center">
           <div>
             <div className="flex items-center gap-2 text-eco-primary text-sm font-bold uppercase tracking-widest mb-4">
@@ -111,9 +111,9 @@ export default async function Projects() {
       </section>
 
       {/* Key outcomes */}
-      <section className="pt-4 sm:pt-5 pb-4 sm:pb-5 px-4 bg-gray-50">
+      <section className="pt-3 sm:pt-4 pb-3 sm:pb-4 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10">
+          <div className="text-center mb-6 sm:mb-8">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Key Outcomes</span>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">What We Achieved</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
@@ -132,9 +132,9 @@ export default async function Projects() {
       </section>
 
       {/* Photo gallery */}
-      <section className="pt-4 sm:pt-5 pb-4 sm:pb-5 px-4">
+      <section className="pt-3 sm:pt-4 pb-3 sm:pb-4 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10">
+          <div className="text-center mb-6 sm:mb-8">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">On the Ground</span>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">Project snapshots</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
@@ -150,9 +150,9 @@ export default async function Projects() {
         </div>
       </section>
 
-      <section className="pt-4 sm:pt-5 pb-8 sm:pb-10 md:pb-12 px-4 bg-white">
+      <section className="pt-3 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10">
+          <div className="text-center mb-6 sm:mb-8">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">All Projects</span>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">Prepared for multiple deployments</h2>
           </div>
@@ -184,7 +184,7 @@ export default async function Projects() {
       </section>
 
       {/* Learnings */}
-      <section className="pt-4 sm:pt-5 pb-8 sm:pb-10 md:pb-12 px-4 bg-eco-lighter">
+      <section className="pt-3 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-4 bg-eco-lighter">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-1 h-10 bg-eco-primary rounded-full" />
@@ -209,18 +209,18 @@ export default async function Projects() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-6 sm:py-8 md:py-10 px-4 bg-eco-dark text-white text-center">
+      <section className="relative pt-5 sm:pt-6 md:pt-8 pb-10 sm:pb-12 md:pb-14 px-4 bg-eco-dark text-white text-center">
         <div aria-hidden className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none">
           <svg viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
             <path d="M0,32 C240,64 480,8 720,24 C960,40 1200,68 1440,28 L1440,72 L0,72 Z" fill="#1b5e20" />
           </svg>
         </div>
-        <div className="max-w-2xl mx-auto">
+        <div className="relative z-10 max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Want to Start a Pilot in Your Region?</h2>
           <p className="text-green-200 mb-8">
             We are expanding to new sites across East Africa. If you have a greenhouse, industrial facility, or farming community - let&apos;s talk.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center pb-2 sm:pb-0">
             <Link href="/partner" className="bg-eco-primary hover:bg-white hover:text-eco-dark text-white px-8 py-3.5 rounded-full font-semibold text-sm transition-all shadow-lg no-underline">
               Partner With Us
             </Link>

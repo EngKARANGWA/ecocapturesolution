@@ -250,13 +250,13 @@ export default async function Careers() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative py-6 sm:py-8 md:py-10 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
+      <section className="relative pt-6 sm:pt-8 md:pt-10 pb-10 sm:pb-12 md:pb-14 px-4 bg-gradient-to-br from-eco-dark via-eco-primary to-eco-medium">
         <div className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none" aria-hidden>
           <svg viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
             <path d="M0,32 C240,64 480,8 720,24 C960,40 1200,68 1440,28 L1440,72 L0,72 Z" fill="#2e7d32" />
           </svg>
         </div>
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
           <span className="inline-block bg-white/10 border border-white/20 text-green-100 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
             Made in Africa. Built for the World.
           </span>
@@ -266,7 +266,7 @@ export default async function Careers() {
           <p className="text-green-200 text-lg mb-10">
             Not seeing the right role? We&apos;re always looking for passionate people. Reach out and introduce yourself.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center pb-2 sm:pb-0">
             <a href="#apply" className="bg-white text-eco-dark px-8 py-3.5 rounded-full font-semibold text-base hover:bg-green-50 shadow-lg hover:shadow-xl transition-all no-underline">
               Apply Now
             </a>

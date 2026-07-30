@@ -96,7 +96,7 @@ export default function Contact() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHeader title="Contact Us" subtitle="Reach out for partnerships, product enquiries, media requests, or project collaboration." />
 
-      <section className="py-6 sm:py-8 md:py-10 px-4">
+      <section className="py-4 sm:py-6 md:py-8 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 sm:gap-10 lg:gap-14">
 

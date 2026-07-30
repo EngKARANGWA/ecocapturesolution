@@ -89,9 +89,9 @@ export default function Partner() {
       <PageHeader title="Partner With Us" subtitle="Work with EcoCapture across investment, research, public programs, and commercial deployment." />
 
       {/* Partner types */}
-      <section className="pt-6 sm:pt-8 pb-5 sm:pb-8 px-4">
+      <section className="pt-4 sm:pt-5 pb-4 sm:pb-6 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="text-center mb-6 sm:mb-8">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Who We Work With</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Partnership categories</h2>
             <p className="text-gray-500 mt-3 max-w-2xl mx-auto">We work with organizations that want to support integrated climate technology and measurable impact.</p>
@@ -110,7 +110,7 @@ export default function Partner() {
         </div>
       </section>
 
-      <section className="pt-4 sm:pt-5 pb-8 sm:pb-10 md:pb-12 px-4 bg-gray-50">
+      <section className="pt-3 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_0.95fr] gap-8 sm:gap-10 lg:gap-14 items-start">
           <div className="space-y-5">
             <h2 className="text-2xl font-bold text-gray-900">Why partner with EcoCapture?</h2>

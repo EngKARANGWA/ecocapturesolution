@@ -10,7 +10,7 @@ export default function PageHeader({ title, subtitle }: Props) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_38%)]" />
 
         {/* Content */}
-        <div className="relative z-10 pt-10 pb-12 sm:pt-12 sm:pb-14 px-4 sm:px-6 max-w-5xl mx-auto text-center">
+        <div className="relative z-10 pt-8 pb-10 sm:pt-10 sm:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center">
           <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             {title}
           </h1>
@@ -36,7 +36,7 @@ export default function PageHeader({ title, subtitle }: Props) {
           </svg>
         </div>
       </div>
-      <div className="h-6 sm:h-8" />
+      <div className="h-2 sm:h-3" />
     </div>
   );
 }

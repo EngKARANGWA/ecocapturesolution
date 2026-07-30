@@ -22,7 +22,7 @@ export default function Footer() {
     <footer className="relative bg-eco-dark text-white">
 
       {/* Wave top — white page content curves into the green footer */}
-      <div aria-hidden className="absolute top-0 left-0 right-0 -translate-y-[99%] pointer-events-none">
+      <div aria-hidden className="-mt-px pointer-events-none">
         <svg
           viewBox="0 0 1440 72"
           fill="none"

@@ -52,11 +52,11 @@ export default async function News() {
         subtitle="Latest milestones, partnerships, and stories from EcoCapture."
       />
 
-      <section className="py-6 sm:py-8 md:py-10 px-4">
+      <section className="py-4 sm:py-6 md:py-8 px-4">
         <div className="max-w-4xl mx-auto">
 
           {/* Featured article */}
-          <div className="bg-gradient-to-br from-eco-lighter to-eco-light border border-eco-primary/20 rounded-2xl p-5 sm:p-8 mb-8 sm:mb-12 shadow-card relative overflow-hidden">
+          <div className="bg-gradient-to-br from-eco-lighter to-eco-light border border-eco-primary/20 rounded-2xl p-5 sm:p-8 mb-6 sm:mb-8 shadow-card relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-eco-primary rounded-l-2xl" />
             <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
               <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[featured.tag]}`}>
@@ -100,7 +100,7 @@ export default async function News() {
           </div>
 
           {/* Intro note */}
-          <div className="mt-14 bg-eco-light rounded-2xl p-7 text-center">
+          <div className="mt-8 bg-eco-light rounded-2xl p-6 text-center">
             <p className="text-eco-dark font-medium leading-relaxed text-sm">
               EcoCapture Solutions is proud to expand our farmer support program, delivering
               high-quality biochar-based fertilizers to communities across East Africa -

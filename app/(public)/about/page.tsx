@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Target, Rocket } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
+import MarqueeList from '@/components/MarqueeList';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -74,7 +75,7 @@ export default function About() {
       <PageHeader title="About Us" subtitle="Building connected carbon technologies for agriculture, energy, and climate resilience." />
 
       {/* Core message */}
-      <section className="pt-6 sm:pt-8 md:pt-10 pb-4 sm:pb-5 px-4 bg-eco-light border-b border-eco-primary/10">
+      <section className="pt-4 sm:pt-5 md:pt-6 pb-3 sm:pb-4 px-4 bg-eco-light border-b border-eco-primary/10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eco-dark text-xl md:text-2xl font-semibold leading-relaxed">
             A Rwandan climate-tech company turning <span className="text-eco-primary">carbon into opportunity</span> for African farmers and industries.
@@ -83,7 +84,7 @@ export default function About() {
       </section>
 
       {/* Story */}
-      <section className="pt-3 sm:pt-4 pb-4 sm:pb-5 px-4">
+      <section className="pt-2 sm:pt-3 pb-3 sm:pb-4 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-eco-primary font-semibold uppercase tracking-widest text-sm">Our Story</span>
@@ -92,7 +93,7 @@ export default function About() {
             EcoCapture Solutions Ltd began with greenhouse CO₂ enrichment and has expanded into an integrated carbon technology platform. We now develop direct air capture, biomethane upgrading and purification, CO₂ recovery and utilization, and biochar production systems that are designed to work together.
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-6 mt-8">
+          <div className="grid sm:grid-cols-2 gap-6 mt-6">
             <div className="bg-eco-light rounded-2xl p-7 border border-eco-primary/10">
               <Target className="w-8 h-8 text-eco-primary mb-3" />
               <h3 className="font-bold text-eco-dark text-xl mb-2">Our Vision</h3>
@@ -112,30 +113,34 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section className="pt-4 sm:pt-5 pb-7 sm:pb-8 px-4 bg-gray-50">
+      <section className="pt-3 sm:pt-4 pb-6 sm:pb-7 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10">
+          <div className="text-center mb-6 sm:mb-8">
             <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The People</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Meet Our Team</h2>
             <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
           </div>
-          <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center">
-            {team.map((m) => <TeamCard key={m.name} {...m} />)}
-          </div>
-          <div className="mt-10">
+          <MarqueeList
+            items={team}
+            getKey={(member) => member.name}
+            duration="28s"
+            itemClassName="shrink-0 w-36 sm:w-40"
+            renderItem={(member) => <TeamCard {...member} />}
+          />
+          <div className="mt-8">
             <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-10">Advisors</p>
             <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center">
-              {advisors.map((a) => <TeamCard key={a.name} {...a} />)}
+              {advisors.map((advisor) => <TeamCard key={advisor.name} {...advisor} />)}
             </div>
           </div>
         </div>
       </section>
 
       {/* Partners */}
-      <section className="pt-4 sm:pt-5 pb-6 sm:pb-8 md:pb-10 px-4">
+      <section className="pt-3 sm:pt-4 pb-5 sm:pb-6 md:pb-8 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Backed By</span>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8">Our Partners</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-6">Our Partners</h2>
           <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center items-center">
             {partners.map((p) => (
               <a key={p.alt} href={p.href} target="_blank" rel="noopener noreferrer" className="group" aria-label={p.alt}>
