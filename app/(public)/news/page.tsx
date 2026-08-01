@@ -59,8 +59,8 @@ export default async function News() {
           <div className="bg-gradient-to-br from-eco-lighter to-eco-light border border-eco-primary/20 rounded-2xl p-5 sm:p-8 mb-6 sm:mb-8 shadow-card relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-eco-primary rounded-l-2xl" />
             <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-              <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[featured.tag]}`}>
-                {featured.tag}
+              <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[featured.category] ?? 'bg-gray-100 text-gray-700'}`}>
+                {featured.category}
               </span>
               <span className="bg-eco-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
                 {featured.date}
@@ -71,12 +71,7 @@ export default async function News() {
             </h2>
             <p className="text-gray-600 leading-relaxed">
               {featured.body.replace('FasterCapital', '')}
-              {featured.link && (
-                <a href={featured.link} target="_blank" rel="noopener noreferrer"
-                  className="text-eco-primary font-semibold hover:underline">
-                  {featured.linkLabel}
-                </a>
-              )}.
+              .
             </p>
           </div>
 
@@ -88,8 +83,8 @@ export default async function News() {
                 className="bg-white border border-gray-100 rounded-2xl p-6 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[a.tag]}`}>
-                    {a.tag}
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[a.category] ?? 'bg-gray-100 text-gray-700'}`}>
+                    {a.category}
                   </span>
                   <span className="text-xs text-gray-400 font-medium">{a.date}</span>
                 </div>

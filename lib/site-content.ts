@@ -160,7 +160,7 @@ const defaultTestimonials: Testimonial[] = [
   },
 ];
 
-async function readJsonColumn<T>(query: string, fallback: T): Promise<T> {
+async function readJsonColumn<T>(query: TemplateStringsArray, fallback: T): Promise<T> {
   try {
     const rows = await sql(query);
     return (rows as T) ?? fallback;

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { MapPin, Phone, Mail, Clock, Globe, Linkedin, MessageCircle, type LucideIcon } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Globe, ExternalLink, MessageCircle, type LucideIcon } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
@@ -117,7 +117,7 @@ export default function Contact() {
 
               <div className="mt-8 grid sm:grid-cols-2 gap-4">
                 <a href="https://www.linkedin.com/company/ecocapture-solutions-ltd/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#0A66C2] text-white px-5 py-3 rounded-xl font-medium text-sm hover:bg-[#004182] transition-colors no-underline">
-                  <Linkedin className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4" />
                   LinkedIn
                 </a>
                 <a href="https://wa.me/250781392398" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-green-600 text-white px-5 py-3 rounded-xl font-medium text-sm hover:bg-green-700 transition-colors no-underline">
