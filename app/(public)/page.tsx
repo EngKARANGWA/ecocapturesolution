@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Settings2, Leaf, Sprout, Recycle, ChevronDown, AlertTriangle, Lightbulb, ArrowRight, Factory, Droplets, BarChart3, type LucideIcon } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import MarqueeList from '@/components/MarqueeList';
-import { companyStoryTitle, getHomeStats, getProducts, getStoryParagraphs, homeHighlights } from '@/lib/site-content';
+import { companyStoryTitle, getHomeStats, getPartners, getProducts, getStoryParagraphs, homeHighlights } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: 'EcoCapture Solutions Ltd — Climate Tech for Africa',
@@ -82,12 +82,6 @@ const advisors = [
   { img: '/assets/team/team-chalse.jpeg', name: 'Charles De Bruyne', role: 'Strategic Advisor', sub: 'Climate technology, carbon removal, and climate innovation' },
 ];
 
-const partners = [
-  { href: 'https://www.tonyelumelufoundation.org/', img: '/assets/partners/partner-tef.png',    alt: 'Tony Elumelu Foundation' },
-  { href: 'https://unipod.rw/',                    img: '/assets/partners/partner-unipod.png', alt: 'Unipod' },
-  { href: 'https://fastercapital.com/',            img: '/assets/partners/fastercapital.png',  alt: 'FasterCapital' },
-];
-
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -118,10 +112,11 @@ const organizationSchema = {
 };
 
 export default async function Home() {
-  const [stats, products, storyParagraphs] = await Promise.all([
+  const [stats, products, storyParagraphs, partners] = await Promise.all([
     getHomeStats(),
     getProducts(),
     getStoryParagraphs(),
+    getPartners(),
   ]);
 
   return (
@@ -444,8 +439,8 @@ export default async function Home() {
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-8 sm:mb-12">Our Partners</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 items-center justify-items-center">
             {partners.map((partner) => (
-              <a key={partner.alt} href={partner.href} target="_blank" rel="noopener noreferrer" className="group block" aria-label={partner.alt}>
-                <Image src={partner.img} alt={partner.alt} width={160} height={90} className="h-16 sm:h-20 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
+              <a key={partner.id} href={partner.website || '#'} target="_blank" rel="noopener noreferrer" className="group block" aria-label={partner.name}>
+                <Image src={partner.logo} alt={partner.name} width={160} height={90} className="h-16 sm:h-20 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
               </a>
             ))}
           </div>

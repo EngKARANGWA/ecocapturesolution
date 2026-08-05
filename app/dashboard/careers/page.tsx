@@ -110,7 +110,7 @@ export default function CareersManagement() {
   async function loadApplications() {
     setAppsLoading(true);
     try {
-      const res = await fetch('/api/applications');
+      const res = await fetch(`${API}/api/applications`, { headers: getAuthHeaders() });
       const data = await res.json();
       setApplications(Array.isArray(data) ? data : []);
     } catch {
@@ -122,10 +122,10 @@ export default function CareersManagement() {
   useEffect(() => { loadApplications(); }, []);
 
   async function updateAppStatus(id: string, status: string) {
-    await fetch('/api/applications', {
+    await fetch(`${API}/api/applications/${id}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, status }),
+      headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+      body: JSON.stringify({ status }),
     });
     loadApplications();
   }

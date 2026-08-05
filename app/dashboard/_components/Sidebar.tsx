@@ -8,16 +8,18 @@ import {
   Briefcase,
   Handshake,
   FileSliders,
+  Mail,
   ExternalLink,
   LogOut,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const navItems = [
-  { href: '/dashboard',          label: 'Overview',      icon: LayoutDashboard },
-  { href: '/dashboard/careers',  label: 'Applications',  icon: Briefcase },
-  { href: '/dashboard/partners', label: 'Partners',      icon: Handshake },
-  { href: '/dashboard/forms',    label: 'Form Builder',  icon: FileSliders },
+  { href: '/dashboard',           label: 'Overview',      icon: LayoutDashboard },
+  { href: '/dashboard/careers',   label: 'Applications',  icon: Briefcase },
+  { href: '/dashboard/partners',  label: 'Partners',      icon: Handshake },
+  { href: '/dashboard/inquiries', label: 'Inquiries',     icon: Mail },
+  { href: '/dashboard/forms',     label: 'Form Builder',  icon: FileSliders },
 ];
 
 export default function Sidebar() {

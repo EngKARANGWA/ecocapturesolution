@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Target, Rocket } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import MarqueeList from '@/components/MarqueeList';
+import { getPartners } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -40,12 +41,6 @@ const advisors = [
   { img: '/assets/team/team-chalse.jpeg', name: 'Charles De Bruyne', role: 'Strategic Advisor', sub: 'Climate technology, carbon removal, and climate innovation' },
 ];
 
-const partners = [
-  { href: 'https://www.tonyelumelufoundation.org/', img: '/assets/partners/partner-tef.png',    alt: 'Tony Elumelu Foundation' },
-  { href: 'https://unipod.rw/',                    img: '/assets/partners/partner-unipod.png', alt: 'Unipod' },
-  { href: 'https://fastercapital.com/',            img: '/assets/partners/fastercapital.png',  alt: 'FasterCapital' },
-];
-
 function TeamCard({ img, name, role, sub }: { img: string; name: string; role: string; sub?: string }) {
   return (
     <div className="group text-center">
@@ -68,7 +63,9 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function About() {
+export default async function About() {
+  const partners = await getPartners();
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -143,8 +140,8 @@ export default function About() {
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-6">Our Partners</h2>
           <div className="flex flex-wrap gap-6 sm:gap-8 lg:gap-10 justify-center items-center">
             {partners.map((p) => (
-              <a key={p.alt} href={p.href} target="_blank" rel="noopener noreferrer" className="group" aria-label={p.alt}>
-                <Image src={p.img} alt={p.alt} width={140} height={80} className="h-16 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
+              <a key={p.id} href={p.website || '#'} target="_blank" rel="noopener noreferrer" className="group" aria-label={p.name}>
+                <Image src={p.logo} alt={p.name} width={140} height={80} className="h-16 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
               </a>
             ))}
           </div>

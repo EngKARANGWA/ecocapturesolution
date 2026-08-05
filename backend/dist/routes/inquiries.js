@@ -17,8 +17,17 @@ router.post('/', async (req, res) => {
 });
 // Protected — dashboard only
 router.get('/', auth_1.requireAuth, async (_req, res) => {
-    const { rows } = await db_1.pool.query('SELECT * FROM inquiries ORDER BY submitted_at DESC');
-    res.json(rows.map(r => ({ id: r.id, ...r.data, status: r.status, submittedAt: r.submitted_at })));
+    const { rows } = await db_1.pool.query('SELECT id, data, status, submitted_at AS "submittedAt" FROM inquiries ORDER BY submitted_at DESC');
+    res.json(rows);
+});
+router.patch('/:id', auth_1.requireAuth, async (req, res) => {
+    const { status } = req.body;
+    const { rows } = await db_1.pool.query('UPDATE inquiries SET status = $2 WHERE id = $1 RETURNING id', [req.params.id, status]);
+    if (!rows.length) {
+        res.status(404).json({ error: 'Not found' });
+        return;
+    }
+    res.json({ ok: true });
 });
 router.delete('/:id', auth_1.requireAuth, async (req, res) => {
     await db_1.pool.query('DELETE FROM inquiries WHERE id = $1', [req.params.id]);

@@ -5,6 +5,7 @@ import sql from '@/lib/db';
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET ?? 'eco-jwt-secret-change-in-production'
 );
+const BACKEND = process.env.NEXT_PUBLIC_API_URL ?? 'https://ecocapturesolution.onrender.com';
 
 async function auth(req: NextRequest) {
   const token = req.cookies.get('eco_session')?.value;
@@ -16,14 +17,17 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   if (!await auth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { id } = await params;
   try {
-    const [openingRows, appRows] = await Promise.all([
-      sql`SELECT id, title, type, location, description AS desc, tags, status, created_at AS "createdAt"
-          FROM openings WHERE id = ${id}`,
-      sql`SELECT id, opening_id AS "openingId", data, status, submitted_at AS "submittedAt"
-          FROM applications WHERE opening_id = ${id} ORDER BY submitted_at DESC`,
-    ]);
+    const openingRows = await sql`SELECT id, title, type, location, description AS desc, tags, status, created_at AS "createdAt"
+          FROM openings WHERE id = ${id}`;
     if (openingRows.length === 0) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-    return NextResponse.json({ opening: openingRows[0], applications: appRows });
+
+    const cookie = req.cookies.get('eco_session')?.value;
+    const appsRes = await fetch(`${BACKEND}/api/applications?openingId=${id}`, {
+      headers: cookie ? { Cookie: `eco_session=${cookie}` } : {},
+    });
+    const applications = appsRes.ok ? await appsRes.json() : [];
+
+    return NextResponse.json({ opening: openingRows[0], applications });
   } catch (err) {
     console.error('GET /api/openings/[id]:', err);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });

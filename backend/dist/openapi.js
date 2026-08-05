@@ -49,6 +49,31 @@ const openingInput = {
         status: { type: 'string', enum: ['open', 'closed'] },
     },
 };
+const application = {
+    type: 'object',
+    properties: {
+        id: { type: 'string' },
+        openingId: { type: 'string', nullable: true },
+        openingTitle: { type: 'string', nullable: true, description: 'Resolved by matching the "Position Applied For" field to an opening title' },
+        data: { type: 'object', description: 'Arbitrary form-field key/value pairs, e.g. "Full Name", "Email Address", "Position Applied For"' },
+        status: { type: 'string', enum: ['new', 'reviewed', 'shortlisted', 'rejected'] },
+        submittedAt: { type: 'string', format: 'date-time' },
+    },
+};
+const inquiry = {
+    type: 'object',
+    properties: {
+        id: { type: 'string' },
+        data: { type: 'object', description: 'Arbitrary form-field key/value pairs' },
+        status: { type: 'string', enum: ['new', 'read', 'archived'] },
+        submittedAt: { type: 'string', format: 'date-time' },
+    },
+};
+const statusInput = {
+    type: 'object',
+    required: ['status'],
+    properties: { status: { type: 'string' } },
+};
 const error = {
     type: 'object',
     properties: { error: { type: 'string' } },
@@ -73,7 +98,7 @@ exports.openapiSpec = {
         securitySchemes: {
             bearerAuth: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
         },
-        schemas: { Partner: partner, PartnerInput: partnerInput, Opening: opening, OpeningInput: openingInput, Error: error, Ok: ok },
+        schemas: { Partner: partner, PartnerInput: partnerInput, Opening: opening, OpeningInput: openingInput, Application: application, Inquiry: inquiry, Error: error, Ok: ok },
         responses: {
             Unauthorized: { description: 'Missing or invalid token', content: { 'application/json': { schema: error } } },
             NotFound: { description: 'Resource not found', content: { 'application/json': { schema: error } } },
@@ -173,15 +198,26 @@ exports.openapiSpec = {
         '/api/applications': {
             post: {
                 tags: ['Applications'], summary: 'Submit a job application (public)',
-                requestBody: { required: true, content: { 'application/json': { schema: { type: 'object', description: 'Arbitrary form-field key/value pairs' } } } },
+                requestBody: { required: true, content: { 'application/json': { schema: { type: 'object', description: 'Arbitrary form-field key/value pairs. A "Position Applied For" field matching an opening title links the application to that opening.' } } } },
                 responses: { 201: { description: 'Submitted', content: { 'application/json': { schema: ok } } }, 400: { description: 'No data provided', content: { 'application/json': { schema: error } } } },
             },
             get: {
                 tags: ['Applications'], summary: 'List all applications', security: bearerAuth,
-                responses: { 200: { description: 'Array of applications' }, 401: { $ref: '#/components/responses/Unauthorized' } },
+                parameters: [{ name: 'openingId', in: 'query', required: false, schema: { type: 'string' }, description: 'Filter to applications for a single opening' }],
+                responses: { 200: { description: 'Array of applications', content: { 'application/json': { schema: { type: 'array', items: application } } } }, 401: { $ref: '#/components/responses/Unauthorized' } },
             },
         },
         '/api/applications/{id}': {
+            patch: {
+                tags: ['Applications'], summary: 'Update an application\'s status', security: bearerAuth,
+                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'string' } }],
+                requestBody: { required: true, content: { 'application/json': { schema: statusInput } } },
+                responses: {
+                    200: { description: 'Updated', content: { 'application/json': { schema: ok } } },
+                    401: { $ref: '#/components/responses/Unauthorized' },
+                    404: { $ref: '#/components/responses/NotFound' },
+                },
+            },
             delete: {
                 tags: ['Applications'], summary: 'Delete an application', security: bearerAuth,
                 parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'string' } }],
@@ -196,10 +232,20 @@ exports.openapiSpec = {
             },
             get: {
                 tags: ['Inquiries'], summary: 'List all inquiries', security: bearerAuth,
-                responses: { 200: { description: 'Array of inquiries' }, 401: { $ref: '#/components/responses/Unauthorized' } },
+                responses: { 200: { description: 'Array of inquiries', content: { 'application/json': { schema: { type: 'array', items: inquiry } } } }, 401: { $ref: '#/components/responses/Unauthorized' } },
             },
         },
         '/api/inquiries/{id}': {
+            patch: {
+                tags: ['Inquiries'], summary: 'Update an inquiry\'s status', security: bearerAuth,
+                parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'string' } }],
+                requestBody: { required: true, content: { 'application/json': { schema: statusInput } } },
+                responses: {
+                    200: { description: 'Updated', content: { 'application/json': { schema: ok } } },
+                    401: { $ref: '#/components/responses/Unauthorized' },
+                    404: { $ref: '#/components/responses/NotFound' },
+                },
+            },
             delete: {
                 tags: ['Inquiries'], summary: 'Delete an inquiry', security: bearerAuth,
                 parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'string' } }],

@@ -19,6 +19,15 @@ export interface ProductCard {
   status: string;
 }
 
+export interface PartnerLogo {
+  id: string;
+  name: string;
+  logo: string;
+  website: string;
+  type: string;
+  status: string;
+}
+
 export interface NewsItem {
   id: string;
   title: string;
@@ -104,6 +113,12 @@ const defaultStory = [
   'EcoCapture Solutions is a climate technology company designing systems that capture, recover, purify, and use carbon across agriculture and industry.',
   'We started with greenhouse CO₂ enrichment, then expanded into direct air capture, biomethane upgrading, CO₂ recovery, and biochar production.',
   'Today our work is connected by one idea: turn carbon from a waste stream into a resource that strengthens food systems, renewable energy, and climate resilience.',
+];
+
+const defaultPartners: PartnerLogo[] = [
+  { id: 'partner-tef', name: 'Tony Elumelu Foundation', logo: '/assets/partners/partner-tef.png', website: 'https://www.tonyelumelufoundation.org/', type: 'NGO & Donor', status: 'active' },
+  { id: 'partner-unipod', name: 'Unipod', logo: '/assets/partners/partner-unipod.png', website: 'https://unipod.rw/', type: 'Greenhouse Operator', status: 'active' },
+  { id: 'partner-fastercapital', name: 'FasterCapital', logo: '/assets/partners/fastercapital.png', website: 'https://fastercapital.com/', type: 'Investor', status: 'active' },
 ];
 
 const defaultNews: NewsItem[] = [
@@ -223,6 +238,20 @@ export async function getNewsItems() {
     return rows.length ? (rows as NewsItem[]) : defaultNews;
   } catch {
     return defaultNews;
+  }
+}
+
+export async function getPartners() {
+  try {
+    const rows = await sql`
+      SELECT id, name, logo, website, type, status
+      FROM partners
+      WHERE status = 'active'
+      ORDER BY created_at DESC
+    `;
+    return rows.length ? (rows as PartnerLogo[]) : defaultPartners;
+  } catch {
+    return defaultPartners;
   }
 }
 

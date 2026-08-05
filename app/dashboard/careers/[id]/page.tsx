@@ -6,6 +6,9 @@ import {
   ArrowLeft, Briefcase, MapPin, Tag, Calendar, Users,
   Eye, X, ChevronDown, Check, AlertCircle, ToggleLeft, ToggleRight, Pencil,
 } from 'lucide-react';
+import { getAuthHeaders } from '@/lib/auth';
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? 'https://ecocapturesolution.onrender.com';
 
 interface Opening {
   id: string;
@@ -87,10 +90,10 @@ export default function OpeningDetailPage({ params }: { params: Promise<{ id: st
   }
 
   async function updateAppStatus(appId: string, status: string) {
-    await fetch('/api/applications', {
+    await fetch(`${API}/api/applications/${appId}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: appId, status }),
+      headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+      body: JSON.stringify({ status }),
     });
     setApplications(prev => prev.map(a => a.id === appId ? { ...a, status: status as Application['status'] } : a));
     if (viewingApp?.id === appId) setViewingApp(prev => prev ? { ...prev, status: status as Application['status'] } : null);

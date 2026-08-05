@@ -169,81 +169,6 @@ const RESOURCES = [
   { id: 'resource-2', title: 'Product Brochure', description: 'A brochure covering EcoCapture DAC, BioPure, CO₂ Recovery, and Biochar.', file_url: '/uploads/product-brochure.pdf', type: 'PDF', category: 'Products' },
 ];
 
-const APPLICATIONS = [
-  {
-    id: 'app-1',
-    openingId: 'opening-1',
-    data: {
-      'Full Name': 'Amahoro Divine',
-      'Email Address': 'divine.amahoro@gmail.com',
-      'Phone Number': '+250 788 123 456',
-      'Position Applied For': 'Agricultural Field Officer',
-      'Cover Letter / Message': "I have 4 years of experience working with smallholder farmers in Western Province. I am passionate about sustainable agriculture and eager to contribute to EcoCapture's biochar and CO₂ capture mission.",
-    },
-    status: 'new',
-  },
-  {
-    id: 'app-2',
-    openingId: 'opening-2',
-    data: {
-      'Full Name': 'Niyonsenga Patrick',
-      'Email Address': 'p.niyonsenga@outlook.com',
-      'Phone Number': '+250 722 987 654',
-      'Position Applied For': 'Sustainability Project Manager',
-      'Cover Letter / Message': "With an MSc in Environmental Management and 3 years leading climate-smart agriculture projects at CGIAR, I am excited to drive EcoCapture's impact at scale.",
-    },
-    status: 'reviewed',
-  },
-  {
-    id: 'app-3',
-    openingId: 'opening-3',
-    data: {
-      'Full Name': 'Uwimana Claudette',
-      'Email Address': 'claudette.uwimana@yahoo.com',
-      'Phone Number': '+250 734 556 789',
-      'Position Applied For': 'Sales & Partnerships Coordinator',
-      'Cover Letter / Message': 'I previously managed agri-business partnerships at One Acre Fund Rwanda and built a network of 200+ greenhouse operators. I would love to bring that experience to EcoCapture.',
-    },
-    status: 'new',
-  },
-  {
-    id: 'app-4',
-    openingId: 'opening-1',
-    data: {
-      'Full Name': 'Habimana Eric',
-      'Email Address': 'eric.habimana@gmail.com',
-      'Phone Number': '+250 780 234 567',
-      'Position Applied For': 'Agricultural Field Officer',
-      'Cover Letter / Message': 'I am a recent graduate in Agronomy from UR and have volunteered with local cooperatives in Musanze. I am eager to grow within a purpose-driven company like EcoCapture.',
-    },
-    status: 'new',
-  },
-  {
-    id: 'app-5',
-    openingId: 'opening-2',
-    data: {
-      'Full Name': 'Mukamana Solange',
-      'Email Address': 'solange.mukamana@gmail.com',
-      'Phone Number': '+250 790 112 233',
-      'Position Applied For': 'Sustainability Project Manager',
-      'Cover Letter / Message': 'I hold a degree in Environmental Science from KIE and have coordinated three green energy projects in the Eastern Province. Managing EcoCapture\'s climate initiatives would be a perfect fit.',
-    },
-    status: 'new',
-  },
-  {
-    id: 'app-6',
-    openingId: 'opening-3',
-    data: {
-      'Full Name': 'Ndayishimiye Jean',
-      'Email Address': 'j.ndayishimiye@outlook.com',
-      'Phone Number': '+250 788 445 678',
-      'Position Applied For': 'Sales & Partnerships Coordinator',
-      'Cover Letter / Message': 'Five years in B2B sales across the agri-input sector in East Africa. I have signed 30+ distribution partnerships and would bring that deal-making experience to EcoCapture.',
-    },
-    status: 'shortlisted',
-  },
-];
-
 export async function seedInitialData() {
   const { rows: oRows } = await pool.query('SELECT COUNT(*) FROM openings');
   if (Number(oRows[0].count) === 0) {
@@ -267,17 +192,6 @@ export async function seedInitialData() {
       );
     }
     console.log('Partners seeded');
-  }
-
-  const { rows: aRows } = await pool.query('SELECT COUNT(*) FROM applications');
-  if (Number(aRows[0].count) === 0) {
-    for (const a of APPLICATIONS) {
-      await pool.query(
-        `INSERT INTO applications (id, opening_id, data, status) VALUES ($1,$2,$3,$4) ON CONFLICT (id) DO NOTHING`,
-        [a.id, a.openingId, JSON.stringify(a.data), a.status]
-      );
-    }
-    console.log('Applications seeded');
   }
 
   const { rows: fRows } = await pool.query('SELECT COUNT(*) FROM form_schemas');
