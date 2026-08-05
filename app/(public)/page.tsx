@@ -137,12 +137,12 @@ export default async function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 w-full">
           <div className="max-w-4xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
               Building Africa&apos;s Carbon
               <span className="block text-green-300">Recovery Platform</span>
             </h1>
 
-            <p className="text-green-200 text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+            <p className="text-green-200 text-xs tracking-tight sm:text-lg md:text-xl sm:tracking-normal leading-relaxed mb-10 max-w-2xl">
               EcoCapture Solutions develops direct air capture, biomethane upgrading, CO₂ recovery, and biochar systems that work together.
             </p>
 

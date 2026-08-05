@@ -102,7 +102,7 @@ export default async function Careers() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 w-full">
           <div className="max-w-4xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
               Building Africa&apos;s <span className="text-green-300">Climate Smart</span> Future With Us
             </h1>
             <p className="text-green-200 text-lg leading-relaxed mb-10 max-w-2xl">

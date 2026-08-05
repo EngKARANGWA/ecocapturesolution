@@ -11,7 +11,7 @@ export default function PageHeader({ title, subtitle }: Props) {
 
         {/* Content */}
         <div className="relative z-10 pt-8 pb-10 sm:pt-10 sm:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center">
-          <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="mx-auto max-w-4xl text-2xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             {title}
           </h1>
           {subtitle && (
