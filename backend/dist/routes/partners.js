@@ -4,7 +4,7 @@ const express_1 = require("express");
 const db_1 = require("../db");
 const auth_1 = require("../middleware/auth");
 const router = (0, express_1.Router)();
-router.get('/', auth_1.requireAuth, async (_req, res) => {
+router.get('/', async (_req, res) => {
     const { rows } = await db_1.pool.query('SELECT * FROM partners ORDER BY created_at DESC');
     res.json(rows.map(r => ({ id: r.id, name: r.name, logo: r.logo, website: r.website, type: r.type, status: r.status, createdAt: r.created_at })));
 });

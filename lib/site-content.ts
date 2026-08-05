@@ -215,7 +215,7 @@ export async function getStoryParagraphs() {
 export async function getNewsItems() {
   try {
     const rows = await sql`
-      SELECT id, title, body, category, publish_date AS date, featured, archived
+      SELECT id, title, body, category, publish_date::text AS date, featured, archived
       FROM news_items
       WHERE archived = false
       ORDER BY featured DESC, publish_date DESC, created_at DESC

@@ -3,6 +3,8 @@ import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import swaggerUi from 'swagger-ui-express';
+import { openapiSpec } from './openapi';
 import { migrate } from './migrate';
 import authRoutes from './routes/auth';
 import openingsRoutes from './routes/openings';
@@ -16,13 +18,14 @@ import { seedInitialData } from './seed';
 const app = express();
 const PORT = Number(process.env.PORT ?? 3001);
 const ALLOWED_ORIGINS = [
-  process.env.FRONTEND_URL ?? 'http://localhost:3000',
+  process.env.FRONTEND_URL,
   'http://localhost:3000',
-];
+].filter((o): o is string => Boolean(o));
 
 app.use(cors({
   origin: (origin, cb) => {
-    if (!origin || ALLOWED_ORIGINS.some((o) => origin.startsWith(o))) cb(null, true);
+    const isLocalhost = origin ? /^http:\/\/localhost:\d+$/.test(origin) : false;
+    if (!origin || isLocalhost || ALLOWED_ORIGINS.includes(origin)) cb(null, true);
     else cb(new Error('Not allowed by CORS'));
   },
   credentials: true,
@@ -31,6 +34,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpec));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/openings', openingsRoutes);

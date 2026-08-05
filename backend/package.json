@@ -22,9 +22,11 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.2.0",
     "pg": "^8.22.0",
+    "swagger-ui-express": "^5.0.1",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "@types/swagger-ui-express": "^4.1.8",
     "tsx": "^4.19.3"
   }
 }
