@@ -19,6 +19,8 @@ const app = express();
 const PORT = Number(process.env.PORT ?? 3001);
 const ALLOWED_ORIGINS = [
   process.env.FRONTEND_URL,
+  process.env.RENDER_EXTERNAL_URL,
+  'https://ecocapturesolution.onrender.com',
   'http://localhost:3000',
 ].filter((o): o is string => Boolean(o));
 
@@ -44,6 +46,12 @@ app.use('/api/applications', applicationsRoutes);
 app.use('/api/inquiries', inquiriesRoutes);
 app.use('/api/forms', formsRoutes);
 app.use('/api/upload', uploadRoutes);
+
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  if (err.message === 'Not allowed by CORS') { res.status(403).json({ error: 'Not allowed by CORS' }); return; }
+  console.error(err);
+  res.status(500).json({ error: 'Internal server error' });
+});
 
 migrate()
   .then(() => seedInitialData())
