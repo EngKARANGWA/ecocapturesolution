@@ -30,9 +30,9 @@ const steps = [
     number: '01',
     icon: Settings2,
     title: 'CO₂ Capture Machine',
-    headline: 'We capture CO₂ from the air and reuse it for farming.',
-    body: 'Our compact, modular machines are designed to capture CO₂ directly from industrial emission points - factories, kilns, and processing plants. They are built to work in African conditions: low-cost to operate, easy to maintain, and scalable from a single site to an entire region.',
-    highlights: ['Low operating cost', 'Modular & scalable', 'Locally maintainable', 'Industrial-grade capture'],
+    headline: 'Turning Carbon Emissions into Valuable Resources',
+    body: 'EcoCapture develops modular carbon capture systems that recover CO₂ from industrial processes and biomethane upgrading. Instead of releasing carbon into the atmosphere, we purify and reuse it for greenhouse enrichment and other sustainable applications, enabling industries to reduce emissions while advancing the circular carbon economy.',
+    highlights: ['Industrial and biomethane CO₂ capture', 'High-purity CO₂ recovery', 'Energy-efficient operation', 'Modular and scalable deployment', 'Designed for Africa'],
     img: '/assets/projects/co2-capture.jpg',
     alt: 'CO₂ capture machine',
     imgLeft: false,
@@ -146,7 +146,7 @@ export default function Technology() {
       </section>
 
       {/* Circular economy summary */}
-      <section className="pt-3 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-4 bg-gray-50">
+      <section className="pt-3 sm:pt-4 pb-[clamp(2rem,4.6vw,7rem)] px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">The Full Circle</span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-5">

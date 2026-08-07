@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Settings2, Leaf, Sprout, Recycle, ChevronDown, AlertTriangle, Lightbulb, ArrowRight, Factory, Droplets, BarChart3, type LucideIcon } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import MarqueeList from '@/components/MarqueeList';
-import { companyStoryTitle, getHomeStats, getPartners, getProducts, getStoryParagraphs, homeHighlights } from '@/lib/site-content';
+import { companyStoryTitle, getHomeStats, getPartners, getStoryParagraphs, homeHighlights } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: 'EcoCapture Solutions Ltd — Climate Tech for Africa',
@@ -47,10 +47,10 @@ const initiatives: Initiative[] = [
   },
   {
     Icon: Droplets,
-    img: '/assets/projects/circular economy.jpg',
+    img: '/assets/projects/biomas.jpeg',
     alt: 'Biomethane upgrading',
     title: 'Biomethane Upgrading',
-    desc: 'Clean biogas, recover CO₂, and produce high-quality biomethane for renewable energy use.',
+    desc: 'Upgrade biogas into high-purity biomethane while recovering CO₂ for greenhouse enrichment, carbon utilization, and other sustainable applications.',
   },
   {
     Icon: Leaf,
@@ -112,9 +112,8 @@ const organizationSchema = {
 };
 
 export default async function Home() {
-  const [stats, products, storyParagraphs, partners] = await Promise.all([
+  const [stats, storyParagraphs, partners] = await Promise.all([
     getHomeStats(),
-    getProducts(),
     getStoryParagraphs(),
     getPartners(),
   ]);
@@ -131,13 +130,13 @@ export default async function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-eco-dark/95 via-eco-dark/80 to-eco-primary/40" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 w-full">
-          <div className="max-w-4xl">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl">
+          <div className="max-w-4xl lg:max-w-none">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-4xl lg:max-w-none">
               Building Africa&apos;s Carbon
-              <span className="block text-green-300">Recovery Platform</span>
+              <span className="block lg:inline text-green-300"> Recovery Platform</span>
             </h1>
 
-            <p className="text-green-200 text-xs tracking-tight sm:text-lg md:text-xl sm:tracking-normal leading-relaxed mb-10 max-w-2xl">
+            <p className="text-green-200 text-xs tracking-tight sm:text-lg md:text-xl sm:tracking-normal leading-relaxed mb-10 max-w-2xl lg:max-w-none">
               EcoCapture Solutions develops direct air capture, biomethane upgrading, CO₂ recovery, and biochar systems that work together.
             </p>
 
@@ -257,7 +256,7 @@ export default async function Home() {
                 step: '01',
                 icon: Settings2,
                 title: 'Capture CO₂',
-                desc: 'Our compact machines capture CO₂ directly from industrial sources at low cost.',
+                desc: 'Our regenerable capture technology efficiently removes CO₂ from industrial exhaust and biogas upgrading, creating a reliable source of purified carbon for reuse and long-term impact.',
                 color: 'bg-eco-light border-eco-primary/10',
                 iconColor: 'text-eco-primary',
                 numColor: 'text-eco-primary/20',
@@ -303,44 +302,6 @@ export default async function Home() {
             <Link href="/technology" className="inline-flex items-center gap-2 text-eco-primary font-semibold hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5">
               Explore the technology in detail →
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRODUCTS ── */}
-      <section className="pt-4 sm:pt-6 pb-8 sm:pb-10 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-14">
-            <span className="text-eco-primary text-sm font-semibold uppercase tracking-widest">Products</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Our product line</h2>
-            <p className="text-gray-500 mt-3 max-w-2xl mx-auto">Each product is designed to work as part of the same carbon management platform.</p>
-            <div className="w-12 h-1 bg-eco-primary mx-auto mt-5 rounded-full" />
-          </div>
-
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div key={product.id} className="group bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
-                <div className="relative h-44 overflow-hidden">
-                  <Image src={product.image} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="p-5">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-eco-primary mb-2">{product.category}</p>
-                  <h3 className="font-bold text-gray-900 mb-2 text-lg">{product.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{product.summary}</p>
-                  <ul className="space-y-2 mb-5">
-                    {product.features.slice(0, 4).map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-gray-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-eco-primary shrink-0 mt-1.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="/contact" className="inline-flex items-center gap-2 text-eco-primary font-semibold hover:text-eco-dark transition-colors no-underline border-b-2 border-eco-primary hover:border-eco-dark pb-0.5">
-                    Learn more
-                  </Link>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

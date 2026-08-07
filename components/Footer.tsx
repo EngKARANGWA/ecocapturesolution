@@ -19,7 +19,7 @@ const getInvolved = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-eco-dark text-white">
+    <footer className="relative bg-eco-dark text-white border-t border-white/15">
 
       {/* Wave top — white page content curves into the green footer */}
       <div aria-hidden className="-mt-px pointer-events-none">
