@@ -185,6 +185,7 @@ async function readJsonColumn<T>(query: TemplateStringsArray, fallback: T): Prom
 }
 
 export async function getHomeStats() {
+  let stats: HomeStat[];
   try {
     const rows = await sql`
       SELECT key AS id, label, value, suffix, description
@@ -192,10 +193,21 @@ export async function getHomeStats() {
       WHERE status = 'active'
       ORDER BY sort_order ASC, label ASC
     `;
-    return rows.length ? (rows as HomeStat[]) : defaultHomeStats;
+    stats = rows.length ? (rows as HomeStat[]) : defaultHomeStats;
   } catch {
-    return defaultHomeStats;
+    stats = defaultHomeStats;
   }
+
+  try {
+    const [{ count }] = await sql`SELECT COUNT(*)::int AS count FROM projects`;
+    stats = stats.map((stat) =>
+      stat.id === 'projects' ? { ...stat, value: String(count) } : stat
+    );
+  } catch {
+    // projects table unavailable — keep the stored/default value
+  }
+
+  return stats;
 }
 
 export async function getProducts() {

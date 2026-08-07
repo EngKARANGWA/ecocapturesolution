@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Sprout, Factory, CheckCircle } from 'lucide-react';
+import { Sprout, Factory, CheckCircle, BarChart3, type LucideIcon } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
@@ -25,21 +25,34 @@ export const metadata: Metadata = {
   },
 };
 
-const audiences = [
+interface Audience {
+  icon?: LucideIcon;
+  tag?: string;
+  title: string;
+  headline: string;
+  body: string;
+  benefits: string[];
+  img: string;
+  alt: string;
+  cta: string;
+  ctaHref: string;
+  color: string;
+  tagColor: string;
+}
+
+const audiences: Audience[] = [
   {
-    icon: Sprout,
-    tag: 'For Farmers',
-    title: 'Grow More. Spend Less.',
-    headline: 'Better crops with CO₂ and biochar - at a fraction of the cost.',
-    body: 'We deliver CO₂ directly into your greenhouse so your plants grow faster and produce more. We also supply biochar fertilizer made from agricultural waste - improving your soil health and reducing your dependence on expensive chemical fertilizers.',
+    icon: Factory,
+    tag: 'For Industries',
+    title: 'Carbon Capture & Utilization',
+    headline: '',
+    body: 'Capture CO₂ from industrial emissions and biomethane upgrading before it enters the atmosphere. Our modular systems recover carbon for valuable reuse, helping organizations reduce emissions and accelerate the transition to a circular carbon economy.',
     benefits: [
-      'Up to 30% higher crop yields',
-      'Shorter harvest cycles',
-      'Affordable biochar fertilizer',
-      'Improved soil fertility long-term',
-      'Reduced chemical input costs',
+      'Multi-source CO₂ capture',
+      'High-purity carbon recovery',
+      'Sustainable carbon utilization',
     ],
-    img: '/assets/projects/farmer supported.png',
+    img: '/assets/projects/solution1.jpeg',
     alt: 'Farmers benefiting from EcoCapture',
     cta: 'Talk to Our Team',
     ctaHref: '/contact',
@@ -47,38 +60,54 @@ const audiences = [
     tagColor: 'bg-eco-primary text-white',
   },
   {
-    icon: Factory,
-    tag: 'For Industries',
-    title: 'Turn Emissions Into Value.',
-    headline: 'Reduce your CO₂ footprint and support local agriculture at the same time.',
-    body: 'If your facility produces CO₂ emissions, we can capture them before they reach the atmosphere. That captured CO₂ goes into local greenhouses - improving food production while cutting your carbon output. You reduce costs, meet sustainability targets, and support the communities around you.',
+    icon: Sprout,
+    tag: 'For Biogas Producers',
+    title: 'Biomethane Upgrading',
+    headline: '',
+    body: 'Upgrade raw biogas into renewable biomethane while recovering CO₂ for productive use. Our integrated technology improves energy quality, reduces emissions, and maximizes the value of every cubic meter of biogas.',
     benefits: [
-      'Measurable emissions reduction',
-      'Low-cost capture infrastructure',
-      'CSR and sustainability reporting ready',
-      'Support local food systems',
-      'Scalable to your facility size',
+      'Renewable biomethane production',
+      'CO₂ recovery and utilization',
+      'Efficient and scalable upgrading',
     ],
-    img: '/assets/projects/co2-capture.jpg',
-    alt: 'Industrial CO2 capture',
+    img: '/assets/projects/biomas.jpeg',
+    alt: 'Biomethane upgrading facility',
     cta: 'Explore Partnership',
     ctaHref: '/partner',
     color: 'bg-eco-light border-eco-primary/10',
     tagColor: 'bg-eco-primary text-white',
   },
   {
-    title: 'Invest in Verified Carbon Removal.',
-    headline: 'Integrated carbon solutions with measurable climate impact.',
-    body: 'EcoCapture transforms waste emissions into valuable climate solutions by capturing CO₂, upgrading biogas into biomethane, enriching greenhouses with recovered carbon, and producing biochar for long-term carbon storage. Our integrated approach delivers verifiable carbon removal while creating renewable energy and supporting sustainable agriculture across Africa.',
+    icon: Sprout,
+    tag: 'For Farmers',
+    title: 'Biochar & Carbon Removal',
+    headline: '',
+    body: 'Transform agricultural residues into premium biochar that permanently stores carbon while restoring soil health and increasing agricultural productivity.',
     benefits: [
-      'Capture and utilize CO₂ from multiple sources',
-      'Produce renewable biomethane for clean energy',
-      'Deliver permanent carbon removal through biochar',
-      'Generate measurable, traceable climate impact',
-      'Support industries, farmers, and net-zero commitments',
+      'Durable carbon sequestration',
+      'Healthier soils and higher yields',
+      'Verified climate impact',
     ],
-    img: '/assets/projects/circular economy.jpg',
-    alt: 'Carbon credits and circular economy',
+    img: '/assets/projects/solution3.jpeg',
+    alt: 'Biochar and carbon removal',
+    cta: 'Get In Touch',
+    ctaHref: '/contact',
+    color: 'bg-eco-light border-eco-primary/10',
+    tagColor: 'bg-eco-primary text-white',
+  },
+  {
+    icon: BarChart3,
+    tag: 'For Climate Partners',
+    title: 'Carbon Credits & MRV',
+    headline: '',
+    body: 'Provide transparent measurement, monitoring, reporting, and verification of carbon reductions and removals, enabling organizations to demonstrate impact and access high-integrity carbon markets.',
+    benefits: [
+      'Accurate monitoring and reporting',
+      'High-integrity carbon credits',
+      'Compliance and sustainability support',
+    ],
+    img: '/assets/projects/chartstatistic.jpeg',
+    alt: 'Carbon credits monitoring and verification',
     cta: 'Get In Touch',
     ctaHref: '/contact',
     color: 'bg-eco-light border-eco-primary/10',
