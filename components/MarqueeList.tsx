@@ -23,7 +23,8 @@ export default function MarqueeList<T>({
 
   return (
     <div className="overflow-hidden">
-      <div className={`marquee-track flex w-max ${className}`} style={marqueeStyle}>
+      {/* Moving marquee — only for viewers who allow motion. Duplicated track creates the seamless loop. */}
+      <div className={`marquee-track hidden motion-safe:flex w-max ${className}`} style={marqueeStyle}>
         <div className="flex w-max items-center gap-6 pr-6">
           {items.map((item) => (
             <div key={getKey(item)} className={itemClassName}>
@@ -38,6 +39,15 @@ export default function MarqueeList<T>({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Static fallback for reduced-motion — single, non-duplicated list, no animation. */}
+      <div className={`hidden motion-reduce:flex flex-wrap items-center justify-center gap-6 ${className}`}>
+        {items.map((item) => (
+          <div key={getKey(item)} className={itemClassName}>
+            {renderItem(item)}
+          </div>
+        ))}
       </div>
     </div>
   );
